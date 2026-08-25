@@ -19,7 +19,7 @@ debutCarte("Forum"); ?>
 	// On vérifie si l'utilisateur n'est pas banni du forum
 	if(isset($_SESSION['login'])) {
 		$sql4 = 'SELECT * FROM sanctions WHERE joueur=\''.$_SESSION['login'].'\'';
-		$ex4 = mysqli_query($base,$sql4) or die('Erreur SQL !'.$sql4.'<br />'.mysql_error());
+		$ex4 = mysqli_query($base,$sql4) or die('Erreur SQL !'.$sql4.'<br>'.mysql_error());
 	}
 	$ex4 = mysqli_query($base,'SELECT * FROM sanctions WHERE joueur="aabbqsdqsdqsdqsqqsd"'); //je savais pas comment faire :D
 	// Si il est banni
@@ -27,19 +27,19 @@ debutCarte("Forum"); ?>
 		$sanction = mysqli_fetch_array($ex4);
 		// On calcul la différence entre la date de fin et la date actuelle
 		$sql5 = 'SELECT DATEDIFF(CURDATE(),\''.$sanction['dateFin'].'\')';
-		$ex5 = mysqli_query($base,$sql5) or die ('Erreur SQL :<br/>'.$sql5.'<br/>'.mysql_error());
+		$ex5 = mysqli_query($base,$sql5) or die ('Erreur SQL :<br>'.$sql5.'<br>'.mysql_error());
 		$diff = mysqli_fetch_array($ex5);
 		// Si la date de fin de la sanction est passée, on supprime la sanction
 		if ($diff[0] >= 0){
 			$sql7 = 'DELETE FROM sanctions WHERE joueur=\''.$_SESSION['login'].'\'';
-			$ex7 = mysqli_query($base,$sql7) or die ('Erreur SQL :<br/>'.$sql7.'<br/>'.mysql_error());
+			$ex7 = mysqli_query($base,$sql7) or die ('Erreur SQL :<br>'.$sql7.'<br>'.mysql_error());
 			// Rafraichissement de la page
 			echo "<script>window.location.replace(\"forum.php\")</script>";
 		}
 		else {
 			list($annee,$mois,$jour) = explode('-',$sanction['dateFin']);
 			$sanction['dateFin'] = $jour.'/'.$mois.'/'.$annee;
-			echo "Vous ne pouvez plus accéder au forum car vous avez été banni par <a href=\"ecriremessage.php?destinataire=".$sanction['moderateur']."\" >".$sanction['moderateur']."</a> jusqu'au <strong>".$sanction['dateFin']."</strong>.<br/>";
+			echo "Vous ne pouvez plus accéder au forum car vous avez été banni par <a href=\"ecriremessage.php?destinataire=".$sanction['moderateur']."\" >".$sanction['moderateur']."</a> jusqu'au <strong>".$sanction['dateFin']."</strong>.<br>";
 			echo "Motif de la sanction : ".BBcode($sanction['motif']);
 		}
 	}
@@ -63,7 +63,7 @@ if(isset($_SESSION['login'])) {
 <tbody>
 <?php
 $sql = 'SELECT * FROM forums';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
 
 while($forum = mysqli_fetch_array($ex)) {
     $ex2 = mysqli_query($base,'SELECT count(*) AS nbSujets FROM sujets WHERE idforum=\''.$forum['id'].'\' AND statut = 0');
@@ -74,10 +74,10 @@ while($forum = mysqli_fetch_array($ex)) {
 		$statutForum = mysqli_fetch_array($ex1);
 
 		if($statutForum['nbLus'] >= $nbSujets['nbSujets']) {
-			echo '<td><img src="images/forum/pasDeNouveauMessage.png" alt="pasDeNouveauMessage" class="w32"/> </td>';
+			echo '<td><img src="images/forum/pasDeNouveauMessage.png" alt="pasDeNouveauMessage" class="w32"> </td>';
 		}
 		else {
-			echo '<td><img src="images/forum/nouveauMessage.png" alt="nouveauMessage" class="w32"/></td>';
+			echo '<td><img src="images/forum/nouveauMessage.png" alt="nouveauMessage" class="w32"></td>';
 		}
 	}
     echo '<td><a href="listesujets.php?id='.$forum['id'].'">'.$forum['titre'].'</a></td>';
@@ -95,11 +95,11 @@ while($forum = mysqli_fetch_array($ex)) {
 </div>
 <?php
 if(isset($_SESSION['login'])) { ?>
-<br/>
+<br>
 <p class="legende">
 <?php echo important("Légende"); ?>
-<img src="images/forum/nouveauMessage.png" alt="nouveauMessage" style="vertical-align:middle" class="w32"/> : Un ou plusieurs nouveaux messages<br/><br/>
-<img src="images/forum/pasDeNouveauMessage.png" alt="pasDeNouveauMessage" style="vertical-align:middle" class="w32"/> : Pas de nouveaux messages
+<img src="images/forum/nouveauMessage.png" alt="nouveauMessage" style="vertical-align:middle" class="w32"> : Un ou plusieurs nouveaux messages<br><br>
+<img src="images/forum/pasDeNouveauMessage.png" alt="pasDeNouveauMessage" style="vertical-align:middle" class="w32"> : Pas de nouveaux messages
 </p>
 <?php 
 	}
