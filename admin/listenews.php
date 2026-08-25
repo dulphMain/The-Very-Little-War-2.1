@@ -5,7 +5,7 @@ include("redirectionmotdepasse.php");
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Very Little War - Liste des news</title>
     <style type="text/css">
@@ -42,7 +42,7 @@ include("redirectionmotdepasse.php");
         // On vérifie si c'est une modification de news ou non.
         if ($_POST['id_news'] == 0) {
             // Ce n'est pas une modification, on crée une nouvelle entrée dans la table.
-            mysqli_query($base, "INSERT INTO news VALUES(default, '" . $titre . "', '" . $contenu . "', '" . (time()) .  "')") or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+            mysqli_query($base, "INSERT INTO news VALUES(default, '" . $titre . "', '" . $contenu . "', '" . (time()) .  "')") or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
             // On protège la variable "id_news" pour éviter une faille SQL.
             $_POST['id_news'] = addslashes($_POST['id_news']);
             // C'est une modification, on met juste à jour le titre et le contenu.
