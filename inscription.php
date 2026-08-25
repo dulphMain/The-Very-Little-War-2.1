@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
 				$nb = mysqli_fetch_array($exMail);
 				if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']) && $nb['nb'] == 0) {
 					$sql = 'SELECT count(*) FROM membre WHERE login="' . $_POST['login'] . '"';
-					$req = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+					$req = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 					$data = mysqli_fetch_array($req);
 					//Si le login est déjà utilisé
 					if ($data[0] == 0) {
@@ -45,10 +45,10 @@ include("includes/tout.php");
 debutCarte("Inscription");
 echo '<form action="inscription.php" method="post" name="inscription">';
 debutListe();
-item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/player.png" class="w32"/>', 'titre' => 'Login', 'input' => '<input type="text" name="login" id="login" maxlength="13" value="Login">', 'after' => submit(['link' => 'javascript:generate()', 'titre' => 'Générer'])]);
-item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/email.png" class="w32"/>', 'titre' => 'E-mail', 'input' => '<input type="text" name="email" id="email" maxlength="100" class="form-control">', 'after' => popover('popover-mail', 'images/question.png')]);
-item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/door-key.png" class="w32"/>', 'titre' => 'Mot de passe', 'input' => '<input type="password" name="pass" id="pass" class="form-control">']);
-item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/door-key.png" class="w32"/>', 'titre' => 'Confirmation', 'input' => '<input type="password" name="pass_confirm" id="pass_confirm" class="form-control">']);
+item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/player.png" class="w32">', 'titre' => 'Login', 'input' => '<input type="text" name="login" id="login" maxlength="13" value="Login">', 'after' => submit(['link' => 'javascript:generate()', 'titre' => 'Générer'])]);
+item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/email.png" class="w32">', 'titre' => 'E-mail', 'input' => '<input type="text" name="email" id="email" maxlength="100" class="form-control">', 'after' => popover('popover-mail', 'images/question.png')]);
+item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/door-key.png" class="w32">', 'titre' => 'Mot de passe', 'input' => '<input type="password" name="pass" id="pass" class="form-control">']);
+item(['floating' => true, 'media' => '<img alt="login" src="images/accueil/door-key.png" class="w32">', 'titre' => 'Confirmation', 'input' => '<input type="password" name="pass_confirm" id="pass_confirm" class="form-control">']);
 echo '<p style="margin-left:5px">En vous inscrivant vous acceptez nos <a href="regles.php" class="external lien lienVisible">Conditions Générales d\'Utilisation</a></p>';
 item(['input' => submit(['form' => 'inscription', 'titre' => 'Inscription'])]);
 finListe();
@@ -60,7 +60,7 @@ finCarte();
 	<div class="popover-angle"></div>
 	<div class="popover-inner">
 		<div class="content-block">
-			<p>Un mail sera envoyé à cette adresse pour <span class="important">confirmer votre inscription</span> et vous prévenir du début d'une nouvelle partie.<br /> Il peut être changé dans "Mon compte".</p>
+			<p>Un mail sera envoyé à cette adresse pour <span class="important">confirmer votre inscription</span> et vous prévenir du début d'une nouvelle partie.<br> Il peut être changé dans "Mon compte".</p>
 		</div>
 	</div>
 </div>
