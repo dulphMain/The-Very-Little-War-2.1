@@ -317,7 +317,7 @@ function BBCode($text,$javascript=false){
 $text = htmlentities($text);
     
 $text = preg_replace('!localStorage.getItem\(("|\')mdp!isU', '', $text);
-$text = preg_replace('!0:(-)?\)!isU', '<img alt="angel" src="images/smileys/icon_angel.gif"/>', $text);
+$text = preg_replace('!0:(-)?\)!isU', '<img alt="angel" src="images/smileys/icon_angel.gif">', $text);
 $text = preg_replace('!\[b\](.+)\[/b\]!isU', '<span style="font-weight: bold">$1</span>', $text);
 $text = preg_replace('!\[elfique\](.+)\[/elfique\]!isU', '<span style="font-family: quenya;font-size:2em">$1</span>', $text);
 $text = preg_replace('!\[i\](.+)\[/i\]!isU', '<span style="font-style: italic">$1</span>', $text);
@@ -355,12 +355,12 @@ $text = preg_replace('!:(-)?\(!isU', '😟', $text);
 $text = preg_replace('!:(-)?\)!isU', '😊', $text);
 $text = preg_replace('!:(-)?o!isU', '😲', $text);
 $text = preg_replace('!;(-)?\)!isU', '😉', $text);
-$text = preg_replace('!:chainhappy:!isU', '<img alt="chainhappy" src="images/smileys/chainhappy.gif"/>', $text);
-$text = preg_replace('!:want:!isU', '<img alt="want" src="images/smileys/want.gif"/>', $text);
-$text = preg_replace('!:facepalm:!isU', '<img alt="facepalm" src="images/smileys/facepalm.gif"/>', $text);
-$text = preg_replace('!:bye:!isU', '<img alt="bye" src="images/smileys/bye.gif"/>', $text);
-$text = preg_replace('!:music:!isU', '<img alt="music" src="images/smileys/music.gif"/>', $text);
-$text = preg_replace('!:what:!isU', '<img alt="what" src="images/smileys/what.gif"/>', $text);
+$text = preg_replace('!:chainhappy:!isU', '<img alt="chainhappy" src="images/smileys/chainhappy.gif">', $text);
+$text = preg_replace('!:want:!isU', '<img alt="want" src="images/smileys/want.gif">', $text);
+$text = preg_replace('!:facepalm:!isU', '<img alt="facepalm" src="images/smileys/facepalm.gif">', $text);
+$text = preg_replace('!:bye:!isU', '<img alt="bye" src="images/smileys/bye.gif">', $text);
+$text = preg_replace('!:music:!isU', '<img alt="music" src="images/smileys/music.gif">', $text);
+$text = preg_replace('!:what:!isU', '<img alt="what" src="images/smileys/what.gif">', $text);
 return $text;
 }
 if(isset($_POST["newst"])){
