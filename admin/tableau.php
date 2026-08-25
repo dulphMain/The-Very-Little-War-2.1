@@ -23,7 +23,7 @@ include("debut.php");
                             <div class="block">
                                 <div class="block-title">
                                     <h1>1</h1>
-                                    <h2>Obtenir la source <img src="img/folded-paper.png" alt="folded" style="float: right;margin-top: -30px"/></h2>
+                                    <h2>Obtenir la source <img src="img/folded-paper.png" alt="folded" style="float: right;margin-top: -30px"></h2>
                                 </div>
                                 <div class="block-content">
                                     <p>Ouvrez le CRPJ que vous voulez insérer dans le tableau et cliquez sur le bouton en haut à droit du contenu "Autres actions" puis ssélectionnez dans la liste déroulante "Afficher la source". Une fenêtre s'ouvre : appuyer alors sur Ctrl+A pour sélectionner tout le contenu puis Ctrl+C pour le copier.</p>
@@ -36,7 +36,7 @@ include("debut.php");
                             <div class="block">
                                 <div class="block-title">
                                     <h1>2</h1>
-                                    <h2>Transformer le CRPJ <img src="img/rapidshare-arrow.png" alt="arrow" style="float: right;margin-top: -30px"/></h2>
+                                    <h2>Transformer le CRPJ <img src="img/rapidshare-arrow.png" alt="arrow" style="float: right;margin-top: -30px"></h2>
                                 </div>
                                 <div class="block-content">
                                     <p>Rendez-vous ensuite sur cette page juste en bas de ce tutoriel dans la grande zone de texte et appuyez sur Ctrl+V pour coller la source du CRPJ. Appuyez ensuite sur le bouton "Mettre en forme" en bas de la grande zone de texte. Vous obtenez alors un tableau un peu plus bas. Copiez ce qui vous intéresse (Ctrl+C).</p>
@@ -49,7 +49,7 @@ include("debut.php");
                             <div class="block">
                                 <div class="block-title">
                                     <h1>3</h1>
-                                    <h2>Compléter le tableau <img src="img/checklist.png" alt="check" style="float: right;margin-top: -30px"/></h2>
+                                    <h2>Compléter le tableau <img src="img/checklist.png" alt="check" style="float: right;margin-top: -30px"></h2>
                                 </div>
                                 <div class="block-content">
                                     <p>C'est presque fini ! Il reste seulement à ouvrir le fichier Calc et à appuyer sur Ctrl+V au niveau de l'UNA de la ligne qui vous intéresse.</p>
@@ -73,10 +73,10 @@ include("debut.php");
                         if($data['nb'] >= 1){
                             ?>
                             <h1>Tableau <?php echo $data['nom'] ?></h1>
-                            <br/><br/>
+                            <br><br>
                             <p>
-                            <textarea id="texte" rows="20" style="width:100%"></textarea><br/><br/>
-                            <input type="submit" id="soumettre" value="METTRE EN FORME" />
+                            <textarea id="texte" rows="20" style="width:100%"></textarea><br><br>
+                            <input type="submit" id="soumettre" value="METTRE EN FORME">
                             </div>
                             <div class="featured-slider" id="englobeResultat">
                             </div>
@@ -236,36 +236,36 @@ include("debut.php");
                                             if(tabVeh.indexOf(chaine) == -1){
                                                 console.log(add);
                                                 if(add=="Véhicule terrestre (Volé)"){
-                                                    typeVol += "<br/> - "+typeVeh;
-                                                    plaqueVol += "<br/> - "+plaque;
-                                                    couleurVol += "<br/> - "+couleurPrincipale;
-                                                    marqueVol += "<br/> - "+marque;
-                                                    modeleVol += "<br/> - "+modele;
-                                                    numSerieVol += "<br/> - "+numSerie;
+                                                    typeVol += "<br> - "+typeVeh;
+                                                    plaqueVol += "<br> - "+plaque;
+                                                    couleurVol += "<br> - "+couleurPrincipale;
+                                                    marqueVol += "<br> - "+marque;
+                                                    modeleVol += "<br> - "+modele;
+                                                    numSerieVol += "<br> - "+numSerie;
                                                 }
                                                 else if(add=="Véhicule terrestre (Utilisé)"){
-                                                    typeUt += "<br/> - UTILISE "+typeVeh;
-                                                    plaqueUt += "<br/> - "+plaque;
-                                                    couleurUt += "<br/> - "+couleurPrincipale;
-                                                    marqueUt += "<br/> - "+marque;
-                                                    modeleUt += "<br/> - "+modele;
-                                                    numSerieUt += "<br/> - "+numSerie;
+                                                    typeUt += "<br> - UTILISE "+typeVeh;
+                                                    plaqueUt += "<br> - "+plaque;
+                                                    couleurUt += "<br> - "+couleurPrincipale;
+                                                    marqueUt += "<br> - "+marque;
+                                                    modeleUt += "<br> - "+modele;
+                                                    numSerieUt += "<br> - "+numSerie;
                                                 }
                                                 else if(add=="Véhicule terrestre (Saisi)"){
-                                                    typeUt += "<br/> - SAISI - "+typeVeh;
-                                                    plaqueUt += "<br/> - "+plaque;
-                                                    couleurUt += "<br/> - "+couleurPrincipale;
-                                                    marqueUt += "<br/> - "+marque;
-                                                    modeleUt += "<br/> - "+modele;
-                                                    numSerieUt += "<br/> - "+numSerie;
+                                                    typeUt += "<br> - SAISI - "+typeVeh;
+                                                    plaqueUt += "<br> - "+plaque;
+                                                    couleurUt += "<br> - "+couleurPrincipale;
+                                                    marqueUt += "<br> - "+marque;
+                                                    modeleUt += "<br> - "+modele;
+                                                    numSerieUt += "<br> - "+numSerie;
                                                 }
                                                 else if(add=="Véhicule terrestre (Découvert)"){
-                                                    typeUt += "<br/> - DECOUVERT - "+typeVeh;
-                                                    plaqueUt += "<br/> - "+plaque;
-                                                    couleurUt += "<br/> - "+couleurPrincipale;
-                                                    marqueUt += "<br/> - "+marque;
-                                                    modeleUt += "<br/> - "+modele;
-                                                    numSerieUt += "<br/> - "+numSerie;
+                                                    typeUt += "<br> - DECOUVERT - "+typeVeh;
+                                                    plaqueUt += "<br> - "+plaque;
+                                                    couleurUt += "<br> - "+couleurPrincipale;
+                                                    marqueUt += "<br> - "+marque;
+                                                    modeleUt += "<br> - "+modele;
+                                                    numSerieUt += "<br> - "+numSerie;
                                                 }
                                                 tabVeh.push(chaine);
                                                 console.log(tabVeh);
@@ -318,7 +318,7 @@ include("debut.php");
 
                                 var lieu = fait[2].replace(/- /g,"");
                                 lieu = lieu.toUpperCase();
-                                ligneLieu += lieu+"<br/><br/>";
+                                ligneLieu += lieu+"<br><br>";
 
 
                                 var debut = date[0].trim();
@@ -338,7 +338,7 @@ include("debut.php");
                                             echo 'var type = fait[0];
                                             type = type.replace(/Fait [0-9]:/,""); // on enlève tout ça
                                             type = type.trim();
-                                            ligne += type+"<br/><br/>";
+                                            ligne += type+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                         break;
@@ -356,7 +356,7 @@ include("debut.php");
                                             lieu = lieu.toUpperCase();
                                             lieu = lieu.trim();
                                             '.$correction.'
-                                            ligne += lieu+"<br/><br/>";
+                                            ligne += lieu+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             
@@ -372,7 +372,7 @@ include("debut.php");
                                             commune = commune.replace(/à/i,"");
                                             commune = commune.replace(/-/ig," ");
                                             commune = commune.trim();
-                                            ligne += commune+"<br/><br/>";
+                                            ligne += commune+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                         break;
@@ -382,7 +382,7 @@ include("debut.php");
                                             adresse = adresse.toUpperCase();
                                             adresse = adresse.replace(/SAINT/g,"ST");
                                             adresse = adresse.trim();
-                                            ligne += adresse+"<br/><br/>";
+                                            ligne += adresse+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -390,7 +390,7 @@ include("debut.php");
                                         case "Jour début" :
                                             echo '
                                             var jourDebut = tabDebut[0];
-                                            ligne += jourDebut+"<br/><br/>";
+                                            ligne += jourDebut+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -398,7 +398,7 @@ include("debut.php");
                                         case "Date début" :
                                             echo'
                                             var dateDebut = tabDebut[1]+"/"+ajouterZero(tabMois.indexOf(tabDebut[2])+1,2)+"/"+tabDebut[3];
-                                            ligne += dateDebut+"<br/><br/>";
+                                            ligne += dateDebut+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -406,7 +406,7 @@ include("debut.php");
                                         case "Heure début" :
                                             echo'
                                             var heure = tabDebut[5]+":"+tabDebut[7];
-                                            ligne += heure+"<br/><br/>";
+                                            ligne += heure+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -414,7 +414,7 @@ include("debut.php");
                                         case "Jour fin" :
                                             echo '
                                             var jourFin = tabFin[0];
-                                            ligne += jourFin+"<br/><br/>";
+                                            ligne += jourFin+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -422,7 +422,7 @@ include("debut.php");
                                         case "Date fin" :
                                             echo '
                                             var dateFin = tabFin[1]+"/"+ajouterZero(tabMois.indexOf(tabFin[2])+1,2)+"/"+tabFin[3];
-                                            ligne += dateFin+"<br/><br/>";
+                                            ligne += dateFin+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -430,7 +430,7 @@ include("debut.php");
                                         case "Heure fin" :
                                             echo '
                                             var heure = tabFin[5]+":"+tabFin[7];
-                                            ligne += heure+"<br/><br/>";
+                                            ligne += heure+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -505,7 +505,7 @@ include("debut.php");
                                                 var aFin = Number(tabFin[3]);
                                                 var objDateFin = new Date(aFin,mFin,jFin);
                                                 var numSem = objDateFin.getWeek();
-                                                ligne += numSem+"<br/><br/>";
+                                                ligne += numSem+"<br><br>";
                                                 }
                                                 ajouterElement(ligne);';
                                                 break;
@@ -525,7 +525,7 @@ include("debut.php");
                                                     periode = "indéterminée";
                                                 }
                                             }
-                                            ligne += periode+"<br/><br/>";
+                                            ligne += periode+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -561,14 +561,14 @@ include("debut.php");
                                                     }
                                                 }
                                             }
-                                            ligne += momentJournee+"<br/><br/>";
+                                            ligne += momentJournee+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
 
                                         case "Mois" :
                                             echo 'var mFin = tabFin[2];
-                                            ligne += mFin+"<br/><br/>";
+                                            ligne += mFin+"<br><br>";
                                             }
                                             ajouterElement(ligne);';
                                             break;
@@ -732,11 +732,11 @@ include("debut.php");
                                             break;
 
                                         case "Véhicules" :
-                                            echo 'typeUt = typeUt.replace(/(<br\/>|-)/g,"");
-                                            marqueUt = marqueUt.replace(/(<br\/>|-)/g,"");
-                                            modeleUt = modeleUt.replace(/(<br\/>|-)/g,"");
-                                            couleurUt = couleurUt.replace(/(<br\/>|-)/g,"");
-                                            plaqueUt = plaqueUt.replace(/(<br\/>|-)/g,"");';
+                                            echo 'typeUt = typeUt.replace(/(<br\>|-)/g,"");
+                                            marqueUt = marqueUt.replace(/(<br\>|-)/g,"");
+                                            modeleUt = modeleUt.replace(/(<br\>|-)/g,"");
+                                            couleurUt = couleurUt.replace(/(<br\>|-)/g,"");
+                                            plaqueUt = plaqueUt.replace(/(<br\>|-)/g,"");';
                                             echo 'ajouterElement(typeUt+" "+marqueUt+" "+modeleUt+" "+couleurUt+" "+plaqueUt+" "+typeVol+" "+marqueVol+" "+modeleVol+" "+couleurVol+" "+plaqueVol);';
                                             break;
 
