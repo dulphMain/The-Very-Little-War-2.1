@@ -5,11 +5,11 @@ include("includes/bbcode.php");
 if(isset($_GET['supprimer']) AND preg_match("#\d#",$_GET['supprimer'])) {
 	if($_GET['supprimer'] == 1) {
 		$sql = 'DELETE FROM messages WHERE destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	}
 	else {
 		$sql = 'DELETE FROM messages WHERE id=\''.$_GET['supprimer'].'\' AND destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	}
 }
 
@@ -18,19 +18,19 @@ include("includes/tout.php");
 if(isset($_GET['message'])) {
 	$_GET['message'] = mysqli_real_escape_string($base,stripslashes(antihtml($_GET['message'])));
 	$sql = 'SELECT * FROM messages WHERE ( destinataire=\''.$_SESSION['login'].'\' OR expeditaire=\''.$_SESSION['login'].'\' ) AND id=\''.$_GET['message'].'\'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	$messages = mysqli_fetch_array($ex);
 	$nb_messages = mysqli_num_rows($ex);
 	if($nb_messages > 0) {
 		if($_SESSION['login'] == $messages['destinataire']) {
 			$sql1 = 'UPDATE messages SET statut=1 WHERE id=\''.$_GET['message'].'\'';
-			$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br />'.$sql1.'<br />'.mysql_error());
+			$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
 		}
 		debutCarte($messages['titre']);
 		debutContent();
 		echo BBcode($messages['contenu']);
         finContent();
-        finCarte(imageLabel('<img src="images/message_ferme.png" alt="up" class="imageSousMenu"/>','Répondre','ecriremessage.php?reponse=true&destinataire='.$messages['expeditaire']).imageLabel('<img  src="images/croix.png" alt="supprimer" class="imageSousMenu">','Supprimer','messages.php?supprimer='.$messages['id']));
+        finCarte(imageLabel('<img src="images/message_ferme.png" alt="up" class="imageSousMenu">','Répondre','ecriremessage.php?reponse=true&destinataire='.$messages['expeditaire']).imageLabel('<img  src="images/croix.png" alt="supprimer" class="imageSousMenu">','Supprimer','messages.php?supprimer='.$messages['id']));
 	}
 	else {
 		header('Location: messages.php'); 
@@ -58,7 +58,7 @@ else {
 	$premierMessageAafficher = ($page - 1) * $nombreDeMessagesParPage;  
 	
 	$sql = 'SELECT * FROM messages WHERE destinataire=\''.$_SESSION['login'].'\' ORDER BY timestamp DESC LIMIT ' . $premierMessageAafficher . ', ' . $nombreDeMessagesParPage .'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	$nb_messages = mysqli_num_rows($ex);
 	debutCarte("Messages");
 	if($nb_messages > 0) {
@@ -73,10 +73,10 @@ else {
 		</tr></thead><tbody>';
 		while($messages = mysqli_fetch_array($ex)) {
 			if($messages['statut'] != 0){
-				echo '<tr><td><a href="messages.php?message='.$messages['id'].'"><img src="images/message_ouvert.png" alt="ouvert" title="Lu" class="w32"/></td></a>';
+				echo '<tr><td><a href="messages.php?message='.$messages['id'].'"><img src="images/message_ouvert.png" alt="ouvert" title="Lu" class="w32"></td></a>';
 			}
 			else {
-				echo '<tr><td><a href="messages.php?message='.$messages['id'].'"><img src="images/message_ferme.png" alt="ferme" title="Non lu" class="w32"/></td></a>';
+				echo '<tr><td><a href="messages.php?message='.$messages['id'].'"><img src="images/message_ferme.png" alt="ferme" title="Non lu" class="w32"></td></a>';
 			}
 			echo '<td><a href="messages.php?message='.$messages['id'].'">'.$messages['titre'].'</a></td>';
 			echo '<td><a href=joueur.php?id='.mysqli_real_escape_string($base,$messages['expeditaire']).'>'.$messages['expeditaire'].'</a></td>';
@@ -117,7 +117,7 @@ else {
         $pages ="";
         $supprimer = "";
         debutContent();
-		echo "Vous n'avez aucun messages ou cette page n'existe pas.<br/>";
+		echo "Vous n'avez aucun messages ou cette page n'existe pas.<br>";
         finContent();
 	}
     finCarte('<a href="ecriremessage.php">Ecrire</a><a href="messagesenvoyes.php">Envoyés</a>'.$pages);
