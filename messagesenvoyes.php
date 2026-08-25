@@ -8,7 +8,7 @@ debutCarte("Messages envoyés");
 <div class="table-responsive">
 <?php 
 $sql = 'SELECT * FROM messages WHERE expeditaire=\''.$_SESSION['login'].'\' ORDER BY timestamp DESC';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br/>'.$sql.'<br/>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 $nb_messages = mysqli_num_rows($ex);
 if($nb_messages > 0) {
 	echo '<table class="table table-striped table-bordered">
