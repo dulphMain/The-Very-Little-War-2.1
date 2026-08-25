@@ -11,7 +11,7 @@ if (isset($_POST['motdepasseadmin'])) {
 if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Faux mot de passe") {
 	if (isset($_GET['supprimercompte'])) {
 		$modif = 'SELECT login FROM membre WHERE ip=\'' . $_GET['supprimercompte'] . '\'';
-		$ex = mysqli_query($base, $modif) or die('Erreur SQL !<br/>' . $modif . '<br/>' . mysql_error());
+		$ex = mysqli_query($base, $modif) or die('Erreur SQL !<br>' . $modif . '<br>' . mysql_error());
 		while ($login = mysqli_fetch_array($ex)) {
 			supprimerJoueur($login['login']);
 		}
@@ -35,7 +35,7 @@ if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Fau
 	<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>The Very Little War - Menu d'administration</title>
 		<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -106,11 +106,11 @@ if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Fau
 			$maintenance = mysqli_fetch_array($sqlMaintenance);
 			if ($maintenance['maintenance'] != 0) {
 			?>
-				<input type="submit" name="plusmaintenance" value="Enlever la mise en maintenance" />
+				<input type="submit" name="plusmaintenance" value="Enlever la mise en maintenance">
 			<?php
 			} else {
 			?>
-				<input type="submit" name="maintenance" value="Mise en maintenance" />
+				<input type="submit" name="maintenance" value="Mise en maintenance">
 			<?php
 			}
 			?>
@@ -146,7 +146,7 @@ if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Fau
 		<h4>Remise a zero et virage des joueurs inactifs</h4>
 		<p>
 		<form action="index.php" method="post">
-			<input type="submit" name="miseazero" value="Remise à zero" />
+			<input type="submit" name="miseazero" value="Remise à zero">
 		</form>
 		</p>
 	</body>
@@ -156,8 +156,8 @@ if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Fau
 } else { ?>
 	<form action="index.php" method="post">
 		<label for="motdepasseadmin">Mot de passe : </label>
-		<input type="text" name="motdepasseadmin" id="motdepasseadmin" />
-		<input type="submit" name="valider" value="Valider" />
+		<input type="text" name="motdepasseadmin" id="motdepasseadmin">
+		<input type="submit" name="valider" value="Valider">
 	</form>
 <?php
 }
