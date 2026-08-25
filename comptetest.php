@@ -31,7 +31,7 @@ else {
 				if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$_POST['email'])) {
 					$_POST['login'] = ucfirst(mb_strtolower($_POST['login']));
 					$sql = 'SELECT count(*) FROM membre WHERE login="'.mysqli_real_escape_string($base,$_POST['login']).'"';
-					$req = mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());	 
+					$req = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());	 
 					$data = mysqli_fetch_array($req);
 					//Si le login est déjà utilisé
 					if($data[0] == 0) {
