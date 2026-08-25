@@ -92,9 +92,9 @@ function mepConstructions($liste)
     }
 
     if (array_key_exists("progressBar", $liste) && $liste['progressBar']) {
-        $media = '<img alt="za" src="' . $liste['image'] . '" style="width:80px;height:80px;margin-top:-54px;"/><div style="margin-left:-80px;margin-top:-10px;">' . progressBar($liste['vie'], $liste['vieMax'], "green") . '</div>';
+        $media = '<img alt="za" src="' . $liste['image'] . '" style="width:80px;height:80px;margin-top:-54px;"><div style="margin-left:-80px;margin-top:-10px;">' . progressBar($liste['vie'], $liste['vieMax'], "green") . '</div>';
     } else {
-        $media = '<img alt="za" src="' . $liste['image'] . '" style="width:80px;height:80px;"/>';
+        $media = '<img alt="za" src="' . $liste['image'] . '" style="width:80px;height:80px;">';
     }
 
     $cout = "";
@@ -149,7 +149,7 @@ function mepConstructions($liste)
                 $augmenter =  'L\'espace de stockage est trop petit pour autant de ressources.';
             }
         } else {
-            $augmenter =  '<input type="hidden" value="Augmenter au niveau ' . ($niveauActuel['niveau'] + 1) . '" name="' . $liste['bdd'] . '" id="' . $liste['bdd'] . '"/>' . submit(['titre' => 'Niveau ' . ($niveauActuel['niveau'] + 1), 'form' => 'form' . $liste['bdd'], 'nom' => $liste['bdd'], 'image' => 'images/boutons/arrow.png']);
+            $augmenter =  '<input type="hidden" value="Augmenter au niveau ' . ($niveauActuel['niveau'] + 1) . '" name="' . $liste['bdd'] . '" id="' . $liste['bdd'] . '">' . submit(['titre' => 'Niveau ' . ($niveauActuel['niveau'] + 1), 'form' => 'form' . $liste['bdd'], 'nom' => $liste['bdd'], 'image' => 'images/boutons/arrow.png']);
         }
     } else {
         $augmenter = 'Vous avez déjà <strong>deux constructions</strong> en cours.';
@@ -163,14 +163,14 @@ function mepConstructions($liste)
     item([
         'titre' => $liste['titre'],
         'media' => $media,
-        'soustitre' => '<strong>Niveau ' . $liste['niveau'] . '</strong><br/>' . $liste['revenu'],
+        'soustitre' => '<strong>Niveau ' . $liste['niveau'] . '</strong><br>' . $liste['revenu'],
         'accordion' => debutContent(true, true) . $liste['description'] . finContent(true, true) .
-            '<br/><br/>' . debutContent(false, true) . $liste['revenu'] . ' au <strong>niveau ' . $liste['niveau'] . '</strong><br/>
+            '<br><br>' . debutContent(false, true) . $liste['revenu'] . ' au <strong>niveau ' . $liste['niveau'] . '</strong><br>
           ' . $liste['revenu1'] . ' au <strong> niveau ' . ($niveauActuel['niveau'] + 1) . '</strong>
-          ' . $liste['effetSup'] . '<br/><br/>' . finContent(false, true) . '
+          ' . $liste['effetSup'] . '<br><br>' . finContent(false, true) . '
           <form action="constructions.php" method="post" name="form' . $liste['bdd'] . '">' .
             important('Augmenter') . '
-          ' . $cout . $drainage . nombreTemps(affichageTemps($liste['tempsConstruction'])) . nombrePoints('+' . $liste['points']) . '<br/><br/>
+          ' . $cout . $drainage . nombreTemps(affichageTemps($liste['tempsConstruction'])) . nombrePoints('+' . $liste['points']) . '<br><br>
           ' . $augmenter . '</form><hr>'
     ]);
 }
@@ -227,7 +227,7 @@ function traitementConstructions($liste)
                 }
 
                 $sql2 = 'UPDATE ressources SET energie=\'' . ($ressources['energie'] - $liste['coutEnergie']) . '\',' . $chaine . ' WHERE login=\'' . $_SESSION['login'] . '\'';
-                mysqli_query($base, $sql2) or die('Erreur SQL !<br />' . $sql2 . '<br />' . mysqli_error($base));
+                mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
 
                 $ex = query('SELECT * FROM actionsconstruction WHERE login=\'' . $_SESSION['login'] . '\' ORDER BY fin DESC');
                 $nb = mysqli_num_rows($ex);
@@ -247,7 +247,7 @@ function traitementConstructions($liste)
                     $niveauActuel['niveau'] = $constructions[$liste['bdd']];
                 }
 
-                mysqli_query($base, 'INSERT INTO actionsconstruction VALUES(default,"' . $_SESSION['login'] . '",' . $tempsDebut . ',' . ($tempsDebut + $liste['tempsConstruction']) . ',"' . $liste['bdd'] . '",' . ($niveauActuel['niveau'] + 1) . ',"' . $liste['titre'] . '",' . $liste['points'] . ')') or die('Erreur SQL !<br /><br />' . mysqli_error($base));
+                mysqli_query($base, 'INSERT INTO actionsconstruction VALUES(default,"' . $_SESSION['login'] . '",' . $tempsDebut . ',' . ($tempsDebut + $liste['tempsConstruction']) . ',"' . $liste['bdd'] . '",' . ($niveauActuel['niveau'] + 1) . ',"' . $liste['titre'] . '",' . $liste['points'] . ')') or die('Erreur SQL !<br><br>' . mysqli_error($base));
 
                 mysqli_query($base, 'UPDATE autre SET energieDepensee=\'' . ($autre['energieDepensee'] + $liste['coutEnergie']) . '\' WHERE login=\'' . $_SESSION['login'] . '\'');
 
