@@ -305,7 +305,7 @@ function coefDisparition($joueur, $classeOuNbTotal, $type = 0)
 
     if ($type == 0) {
         $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $joueur . '\' AND numeroclasse=\'' . $classeOuNbTotal . '\'';
-        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
         $donnees = mysqli_fetch_array($ex);
     }
 
@@ -354,7 +354,7 @@ function inscrire($pseudo, $mdp, $mail)
 {
     global $base;
     $sql1 = 'SELECT inscrits FROM statistiques';
-    $req1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+    $req1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
     $data1 = mysqli_fetch_array($req1);
     $tempsPrecedent = time();
     $nbinscrits = $data1['inscrits'] + 1;
@@ -389,12 +389,12 @@ function inscrire($pseudo, $mdp, $mail)
 	(default , default, default, default, default, default,default, default, default, default, 4, "' . mysqli_real_escape_string($base, addslashes(antihtml(trim($pseudo)))) . '", default)';
     $sql5 = 'INSERT INTO constructions VALUES("' . mysqli_real_escape_string($base, addslashes(antihtml(trim($pseudo)))) . '", default, default, default, default, default, default, default, default, ' . pointsDeVie(1) . ', ' . vieChampDeForce(0) . ', ' . pointsDeVie(1) . ',' . pointsDeVie(1) . ',default,default,default,default)';
 
-    mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br />' . mysqli_error($base) . 'sd');
-    mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br />' . mysqli_error($base));
-    mysqli_query($base, $sql2) or die('Erreur SQL !' . $sql2 . '<br />' . mysqli_error($base));
-    mysqli_query($base, $sql3) or die('Erreur SQL !' . $sql3 . '<br />' . mysqli_error($base));
-    mysqli_query($base, $sql4) or die('Erreur SQL !' . $sql4 . '<br />' . mysqli_error($base));
-    mysqli_query($base, $sql5) or die('Erreur SQL !' . $sql5 . '<br />' . mysqli_error($base));
+    mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base) . 'sd');
+    mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br>' . mysqli_error($base));
+    mysqli_query($base, $sql2) or die('Erreur SQL !' . $sql2 . '<br>' . mysqli_error($base));
+    mysqli_query($base, $sql3) or die('Erreur SQL !' . $sql3 . '<br>' . mysqli_error($base));
+    mysqli_query($base, $sql4) or die('Erreur SQL !' . $sql4 . '<br>' . mysqli_error($base));
+    mysqli_query($base, $sql5) or die('Erreur SQL !' . $sql5 . '<br>' . mysqli_error($base));
 }
 
 function updateRessources($joueur)
@@ -405,13 +405,13 @@ function updateRessources($joueur)
     global $paliersPertes;
 
     $req1 = 'SELECT tempsPrecedent FROM autre WHERE login=\'' . $joueur . '\''; // On prends le dernier chargement de page
-    $tempsPrecedent1 = mysqli_query($base, $req1) or die('Erreur SQL !<br />' . $req1 . '<br />' . mysqli_error($base));
+    $tempsPrecedent1 = mysqli_query($base, $req1) or die('Erreur SQL !<br>' . $req1 . '<br>' . mysqli_error($base));
     $donnees = mysqli_fetch_array($tempsPrecedent1);
     $nbsecondes = time() - $donnees['tempsPrecedent']; // On calcule la différence de secondes
     $sql = mysqli_query($base, 'SELECT * FROM ressources WHERE login=\'' . $joueur . '\''); // On prends l'energie en ce moment
     $donnees = mysqli_fetch_array($sql);
     $req = 'UPDATE autre SET tempsPrecedent=\'' . (time()) . '\' WHERE login = \'' . $joueur . '\''; // On écrit le nouveau 
-    $ex = mysqli_query($base, $req) or die('Erreur SQL !<br />' . $req . '<br />' . mysqli_error($base));
+    $ex = mysqli_query($base, $req) or die('Erreur SQL !<br>' . $req . '<br>' . mysqli_error($base));
 
 
     $requete = mysqli_query($base, 'SELECT * FROM constructions WHERE login=\'' . $joueur . '\'');
@@ -427,7 +427,7 @@ function updateRessources($joueur)
         $energie = 0;
     }
     $req = 'UPDATE ressources SET energie=\'' . $energie . '\' WHERE login = \'' . $joueur . '\''; // on inscrit ce nouveau energie
-    $ex = mysqli_query($base, $req) or die('Erreur SQL !<br />' . $req . '<br />' . mysqli_error($base));
+    $ex = mysqli_query($base, $req) or die('Erreur SQL !<br>' . $req . '<br>' . mysqli_error($base));
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////RESSOURCES
     foreach ($nomsRes as $num => $ressource) {
@@ -437,7 +437,7 @@ function updateRessources($joueur)
             $$ressource = placeDepot($depot['depot']);
         }
         $req = 'UPDATE ressources SET ' . $ressource . '=\'' . $$ressource . '\' WHERE login = \'' . $joueur . '\'';
-        $ex = mysqli_query($base, $req) or die('Erreur SQL !<br />' . $req . '<br />' . mysqli_error($base));
+        $ex = mysqli_query($base, $req) or die('Erreur SQL !<br>' . $req . '<br>' . mysqli_error($base));
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////Gestion des molécules disparaissant
@@ -452,7 +452,7 @@ function updateRessources($joueur)
     $donneesMedaille = mysqli_fetch_array($exMedaille);
 
     $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $joueur . '\'';
-    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
     $compteur = 0;
     while ($molecules = mysqli_fetch_array($ex)) {
@@ -462,7 +462,7 @@ function updateRessources($joueur)
 
 
         $sql1 = 'UPDATE molecules SET nombre=\'' . $moleculesRestantes . '\' WHERE id=\'' . $molecules['id'] . '\'';
-        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
         $ex2 = mysqli_query($base, 'SELECT moleculesPerdues FROM autre WHERE login=\'' . $joueur . '\'');
         $moleculesPerdues = mysqli_fetch_array($ex2);
@@ -473,26 +473,26 @@ function updateRessources($joueur)
 
     if ($nbheuresDebut > 6) {
         $sql = 'SELECT nombre, formule FROM molecules WHERE proprietaire=\'' . $joueur . '\' AND numeroclasse=1';
-        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
         $donnees5 = mysqli_fetch_array($ex);
         $sql1 = 'SELECT nombre, formule FROM molecules WHERE proprietaire=\'' . $joueur . '\' AND numeroclasse=2';
-        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
         $donnees6 = mysqli_fetch_array($ex1);
         $sql2 = 'SELECT nombre, formule FROM molecules WHERE proprietaire=\'' . $joueur . '\' AND numeroclasse=3';
-        $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br />' . $sql2 . '<br />' . mysqli_error($base));
+        $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
         $donnees7 = mysqli_fetch_array($ex2);
         $sql3 = 'SELECT nombre, formule FROM molecules WHERE proprietaire=\'' . $joueur . '\' AND numeroclasse=4';
-        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br />' . $sql3 . '<br />' . mysqli_error($base));
+        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
         $donnees8 = mysqli_fetch_array($ex3);
         if (($nombre1 - $donnees5['nombre']) != 0 or ($nombre2 - $donnees6['nombre']) != 0 or ($nombre3 - $donnees7['nombre']) != 0 or ($nombre4 - $donnees8['nombre']) != 0) {
             $titreRapport = 'Rapport des pertes durant votre absence';
-            $contenuRapport = 'Durant votre absence de ' . $nbheuresDebut . ' heures, vos pertes de molécules ont été : <br/>
-			' . couleurFormule($donnees5['formule']) . ' : ' . number_format(($nombre1 - $donnees5['nombre']), 0, ' ', ' ') . ' molécules<br/>
-			' . couleurFormule($donnees6['formule']) . ' : ' . number_format(($nombre2 - $donnees6['nombre']), 0, ' ', ' ') . ' molécules<br/>
-			' . couleurFormule($donnees7['formule']) . ' : ' . number_format(($nombre3 - $donnees7['nombre']), 0, ' ', ' ') . ' molécules<br/>
+            $contenuRapport = 'Durant votre absence de ' . $nbheuresDebut . ' heures, vos pertes de molécules ont été : <br>
+			' . couleurFormule($donnees5['formule']) . ' : ' . number_format(($nombre1 - $donnees5['nombre']), 0, ' ', ' ') . ' molécules<br>
+			' . couleurFormule($donnees6['formule']) . ' : ' . number_format(($nombre2 - $donnees6['nombre']), 0, ' ', ' ') . ' molécules<br>
+			' . couleurFormule($donnees7['formule']) . ' : ' . number_format(($nombre3 - $donnees7['nombre']), 0, ' ', ' ') . ' molécules<br>
 			' . couleurFormule($donnees8['formule']) . ' : ' . number_format(($nombre4 - $donnees8['nombre']), 0, ' ', ' ') . ' molécules';
             $sql = 'INSERT INTO rapports VALUES(default, "' . (time()) . '", \'' . $titreRapport . '\', \'' . $contenuRapport . '\', "' . $joueur . '", default,"<img alt=\"skull\" src=\"images/rapports/rapportpertes.png\"/ class=\"imageAide\">")';
-            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
         }
     }
 }
@@ -629,15 +629,15 @@ function updateActions($joueur)
 
                 $information = "";
                 if ($attaquantsRestants == 0) {
-                    $information = "<strong>Aucune molécule n\'est revenue !</strong><br/><br/>";
+                    $information = "<strong>Aucune molécule n\'est revenue !</strong><br><br>";
                 }
 
                 $debutRapport = "<p>
                             <div class=\"table-responsive\">
-                            " . important('Attaquant') . "<br/>
-                            " . chipInfo($attaquePts, 'images/molecule/sword.png') . chipInfo($pillagePts, 'images/molecule/bag.png') . "<br/><br/>
+                            " . important('Attaquant') . "<br>
+                            " . chipInfo($attaquePts, 'images/molecule/sword.png') . chipInfo($pillagePts, 'images/molecule/bag.png') . "<br><br>
                             <table class=\"table table-bordered\">
-                            <caption style=\"color:red;font-weight:bold;\"><img src=\"images/attaquer/gladius.png\" alt=\"epee\" class=\"imageAide\"/><a style=\"color:red\" href=\"joueur.php?id=" . $actions['attaquant'] . "\">" . $actions['attaquant'] . "</caption>
+                            <caption style=\"color:red;font-weight:bold;\"><img src=\"images/attaquer/gladius.png\" alt=\"epee\" class=\"imageAide\"><a style=\"color:red\" href=\"joueur.php?id=" . $actions['attaquant'] . "\">" . $actions['attaquant'] . "</caption>
                             <thead>
                             <tr>
                             <th></th>
@@ -665,15 +665,15 @@ function updateActions($joueur)
                             <td>" . number_format($classe4AttaquantMort, 0, ' ', ' ') . "</td>
                             </tr>
                             </tbody>
-                            </table></div><br/><br/>
+                            </table></div><br><br>
 
                             $information
-                            <br/><br/>
-                            " . important('Défenseur') . "<br/>
-                            " . chipInfo($defensePts, 'images/molecule/shield.png') . chipInfo($pillagePts1, 'images/molecule/bag.png') . "<br/><br/>
+                            <br><br>
+                            " . important('Défenseur') . "<br>
+                            " . chipInfo($defensePts, 'images/molecule/shield.png') . chipInfo($pillagePts1, 'images/molecule/bag.png') . "<br><br>
                             <div class=\"table-responsive\">
                             <table class=\"table table-bordered\">
-                            <caption style=\"color:green;font-weight:bold;\"><img src=\"images/attaquer/shield.png\" alt=\"bouclier\" class=\"imageAide\"/><a style=\"color:green\" href=\"joueur.php?id=" . $actions['defenseur'] . "\">" . $actions['defenseur'] . "</a></caption>
+                            <caption style=\"color:green;font-weight:bold;\"><img src=\"images/attaquer/shield.png\" alt=\"bouclier\" class=\"imageAide\"><a style=\"color:green\" href=\"joueur.php?id=" . $actions['defenseur'] . "\">" . $actions['defenseur'] . "</a></caption>
 
                             <thead>
                             <tr>
@@ -763,18 +763,18 @@ function updateActions($joueur)
 
                 $finRapport = "
                             </tbody>
-                            </table></div><br/><br/>
+                            </table></div><br><br>
 
                             " . important('Ressources pillées') . "
                             " . $chaine . "
-                            <br/><br/>
+                            <br><br>
 
                             " . important('Bâtiments endommagés') . "
 
-                            <strong>Générateur : </strong>" . number_format($degatsGenEnergie, 0, ' ', ' ') . " (" . $destructionGenEnergie . ")<br/>
-                            <strong>Champ de force : </strong>" . number_format($degatschampdeforce, 0, ' ', ' ') . " (" . $destructionchampdeforce . ")<br/>
-                            <strong>Producteur : </strong>" . number_format($degatsProducteur, 0, ' ', ' ') . " (" . $destructionProducteur . ")<br/>
-                            <strong>Stockage: </strong>" . number_format($degatsDepot, 0, ' ', ' ') . " (" . $destructionDepot . ")<br/>
+                            <strong>Générateur : </strong>" . number_format($degatsGenEnergie, 0, ' ', ' ') . " (" . $destructionGenEnergie . ")<br>
+                            <strong>Champ de force : </strong>" . number_format($degatschampdeforce, 0, ' ', ' ') . " (" . $destructionchampdeforce . ")<br>
+                            <strong>Producteur : </strong>" . number_format($degatsProducteur, 0, ' ', ' ') . " (" . $destructionProducteur . ")<br>
+                            <strong>Stockage: </strong>" . number_format($degatsDepot, 0, ' ', ' ') . " (" . $destructionDepot . ")<br>
                             </p>
                             ";
 
@@ -783,10 +783,10 @@ function updateActions($joueur)
 
                 // Les rapports sont créés
                 $sql = 'INSERT INTO rapports VALUES(default, "' . $actions['tempsAttaque'] . '", \'' . $titreRapportJoueur . '\', \'' . $contenuRapportAttaquant . '\', "' . $actions['attaquant'] . '", default,"<img alt=\"attack\" src=\"images/rapports/sword.png\"/ class=\"imageAide\">")';
-                mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+                mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
                 $sql1 = 'INSERT INTO rapports VALUES(default, "' . $actions['tempsAttaque'] . '", \'' . $titreRapportDefenseur . '\', \'' . $contenuRapportDefenseur . '\', "' . $actions['defenseur'] . '", default,"<img alt=\"attack\" src=\"images/rapports/sword.png\"/ class=\"imageAide\">")';
-                mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+                mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
             } else {
                 $nDef = mysqli_fetch_array(query('SELECT neutrinos FROM autre WHERE login=\'' . $actions['defenseur'] . '\''));
 
@@ -813,15 +813,15 @@ function updateActions($joueur)
 
                     $contenuRapportJoueur = "
                     <p>" . important('Armée') . "
-                    <strong>" . couleurFormule($classe1['formule']) . " : </strong>" . nombreMolecules(number_format($classe1['nombre'], 0, ' ', ' ')) . "<br/>
-                    <strong>" . couleurFormule($classe2['formule']) . " : </strong>" . nombreMolecules(number_format($classe2['nombre'], 0, ' ', ' ')) . "<br/>
-                    <strong>" . couleurFormule($classe3['formule']) . " : </strong>" . nombreMolecules(number_format($classe3['nombre'], 0, ' ', ' ')) . "<br/>
-                    <strong>" . couleurFormule($classe4['formule']) . " : </strong>" . nombreMolecules(number_format($classe4['nombre'], 0, ' ', ' ')) . "<br/>
-                    <br/><br/>
+                    <strong>" . couleurFormule($classe1['formule']) . " : </strong>" . nombreMolecules(number_format($classe1['nombre'], 0, ' ', ' ')) . "<br>
+                    <strong>" . couleurFormule($classe2['formule']) . " : </strong>" . nombreMolecules(number_format($classe2['nombre'], 0, ' ', ' ')) . "<br>
+                    <strong>" . couleurFormule($classe3['formule']) . " : </strong>" . nombreMolecules(number_format($classe3['nombre'], 0, ' ', ' ')) . "<br>
+                    <strong>" . couleurFormule($classe4['formule']) . " : </strong>" . nombreMolecules(number_format($classe4['nombre'], 0, ' ', ' ')) . "<br>
+                    <br><br>
                     " . important('Ressources') . "
                     " . nombreEnergie(number_format($ressourcesJoueur['energie'], 0, ' ', ' ')) . "
                     " . $chaine1 . "
-                    <br/><br/>
+                    <br><br>
                     " . important('Bâtiments') . "
                     <div class=\"table-responsive\">
                     <table class=\"table table-striped table-bordered\">
@@ -889,7 +889,7 @@ function updateActions($joueur)
 
 
                 $sql1 = 'INSERT INTO rapports VALUES(default, "' . $actions['tempsAttaque'] . '", \'' . $titreRapportJoueur . '\', \'' . $contenuRapportJoueur . '\', "' . $actions['attaquant'] . '", default, "<img alt=\"attaque\" src=\"images/rapports/binoculars.png\"/ class=\"imageAide\">")';
-                mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+                mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
                 query('DELETE FROM actionsattaques WHERE id=\'' . $actions['id'] . '\'');
             }
@@ -909,7 +909,7 @@ function updateActions($joueur)
                 $moleculesRestantes = (pow(coefDisparition($joueur, $compteur), $nbsecondes) * $molecules[$compteur - 1]);
 
                 $sql1 = 'UPDATE molecules SET nombre=\'' . ($moleculesProp['nombre'] + $moleculesRestantes) . '\' WHERE id=\'' . $moleculesProp['id'] . '\'';
-                $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+                $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
                 $ex2 = mysqli_query($base, 'SELECT moleculesPerdues FROM autre WHERE login=\'' . $joueur . '\'');
                 $moleculesPerdues = mysqli_fetch_array($ex2);
@@ -955,14 +955,14 @@ function updateActions($joueur)
         }
 
         $titreRapport = "Rapport d\'apport de ressources par " . $actions['envoyeur'];
-        $contenuRapport = "<a href=\"joueur.php?id=" . $actions['envoyeur'] . "\">" . $actions['envoyeur'] . "</a> vous envoie les ressources suivantes : <br/><br/>
+        $contenuRapport = "<a href=\"joueur.php?id=" . $actions['envoyeur'] . "\">" . $actions['envoyeur'] . "</a> vous envoie les ressources suivantes : <br><br>
         " . important('Ressources envoyées') . "
-        " . $energieEnvoyee . $chaine1 . "<br/><br/>
+        " . $energieEnvoyee . $chaine1 . "<br><br>
         " . important('Ressources reçues') . "
         " . $energieRecue . $chaine2;
 
         $sql = 'INSERT INTO rapports VALUES(default, "' . time() . '", \'' . $titreRapport . '\', \'' . $contenuRapport . '\', "' . $actions['receveur'] . '", default,"<img alt=\"fleche\" src=\"images/rapports/retour.png\" class=\"imageAide\">")';
-        mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+        mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
         $ressourcesDestinataire = mysqli_fetch_array(query('SELECT * FROM ressources WHERE login=\'' . $actions['receveur'] . '\''));
         $chaine = "";
@@ -1092,10 +1092,10 @@ function initPlayer($joueur)
         $max = max($max, 3600 * ($placeDepot - $ressources[$ressource]) / $revenu[$ressource]);
     }
 
-    $production = '<strong><span id="nbPointsRestants">' . $constructions['pointsProducteurRestants'] . '</span> points</strong> à placer<br/><form method="post" action="constructions.php" name="formPointsProducteur">';
+    $production = '<strong><span id="nbPointsRestants">' . $constructions['pointsProducteurRestants'] . '</span> points</strong> à placer<br><form method="post" action="constructions.php" name="formPointsProducteur">';
     revenuAtomeJavascript($joueur); // ecrit la fonction en javscript qui donne la production pour un nombre de points
     foreach ($nomsRes as $num => $ressource) {
-        $production = $production . nombreAtome($num, '<span style="color:green">+<span id="nbPointsAffichage' . $ressource . '">' . $revenu[$ressource] . '</span>/h</span> <input type="hidden" value="0" id="nbPoints' . $ressource . '" name="nbPoints' . $ressource . '"/><a href="#"><img class="imageAide" src="images/add.png" alt="add" style="margin-left:10px" id="add' . $ressource . '"/></a>');
+        $production = $production . nombreAtome($num, '<span style="color:green">+<span id="nbPointsAffichage' . $ressource . '">' . $revenu[$ressource] . '</span>/h</span> <input type="hidden" value="0" id="nbPoints' . $ressource . '" name="nbPoints' . $ressource . '"><a href="#"><img class="imageAide" src="images/add.png" alt="add" style="margin-left:10px" id="add' . $ressource . '"></a>');
 
         $production = $production . '
         <script>
@@ -1109,7 +1109,7 @@ function initPlayer($joueur)
             });
         </script>';
     }
-    $production = $production . '<br/><br/><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"/></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"/></a></center>';
+    $production = $production . '<br><br><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></center>';
 
     $bonusDuplicateur = 1;
     if ($autre['idalliance'] > 0) {
@@ -1118,9 +1118,9 @@ function initPlayer($joueur)
         $bonusDuplicateur = 1 + ((0.1 * $duplicateur['duplicateur']) / 100);
     }
 
-    $productionCondenseur = '<strong><span id="nbPointsCondenseurRestants">' . $constructions['pointsCondenseurRestants'] . '</span> points</strong> à placer<br/><form method="post" action="constructions.php" name="formPointsCondenseur">';
+    $productionCondenseur = '<strong><span id="nbPointsCondenseurRestants">' . $constructions['pointsCondenseurRestants'] . '</span> points</strong> à placer<br><form method="post" action="constructions.php" name="formPointsCondenseur">';
     foreach ($nomsRes as $num => $ressource) {
-        $productionCondenseur = $productionCondenseur . nombreAtome($num, 'Niveau <span id="nbPointsCondenseurAffichage' . $ressource . '">' . ${'niveau' . $ressource} . '</span><input type="hidden" value="0" id="nbPointsCondenseur' . $ressource . '" name="nbPointsCondenseur' . $ressource . '"/><a href="#"><img class="imageAide" src="images/add.png" alt="add" style="margin-left:10px" id="addCondenseur' . $ressource . '"/></a>');
+        $productionCondenseur = $productionCondenseur . nombreAtome($num, 'Niveau <span id="nbPointsCondenseurAffichage' . $ressource . '">' . ${'niveau' . $ressource} . '</span><input type="hidden" value="0" id="nbPointsCondenseur' . $ressource . '" name="nbPointsCondenseur' . $ressource . '"><a href="#"><img class="imageAide" src="images/add.png" alt="add" style="margin-left:10px" id="addCondenseur' . $ressource . '"></a>');
 
         $productionCondenseur = $productionCondenseur . '
         <script>
@@ -1134,7 +1134,7 @@ function initPlayer($joueur)
             });
         </script>';
     }
-    $productionCondenseur = $productionCondenseur . '<br/><br/><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"/></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"/></a></center>';
+    $productionCondenseur = $productionCondenseur . '<br><br><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></center>';
 
 
     /////////////////////////////////////////
@@ -1212,7 +1212,7 @@ function initPlayer($joueur)
             'niveau' => $constructions['generateur'],
             'revenu' => nombreEnergie('<span style="color:green" >+' . chiffrePetit(revenuEnergie($constructions['generateur'], $joueur, 4)) . '/h</span>'),
             'revenu1' => nombreEnergie('<span style="color:green" >+' . chiffrePetit(revenuEnergie($niveauActuel['niveau'] + 1, $joueur, 4)) . '/h</span>'),
-            'effetSup' => '<br/><br/><strong>Stockage plein : </strong>' . date('d/m/Y', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenu['energie']) . ' à ' . date('H\hi', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenuEnergie),
+            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenu['energie']) . ' à ' . date('H\hi', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenuEnergie),
             'description' => 'Le générateur <strong>produit de l\'énergie</strong>.',
             'coutEnergie' => round((1 - ($bonus / 100)) * 50 * pow($niveauActuel['niveau'], 0.4)),
             'coutAtomes' => round((1 - ($bonus / 100)) * 75 * pow($niveauActuel['niveau'], 0.4)),
@@ -1230,7 +1230,7 @@ function initPlayer($joueur)
             'niveau' => $constructions['producteur'],
             'revenu' => $constructions['pointsProducteurRestants'] . ' points restants',
             'revenu1' => '+' . $points['producteur'] . ' points à placer',
-            'effetSup' => '<br/><br/><strong>Stockage plein : </strong>' . date('d/m/Y', time() + $max) . ' à ' . date('H\hi', time() + $max) . '<br/><br/>
+            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', time() + $max) . ' à ' . date('H\hi', time() + $max) . '<br><br>
                     ' . important("Production") . '
                     ' . $production,
             'description' => 'Le producteur <strong>produit des atomes</strong> à partir d\'énergie. A chaque niveau supplémentaire, vous obtenez un certain nombre de points qu\'il faut placer dans les atomes que vous voulez produire. Plus il y a de points dans un atome, plus sa production sera grande.',
@@ -1267,8 +1267,8 @@ function initPlayer($joueur)
             'image' => 'images/batiments/champdeforce.png',
             'progressBar' => true,
             'niveau' => $constructions['champdeforce'],
-            'revenu' => chip('+' . floor($bonusDuplicateur * $constructions['champdeforce'] * 2) . '%', '<img src="images/batiments/shield.png" alt="shield" style="border-radius:0px;height:20px;width:20px" />', "white", "", true),
-            'revenu1' => chip('+' . floor($bonusDuplicateur * ($niveauActuelChampDeForce['niveau'] + 1) * 2) . '%', '<img src="images/batiments/shield.png" alt="shield" style="border-radius:0px;height:20px;width:20px" />', "white", "", true),
+            'revenu' => chip('+' . floor($bonusDuplicateur * $constructions['champdeforce'] * 2) . '%', '<img src="images/batiments/shield.png" alt="shield" style="border-radius:0px;height:20px;width:20px">', "white", "", true),
+            'revenu1' => chip('+' . floor($bonusDuplicateur * ($niveauActuelChampDeForce['niveau'] + 1) * 2) . '%', '<img src="images/batiments/shield.png" alt="shield" style="border-radius:0px;height:20px;width:20px">', "white", "", true),
             'effetSup' => '',
             'description' => 'Le champ de force vous protège des attaques adverses en donnant un <strong>bonus de défense</strong> lorsque vous êtes attaqué. Il prend aussi <strong>les dégâts des attaques adverses</strong> en premier si son niveau est superieur aux autres bâtiments.',
             'coutCarbone' => round((1 - ($bonus / 100)) * 100 * pow($niveauActuelChampDeForce['niveau'], 0.4)),
@@ -1284,8 +1284,8 @@ function initPlayer($joueur)
             'image' => 'images/batiments/ionisateur.png',
             'progressBar' => false,
             'niveau' => $constructions['ionisateur'],
-            'revenu' => chip('+' . floor($bonusDuplicateur * $constructions['ionisateur'] * 2) . '%', '<img src="images/batiments/sword.png" alt="shield" style="border-radius:0px;height:20px;width:20px" />', "white", "", true),
-            'revenu1' => chip('+' . floor($bonusDuplicateur * ($niveauActuelIonisateur['niveau'] + 1) * 2) . '%', '<img src="images/batiments/sword.png" alt="shield" style="border-radius:0px;height:20px;width:20px" />', "white", "", true),
+            'revenu' => chip('+' . floor($bonusDuplicateur * $constructions['ionisateur'] * 2) . '%', '<img src="images/batiments/sword.png" alt="shield" style="border-radius:0px;height:20px;width:20px">', "white", "", true),
+            'revenu1' => chip('+' . floor($bonusDuplicateur * ($niveauActuelIonisateur['niveau'] + 1) * 2) . '%', '<img src="images/batiments/sword.png" alt="shield" style="border-radius:0px;height:20px;width:20px">', "white", "", true),
             'effetSup' => '',
             'description' => 'L\'ionisateur améliore votre capacité offensive en donnant un <strong>bonus d\'attaque</strong> à vos molécules.',
             'coutOxygene' => round((1 - ($bonus / 100)) * 100 * pow($niveauActuelIonisateur['niveau'], 0.4)),
@@ -1301,7 +1301,7 @@ function initPlayer($joueur)
             'niveau' => $constructions['condenseur'],
             'revenu' => $constructions['pointsCondenseurRestants'] . ' points restants',
             'revenu1' => '+' . $points['condenseur'] . ' points à placer',
-            'effetSup' => '<br/><br/>
+            'effetSup' => '<br><br>
                     ' . important("Effets") . '
                     ' . $productionCondenseur,
             'description' => 'Le condenseur permet de condenser la matière. Ainsi, les <strong>atomes</strong> formant les molécules s\'en trouvent <strong>renforcés</strong>, plus puissants. Vous pouvez choisir d\'augmenter certains atomes (et donc leur effets respectifs) plus que d\'autres.',
@@ -1317,8 +1317,8 @@ function initPlayer($joueur)
             'image' => 'images/batiments/lieur.png',
             'progressBar' => false,
             'niveau' => $constructions['lieur'],
-            'revenu' => chip('-' . floor((bonusLieur($constructions['lieur']) - 1) * 100) . '%', '<img src="images/batiments/tempsMolecule.png" alt="tpsMol" style="border-radius:0px;width:22px;height:22px"/>', "white", "", true),
-            'revenu1' => chip('-' . floor((bonusLieur($niveauActuelLieur['niveau'] + 1) - 1) * 100) . '%', '<img src="images/batiments/tempsMolecule.png" alt="tpsMol" style="border-radius:0px;width:22px;height:22px"/>', "white", "", true),
+            'revenu' => chip('-' . floor((bonusLieur($constructions['lieur']) - 1) * 100) . '%', '<img src="images/batiments/tempsMolecule.png" alt="tpsMol" style="border-radius:0px;width:22px;height:22px">', "white", "", true),
+            'revenu1' => chip('-' . floor((bonusLieur($niveauActuelLieur['niveau'] + 1) - 1) * 100) . '%', '<img src="images/batiments/tempsMolecule.png" alt="tpsMol" style="border-radius:0px;width:22px;height:22px">', "white", "", true),
             'effetSup' => '',
             'description' => 'Le lieur forme des liaisons entre atomes afin de créer des molécules. Il permet ainsi de <strong>réduire le temps de formation des molécules</strong> de votre armée.',
             'coutAzote' => round((1 - ($bonus / 100)) * 100 * pow($niveauActuelLieur['niveau'], 0.6)),
@@ -1544,7 +1544,7 @@ function image($num)
 {
     global $nomsRes;
     global $nomsAccents;
-    return '<img style="vertical-align:middle;width:37px;height:37px;" alt="Energie" src="images/' . $nomsRes[$num] . '.png" alt="' . $nomsRes[$num] . '" title="' . ucfirst($nomsAccents[$num]) . '" />';
+    return '<img style="vertical-align:middle;width:37px;height:37px;" alt="Energie" src="images/' . $nomsRes[$num] . '.png" alt="' . $nomsRes[$num] . '" title="' . ucfirst($nomsAccents[$num]) . '">';
 }
 
 function imageEnergie($imageAide = false)
@@ -1554,12 +1554,12 @@ function imageEnergie($imageAide = false)
     } else {
         $class = 'style="vertical-align:middle;width:25px;height:25px;"';
     }
-    return '<img src="images/energie.png" ' . $class . '  alt="Energie" title="Energie" />';
+    return '<img src="images/energie.png" ' . $class . '  alt="Energie" title="Energie">';
 }
 
 function imagePoints()
 {
-    return '<img src="images/points.png" style="vertical-align:middle" alt="Points" title="Points" />';
+    return '<img src="images/points.png" style="vertical-align:middle" alt="Points" title="Points">';
 }
 
 function imageLabel($image, $label, $lien = false)
@@ -1571,7 +1571,7 @@ function imageLabel($image, $label, $lien = false)
         $lien = '<a href="' . $lien . '" class="lienSousMenu">';
         $typeLabel = 'labelSousMenu';
     }
-    return $lien . $image . '<br/><span class="' . $typeLabel . '"  style="color:black">' . $label . '</span></a>';
+    return $lien . $image . '<br><span class="' . $typeLabel . '"  style="color:black">' . $label . '</span></a>';
 }
 
 //Forum
@@ -1755,7 +1755,7 @@ function pref($ressource)
 function query($truc)
 {
     global $base;
-    $ex = mysqli_query($base, $truc) or die('Erreur SQL !<br />' . $truc . '<br />' . mysqli_error($base));
+    $ex = mysqli_query($base, $truc) or die('Erreur SQL !<br>' . $truc . '<br>' . mysqli_error($base));
     return $ex;
 }
 
@@ -1818,13 +1818,13 @@ function supprimerAlliance($alliance)
     global $base;
     mysqli_query($base, 'UPDATE autre SET energieDonnee=0 WHERE idalliance=\'' . $alliance . '\'');
     $sql = 'DELETE FROM alliances WHERE id=\'' . $alliance . '\'';
-    mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+    mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
     $sql1 = 'UPDATE autre SET idalliance=0 WHERE idalliance=\'' . $alliance . '\'';
-    mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+    mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
     $sql2 = 'DELETE FROM invitations WHERE idalliance=\'' . $alliance . '\'';
-    mysqli_query($base, $sql2) or die('Erreur SQL !<br />' . $sql2 . '<br />' . mysqli_error($base));
+    mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
 
     mysqli_query($base, 'DELETE FROM declarations WHERE (alliance1=\'' . $alliance . '\' OR alliance2=\'' . $alliance . '\')');
 
@@ -1844,21 +1844,21 @@ function supprimerJoueur($joueur)
     $modif8 = 'DELETE FROM rapports WHERE destinataire =\'' . $joueur . '\'';
     $modif8 = 'DELETE FROM grades WHERE login =\'' . $joueur . '\'';
 
-    $ex = mysqli_query($base, $modif) or die('Erreur SQL !<br/>' . $modif . '<br/>' . mysqli_error($base));
-    $ex1 = mysqli_query($base, $modif1) or die('Erreur SQL !<br/>' . $modif1 . '<br/>' . mysqli_error($base));
-    $ex2 = mysqli_query($base, $modif2) or die('Erreur SQL !<br/>' . $modif2 . '<br/>' . mysqli_error($base));
-    $ex4 = mysqli_query($base, $modif4) or die('Erreur SQL !<br/>' . $modif4 . '<br/>' . mysqli_error($base));
-    $ex5 = mysqli_query($base, $modif5) or die('Erreur SQL !<br/>' . $modif5 . '<br/>' . mysqli_error($base));
-    $ex6 = mysqli_query($base, $modif6) or die('Erreur SQL !<br/>' . $modif6 . '<br/>' . mysqli_error($base));
-    $ex7 = mysqli_query($base, $modif7) or die('Erreur SQL !<br/>' . $modif7 . '<br/>' . mysqli_error($base));
-    $ex8 = mysqli_query($base, $modif8) or die('Erreur SQL !<br/>' . $modif8 . '<br/>' . mysqli_error($base));
+    $ex = mysqli_query($base, $modif) or die('Erreur SQL !<br>' . $modif . '<br>' . mysqli_error($base));
+    $ex1 = mysqli_query($base, $modif1) or die('Erreur SQL !<br>' . $modif1 . '<br>' . mysqli_error($base));
+    $ex2 = mysqli_query($base, $modif2) or die('Erreur SQL !<br>' . $modif2 . '<br>' . mysqli_error($base));
+    $ex4 = mysqli_query($base, $modif4) or die('Erreur SQL !<br>' . $modif4 . '<br>' . mysqli_error($base));
+    $ex5 = mysqli_query($base, $modif5) or die('Erreur SQL !<br>' . $modif5 . '<br>' . mysqli_error($base));
+    $ex6 = mysqli_query($base, $modif6) or die('Erreur SQL !<br>' . $modif6 . '<br>' . mysqli_error($base));
+    $ex7 = mysqli_query($base, $modif7) or die('Erreur SQL !<br>' . $modif7 . '<br>' . mysqli_error($base));
+    $ex8 = mysqli_query($base, $modif8) or die('Erreur SQL !<br>' . $modif8 . '<br>' . mysqli_error($base));
 
     $modif3 = 'SELECT  inscrits FROM statistiques';
-    $ex3 = mysqli_query($base, $modif3) or die('Erreur SQL !<br />' . $modif3 . '<br />' . mysqli_error($base));
+    $ex3 = mysqli_query($base, $modif3) or die('Erreur SQL !<br>' . $modif3 . '<br>' . mysqli_error($base));
     $donnees = mysqli_fetch_array($ex3);
     $nbinscrits = $donnees['inscrits'] - 1;
     $sql = 'UPDATE statistiques SET inscrits=\'' . $nbinscrits . '\'';
-    mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br />' . mysqli_error($base));
+    mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
 }
 
 function transformInt($nombre)
@@ -1940,19 +1940,19 @@ function coutTout($cout)
 
     return '
     <div class="chip bg-' . $couleur . '">
-        <div class="chip-media bg-white" style="width:143px;border-radius:20px"><img src="images/tout.png" style="border-radius:0px;margin-right:0px;" alt="toutes" title="Toutes les ressources" /></div>
+        <div class="chip-media bg-white" style="width:143px;border-radius:20px"><img src="images/tout.png" style="border-radius:0px;margin-right:0px;" alt="toutes" title="Toutes les ressources"></div>
         <div class="chip-label">' . $cout . '</div>
     </div>';
 }
 
 function nombreMolecules($nombre)
 {
-    return chip($nombre, '<img src="images/molecule.png" alt="molecule" title="Population" style="width:20px;height;20px;border-radius:0px"/>', "white", "", true);
+    return chip($nombre, '<img src="images/molecule.png" alt="molecule" title="Population" style="width:20px;height;20px;border-radius:0px">', "white", "", true);
 }
 
 function nombrePoints($nombre)
 {
-    return chip($nombre, '<img src="images/points.png" alt="points" style="width:23px;height:23px;border-radius:0px"/>', "white", "", true);
+    return chip($nombre, '<img src="images/points.png" alt="points" style="width:23px;height:23px;border-radius:0px">', "white", "", true);
 }
 
 function nombreAtome($num, $nombre)
@@ -1962,7 +1962,7 @@ function nombreAtome($num, $nombre)
 
 function nombreNeutrino($nombre)
 {
-    return chip($nombre, '<img style="vertical-align:middle;width:37px;height:37px;" alt="Neutrino" src="images/neutrino.png" title="Neutrino" />', "white");
+    return chip($nombre, '<img style="vertical-align:middle;width:37px;height:37px;" alt="Neutrino" src="images/neutrino.png" title="Neutrino">', "white");
 }
 
 function nombreEnergie($nombre, $id = false)
@@ -1972,14 +1972,14 @@ function nombreEnergie($nombre, $id = false)
 
 function nombreTemps($nombre)
 {
-    return chip($nombre, '<img alt="sablier" style="width:23px;height:23px;border-radius:1px;" src="images/sand-clock.png"/>', "white", "", true);
+    return chip($nombre, '<img alt="sablier" style="width:23px;height:23px;border-radius:1px;" src="images/sand-clock.png">', "white", "", true);
 }
 
 function nombreTout($nombre)
 {
     return '
         <div class="chip bg-">
-            <div class="chip-media bg-white" style="width:143px;border-radius:20px"><img src="images/tout.png" style="border-radius:0px;margin-right:0px;" alt="toutes" title="Toutes les ressources" /></div>
+            <div class="chip-media bg-white" style="width:143px;border-radius:20px"><img src="images/tout.png" style="border-radius:0px;margin-right:0px;" alt="toutes" title="Toutes les ressources"></div>
             <div class="chip-label">' . $nombre . '</div>
         </div>';
 }
@@ -2023,8 +2023,8 @@ function carteForum($avatar, $login, $date, $titre, $contenu, $grade, $sujet = f
     <div class="card facebook-card">
       <div class="card-header no-border">
         <div class="facebook-avatar">' . $avatar . '</div>
-        <div class="facebook-grade">' . $login . '<br/><span style="color:' . $grade['couleur'] . '">' . $grade['nom'] . '</span></div>
-        <div class="facebook-name">' . $titre . '</div><br/>
+        <div class="facebook-grade">' . $login . '<br><span style="color:' . $grade['couleur'] . '">' . $grade['nom'] . '</span></div>
+        <div class="facebook-name">' . $titre . '</div><br>
         <div class="facebook-date">' . $date . '</div>
       </div>
       <div class="card-content-inner">' . $contenu . '</div>
@@ -2352,7 +2352,7 @@ function item($options)
 function progressBar($vie, $vieMax, $couleur)
 {
     return '
-        <br/><br/><br/>
+        <br><br><br>
         <div class="item-content" style="margin:0;padding:0;">
             <div class="item-inner" style="width: 80px;padding-right:0px;">
               <div data-progress="' . ($vie / $vieMax * 100) . '" class="progressbar color-' . $couleur . '" style="height:6px;border:2px solid black;"></div>
@@ -2374,7 +2374,7 @@ function itemAccordion($titre = false, $media = false, $contenu = false, $id = f
 
     if ($titre) {
         $titre = '
-        <div class="item-title-row">' . $titre . '<br/></div>';
+        <div class="item-title-row">' . $titre . '<br></div>';
     } else {
         $titre = "";
     }
@@ -2508,17 +2508,17 @@ function chip($label, $image, $couleurImage = "black", $couleur = "", $circle = 
 
 function chipInfo($label, $image, $id = false)
 {
-    return chip($label, '<img alt="tag" src="' . $image . '" style="width:25px;height:25px;border-radius:0px;"/>', "white", "", true, $id);
+    return chip($label, '<img alt="tag" src="' . $image . '" style="width:25px;height:25px;border-radius:0px;">', "white", "", true, $id);
 }
 
 function imageClassement($rang)
 {
     if ($rang == 1) {
-        return '<img src="images/classement/or.png" alt="or" title="1er" style="vertical-align:middle;height:28px;width:28px;"/>';
+        return '<img src="images/classement/or.png" alt="or" title="1er" style="vertical-align:middle;height:28px;width:28px;">';
     } elseif ($rang == 2) {
-        return '<img src="images/classement/argent.png" alt="argent" title="2e" style="vertical-align:middle;height:25px;width:25px;"/>';
+        return '<img src="images/classement/argent.png" alt="argent" title="2e" style="vertical-align:middle;height:25px;width:25px;">';
     } elseif ($rang == 3) {
-        return '<img src="images/classement/bronze.png" alt="bronze" title="3e" style="vertical-align:middle;height:21px;width:21px;"/>';
+        return '<img src="images/classement/bronze.png" alt="bronze" title="3e" style="vertical-align:middle;height:21px;width:21px;">';
     } else {
         return $rang;
     }
@@ -2595,9 +2595,9 @@ function submit($options)
     }
 
     if (array_key_exists("image", $options) && $options["image"]) {
-        $image1 = '<img alt="imageCote" src="' . $options['image'] . '" style="float:left;vertical-align:middle;width:25px;height:25px;margin-top:5px;margin-left:-3px"/>';
+        $image1 = '<img alt="imageCote" src="' . $options['image'] . '" style="float:left;vertical-align:middle;width:25px;height:25px;margin-top:5px;margin-left:-3px">';
         if (!array_key_exists("simple", $options) || !$options["simple"]) {
-            $image2 = '<img alt="imageCote" src="' . $options['image'] . '" style="float:right;vertical-align:middle;width:25px;height:25px;margin-top:5px;margin-right:-3px"/>';
+            $image2 = '<img alt="imageCote" src="' . $options['image'] . '" style="float:right;vertical-align:middle;width:25px;height:25px;margin-top:5px;margin-right:-3px">';
         } else {
             $image2 = "";
         }
@@ -2607,7 +2607,7 @@ function submit($options)
     }
 
     if (array_key_exists("nom", $options) && $options["nom"]) {
-        $nom = '<input type="hidden" name="' . $options['nom'] . '"/>';
+        $nom = '<input type="hidden" name="' . $options['nom'] . '">';
     } else {
         $nom = '';
     }
@@ -2617,7 +2617,7 @@ function submit($options)
 
 function important($contenu)
 {
-    return '<span class="important">' . $contenu . '</span><hr/>';
+    return '<span class="important">' . $contenu . '</span><hr>';
 }
 
 function aide($page, $noir = false)
