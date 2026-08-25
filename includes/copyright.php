@@ -2,7 +2,7 @@
 debutCarte();
     debutContent();
         ?>
-         &copy; Copyright<a href="index.php"> The Very Little War </a><?php echo date('Y'); ?> - <a href="version.php" class="lienVisible">V2.0.1.0</a><br/><a href="https://www.facebook.com/The-Very-Little-War-463377203736000/" class="external">Contact</a> - <a href="credits.php">Crédits</a>
+         &copy; Copyright<a href="index.php"> The Very Little War </a><?php echo date('Y'); ?> - <a href="version.php" class="lienVisible">V2.0.1.0</a><br><a href="https://www.facebook.com/The-Very-Little-War-463377203736000/" class="external">Contact</a> - <a href="credits.php">Crédits</a>
         <?php
     finContent();
 finCarte();
