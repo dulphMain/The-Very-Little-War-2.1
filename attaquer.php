@@ -74,7 +74,7 @@ if (isset($_POST['joueurAAttaquer'])) {
             } else {
 
                 $sqlPointsDefenseur = 'SELECT * FROM autre WHERE login=\'' . $_POST['joueurAAttaquer'] . '\'';
-                $exPointsDefenseur = mysqli_query($base, $sqlPointsDefenseur) or die('Erreur SQL !<br />' . $sqlPointsDefenseur . '<br />' . mysqli_error($base));
+                $exPointsDefenseur = mysqli_query($base, $sqlPointsDefenseur) or die('Erreur SQL !<br>' . $sqlPointsDefenseur . '<br>' . mysqli_error($base));
                 $joueurDefenseur = mysqli_fetch_array($exPointsDefenseur);
                 $nb = mysqli_num_rows($exPointsDefenseur);
 
@@ -169,7 +169,7 @@ include("includes/tout.php");
 if (time() - $membre['timestamp'] < 3600 * 24 * 2) {
     debutCarte();
     echo '<div class="table-responsive"><table>';
-    echo '<tr><td><img src="images/attaquer/baby.png" class="imageChip" alt="bebe"/><td><td>Fin de la protection des débutants le ' . strftime('%d/%m/%y à %Hh%M', $membre['timestamp'] + 3600 * 24 * 2);
+    echo '<tr><td><img src="images/attaquer/baby.png" class="imageChip" alt="bebe"><td><td>Fin de la protection des débutants le ' . strftime('%d/%m/%y à %Hh%M', $membre['timestamp'] + 3600 * 24 * 2);
     echo '</table></div>';
     finCarte();
 }
@@ -189,9 +189,9 @@ if ($nb['nb'] > 0) {
         if ($_SESSION['login'] == $actionsattaques['attaquant']) { // faire si retour ou non
             if (time() < $actionsattaques['tempsAttaque']) {
                 if ($actionsattaques['troupes'] != 'Espionnage') {
-                    echo '<tr><td><a href="attaque.php?id=' . $actionsattaques['id'] . '"><img src="images/rapports/sword.png" class="imageChip" alt="epee"/></a></td><td><a href="joueur.php?id=' . $actionsattaques['defenseur'] . '">' . $actionsattaques['defenseur'] . '</a></td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsAttaque'] - time()) . '</td></tr>';
+                    echo '<tr><td><a href="attaque.php?id=' . $actionsattaques['id'] . '"><img src="images/rapports/sword.png" class="imageChip" alt="epee"></a></td><td><a href="joueur.php?id=' . $actionsattaques['defenseur'] . '">' . $actionsattaques['defenseur'] . '</a></td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsAttaque'] - time()) . '</td></tr>';
                 } else {
-                    echo '<tr><td><img src="images/rapports/binoculars.png" class="imageChip" alt="espion"/></td><td><a href="joueur.php?id=' . $actionsattaques['defenseur'] . '">' . $actionsattaques['defenseur'] . '</a></td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsAttaque'] - time()) . '</td></tr>';
+                    echo '<tr><td><img src="images/rapports/binoculars.png" class="imageChip" alt="espion"></td><td><a href="joueur.php?id=' . $actionsattaques['defenseur'] . '">' . $actionsattaques['defenseur'] . '</a></td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsAttaque'] - time()) . '</td></tr>';
                 }
 
                 echo '
@@ -211,7 +211,7 @@ if ($nb['nb'] > 0) {
                     setInterval(tempsDynamique' . $actionsattaques['id'] . ', 1000);
                     </script>';
             } else {
-                echo '<tr><td><a href="attaque.php?id=' . $actionsattaques['id'] . '"><img src="images/attaquer/retour.png" class="imageChip" alt="epee"/></a></td><td>Retour</td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsRetour'] - time()) . '</td></tr>';
+                echo '<tr><td><a href="attaque.php?id=' . $actionsattaques['id'] . '"><img src="images/attaquer/retour.png" class="imageChip" alt="epee"></a></td><td>Retour</td><td id="affichage' . $actionsattaques['id'] . '">' . affichageTemps($actionsattaques['tempsRetour'] - time()) . '</td></tr>';
                 echo '<script>
                     var valeur' . $actionsattaques['id'] . ' = ' . ($actionsattaques['tempsRetour'] - time()) . ';
 
@@ -230,7 +230,7 @@ if ($nb['nb'] > 0) {
             }
         } else {
             if ($actionsattaques['troupes'] != 'Espionnage' && $actionsattaques['attaqueFaite'] == 0) {
-                echo '<tr><td><img src="images/batiments/shield.png" class="imageChip" alt="bouclier"/></td><td><a href="joueur.php?id=' . $actionsattaques['attaquant'] . '">' . $actionsattaques['attaquant'] . '</a></td><td>?</td>';
+                echo '<tr><td><img src="images/batiments/shield.png" class="imageChip" alt="bouclier"></td><td><a href="joueur.php?id=' . $actionsattaques['attaquant'] . '">' . $actionsattaques['attaquant'] . '</a></td><td>?</td>';
             }
         }
     }
@@ -327,9 +327,9 @@ if ($_GET['type'] == 0) {
                         $border = 'lightgray 1px';
                     }
 
-                    echo '<a href="joueur.php?id=' . $carte[$i][$j][1] . '"><img src="images/carte/' . $image . '" style="position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;outline:' . $border . ' solid;width:' . $tailleTile . 'px;height:' . $tailleTile . 'px;" /></a><span style="text-align:center;position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;width:' . $tailleTile . 'px;opacity:0.7;background-color:black;color:white;">' . $carte[$i][$j][1] . '</span>';
+                    echo '<a href="joueur.php?id=' . $carte[$i][$j][1] . '"><img src="images/carte/' . $image . '" style="position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;outline:' . $border . ' solid;width:' . $tailleTile . 'px;height:' . $tailleTile . 'px;"></a><span style="text-align:center;position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;width:' . $tailleTile . 'px;opacity:0.7;background-color:black;color:white;">' . $carte[$i][$j][1] . '</span>';
                 } else {
-                    echo '<img src="images/carte/rien.png" style="position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;outline:lightgray 1px solid" />';
+                    echo '<img src="images/carte/rien.png" style="position:absolute;display:block;top:' . ($i * $tailleTile) . 'px;left:' . ($j * $tailleTile) . 'px;outline:lightgray 1px solid">';
                 }
             }
         }
@@ -355,7 +355,7 @@ if (isset($_GET['id'])) {
             debutCarte("Attaquer");
             echo '<form method="post" action="attaquer.php" name="formAttaquer">';
             $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' ORDER BY numeroclasse';
-            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
             $distance = pow(pow($membre['x'] - $joueur['x'], 2) + pow($membre['y'] - $joueur['y'], 2), 0.5);
             scriptAffichageTemps();
@@ -363,13 +363,13 @@ if (isset($_GET['id'])) {
             $res = array();
             echo important("Cible");
 
-            echo chip(joueur($joueur['login']), '<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;"/>', "white", false, true);
-            echo chip('<a href="attaquer.php?x=' . $joueur['x'] . '&y=' . $joueur['y'] . '">' . $joueur['x'] . ';' . $joueur['y'] . ' - ' . (round(10 * $distance) / 10) . ' cases</a>', '<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;"/>', "white", false, true);
+            echo chip(joueur($joueur['login']), '<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;">', "white", false, true);
+            echo chip('<a href="attaquer.php?x=' . $joueur['x'] . '&y=' . $joueur['y'] . '">' . $joueur['x'] . ';' . $joueur['y'] . ' - ' . (round(10 * $distance) / 10) . ' cases</a>', '<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;">', "white", false, true);
 
-            echo '<br/><br/>' . important("Coûts");
+            echo '<br><br>' . important("Coûts");
             echo chipInfo('0:00:00', 'images/molecule/temps.png', 'tempsAttaque');
             echo nombreEnergie(0, 'coutEnergie');
-            echo '<br/><br/>';
+            echo '<br><br>';
             echo important("Troupes attaquantes");
             debutListe();
 
@@ -381,17 +381,17 @@ if (isset($_GET['id'])) {
             } else {
                 while ($molecules = mysqli_fetch_array($ex)) {
                     if ($molecules['formule'] != "Vide") {
-                        item(['titre' => '<a href="molecule.php?id=' . $molecules['id'] . '" class="lienFormule">' . couleurFormule($molecules['formule']) . '</a>', 'floating' => false, 'input' => '<input type="number" name="nbclasse' . $molecules['numeroclasse'] . '" id="nbclasse' . $molecules['numeroclasse'] . '" placeholder="Nombre" />', 'after' => nombreMolecules('<a href="javascript:document.getElementById(\'nbclasse' . $molecules['numeroclasse'] . '\').value = ' . ceil($molecules['nombre']) . ';actualiseTemps();actualiseCout();" class="lienVisible">' . ceil($molecules['nombre']) . '</a>')]);
+                        item(['titre' => '<a href="molecule.php?id=' . $molecules['id'] . '" class="lienFormule">' . couleurFormule($molecules['formule']) . '</a>', 'floating' => false, 'input' => '<input type="number" name="nbclasse' . $molecules['numeroclasse'] . '" id="nbclasse' . $molecules['numeroclasse'] . '" placeholder="Nombre">', 'after' => nombreMolecules('<a href="javascript:document.getElementById(\'nbclasse' . $molecules['numeroclasse'] . '\').value = ' . ceil($molecules['nombre']) . ';actualiseTemps();actualiseCout();" class="lienVisible">' . ceil($molecules['nombre']) . '</a>')]);
                     }
                 }
-                echo '<input type="hidden" name="joueurAAttaquer" value="' . $joueur['login'] . '"/><br/>';
+                echo '<input type="hidden" name="joueurAAttaquer" value="' . $joueur['login'] . '"><br>';
                 echo submit(['titre' => 'Attaquer', 'image' => 'images/attaquer/attaquer.png', 'form' => 'formAttaquer']);
                 finListe();
             }
             echo '</form>';
 
             $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND formule!=\'Vide\' ORDER BY numeroclasse';
-            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
             $nbClasses = mysqli_num_rows($ex);
             // affichage du temps pour attaquer
             echo '
@@ -462,20 +462,20 @@ if (isset($_GET['id'])) {
             echo '<form method="post" action="attaquer.php" name="formEspionner">';
             echo important("Cible");
 
-            echo chip($joueur['login'], '<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;"/>', "white", false, true);
-            echo chip('<a href="attaquer.php?x=' . $joueur['x'] . '&y=' . $joueur['y'] . '">' . $joueur['x'] . ';' . $joueur['y'] . ' - ' . (round(10 * (pow(pow($membre['x'] - $joueur['x'], 2) + pow($membre['y'] - $joueur['y'], 2), 0.5))) / 10) . ' cases</a>', '<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;"/>', "white", false, true);
-            echo '<br/><br/>';
+            echo chip($joueur['login'], '<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;">', "white", false, true);
+            echo chip('<a href="attaquer.php?x=' . $joueur['x'] . '&y=' . $joueur['y'] . '">' . $joueur['x'] . ';' . $joueur['y'] . ' - ' . (round(10 * (pow(pow($membre['x'] - $joueur['x'], 2) + pow($membre['y'] - $joueur['y'], 2), 0.5))) / 10) . ' cases</a>', '<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;">', "white", false, true);
+            echo '<br><br>';
 
             echo important("Neutrinos");
             debutListe();
-            item(['input' => '<input type="number" min="0" max="' . $autre['neutrinos'] . '" name="nombreneutrinos" id="nombreneutrinos" class="form-control" placeholder="Nombre de neutrinos"/>', 'after' => nombreNeutrino($autre['neutrinos'])]);
+            item(['input' => '<input type="number" min="0" max="' . $autre['neutrinos'] . '" name="nombreneutrinos" id="nombreneutrinos" class="form-control" placeholder="Nombre de neutrinos">', 'after' => nombreNeutrino($autre['neutrinos'])]);
             finListe();
-            echo '<br/><br/>';
+            echo '<br><br>';
 
             echo important("Coût");
             echo nombreTemps(affichageTemps(3600 * pow(pow($membre['x'] - $joueur['x'], 2) + pow($membre['y'] - $joueur['y'], 2), 0.5) / $vitesseEspionnage));
 
-            echo '<input type="hidden" name="joueurAEspionner" value="' . $joueur['login'] . '"/><br/><br/>';
+            echo '<input type="hidden" name="joueurAEspionner" value="' . $joueur['login'] . '"><br><br>';
             echo submit(['titre' => 'Espionner', 'image' => 'images/attaquer/espionner.png', 'form' => 'formEspionner']);
 
             finCarte();
