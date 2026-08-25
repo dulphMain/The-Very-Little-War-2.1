@@ -54,8 +54,8 @@ include("includes/tout.php");
 
 debutCarte("Faire un don");
     debutListe();
-        echo '<form name="faireUnDon" method="post" action="don.php" />';
-        item(['floating' => false, 'titre' => nombreEnergie('Energie'), 'input' => '<input type="text" name="energieEnvoyee" id="energieEnvoyee" class="form-control" placeholder="Energie à donner"/>' ]);
+        echo '<form name="faireUnDon" method="post" action="don.php">';
+        item(['floating' => false, 'titre' => nombreEnergie('Energie'), 'input' => '<input type="text" name="energieEnvoyee" id="energieEnvoyee" class="form-control" placeholder="Energie à donner">' ]);
         item(['input' => submit(['form' => 'faireUnDon', 'titre' => 'Donner', 'image' => 'images/boutons/cadeau.png'])]);
         echo '</form>';
     finListe();
