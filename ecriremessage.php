@@ -14,23 +14,23 @@ if (isset($_POST['titre']) and isset($_POST['destinataire']) and isset($_POST['c
 			$ex = mysqli_query($base, 'SELECT * FROM autre WHERE idalliance=\'' . $idalliance['idalliance'] . '\' AND login !=\'' . $_SESSION['login'] . '\'');
 			while ($destinataire = mysqli_fetch_array($ex)) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $destinataire['login'] . '", default)';
-				mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysql_error());
+				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
 			}
 			$information = "Le message a bien été envoyé à toute l'alliance.";
 		} elseif ($_POST['destinataire'] == "[all]" && $_SESSION['login'] == "Guortates") {
-			$ex = query('SELECT * FROM autre') or die('Erreur SQL !<br /><br />' . mysql_error());
+			$ex = query('SELECT * FROM autre') or die('Erreur SQL !<br><br>' . mysql_error());
 			while ($destinataire = mysqli_fetch_array($ex)) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $destinataire['login'] . '", default)';
-				query($sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysql_error());
+				query($sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
 			}
 			$information = "Le message a bien été à tous les joueurs.";
 		} else {
 			$sql = 'SELECT login FROM autre WHERE login=\'' . $_POST['destinataire'] . '\'';
-			$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysql_error());
+			$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
 			$joueurExiste = mysqli_num_rows($ex);
 			if ($joueurExiste > 0) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $_POST['destinataire'] . '", default)';
-				mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysql_error());
+				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
 				$information =  "Le message a bien été envoyé.";
 				echo '
                 <script>
@@ -76,7 +76,7 @@ if (isset($_GET['reponse'])) {
 if (isset($_POST['titre'])) {
 	$valueTitre = $_POST['titre'];
 }
-item(['floating' => true, 'titre' => 'Titre', 'input' => '<input type="text" class="form-control" name="titre" id="titre" value="' . $valueTitre . '" />']);
+item(['floating' => true, 'titre' => 'Titre', 'input' => '<input type="text" class="form-control" name="titre" id="titre" value="' . $valueTitre . '">']);
 
 $valueDestinataire = antiXSS($message['expeditaire']);
 if (isset($_GET['destinataire'])) {
@@ -85,7 +85,7 @@ if (isset($_GET['destinataire'])) {
 if (isset($_POST['destinataire'])) {
 	$valueDestinataire = antiXSS($_POST['destinataire']);
 }
-item(['floating' => true, 'titre' => 'Destinataire', 'input' => '<input type="text" class="form-control" name="destinataire" id="destinataire" value="' . $valueDestinataire . '" />']);
+item(['floating' => true, 'titre' => 'Destinataire', 'input' => '<input type="text" class="form-control" name="destinataire" id="destinataire" value="' . $valueDestinataire . '">']);
 
 if (isset($_GET['id'])) {
 	creerBBcode("contenu", $message['contenu'], 1);
@@ -102,7 +102,7 @@ item(['floating' => true, 'titre' => "Contenu", 'input' => '<textarea name="cont
 
 
 item(['input' => submit(['form' => 'formEcrire', 'titre' => 'Envoyer'])]);
-echo '<form/>';
+echo '<form>';
 finListe();
 finCarte();
 include("includes/copyright.php");
