@@ -5,7 +5,7 @@ include("redirectionmotdepasse.php");
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 <head>
 <title>The Very Little War - Rédiger une news</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 h3, form
@@ -40,15 +40,15 @@ else // C'est qu'on rédige une nouvelle news.
 }
 ?>
 <form action="listenews.php" method="post">
-<p>Titre : <input type="text" size="30" name="titre" value="<?php echo $titre; ?>" />
+<p>Titre : <input type="text" size="30" name="titre" value="<?php echo $titre; ?>">
 </p>
 <p>
-Contenu :<br />
+Contenu :<br>
 <textarea name="contenu" cols="50" rows="10">
 <?php echo $contenu; ?>
-</textarea><br />
-<input type="hidden" name="id_news" value="<?php echo $id_news; ?>" />
-<input type="submit" value="Envoyer" />
+</textarea><br>
+<input type="hidden" name="id_news" value="<?php echo $id_news; ?>">
+<input type="submit" value="Envoyer">
 </p>
 </form>
 </body>
