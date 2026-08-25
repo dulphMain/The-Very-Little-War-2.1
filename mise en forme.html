@@ -19,7 +19,7 @@
     <div id="formulaire">
         <!-- <form action="mise en forme.html" method="post"> -->
             <textarea id="texte" rows="60" cols="100"></textarea>
-            <input type="submit" id="soumettre" value="Mettre en forme" />
+            <input type="submit" id="soumettre" value="Mettre en forme">
         <!-- </form> -->
     </div>
     <div id="texteFinal">
@@ -302,7 +302,7 @@ document.getElementById("soumettre").addEventListener("click", function () {
                 var couleurPrincipale = siNonNul(/Couleur principale : ([A-Z]| )+/i.exec(listeVol[i]));
                 couleurPrincipale = couleurPrincipale.replace("Couleur principale : ","");
                 
-                var chaine =  "- "+typeVeh+" "+marque+" "+modele+" "+typeCommercial+" "+couleurPrincipale+" "+plaque+"<br/>";
+                var chaine =  "- "+typeVeh+" "+marque+" "+modele+" "+typeCommercial+" "+couleurPrincipale+" "+plaque+"<br>";
                 if(tabVeh.indexOf(chaine) == -1){
                     if(add=="Véhicule terrestre (Volé)"){
                         vehVol += chaine;
