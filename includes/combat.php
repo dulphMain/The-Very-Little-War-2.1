@@ -3,7 +3,7 @@
 // Pour l'attaquant
 
 $sqlClasse1 = 'SELECT * FROM molecules WHERE proprietaire=\'' . $actions['defenseur'] . '\' ORDER BY numeroclasse ASC';
-$exClasse1 = mysqli_query($base, $sqlClasse1) or die('Erreur SQL !<br />' . $sqlClasse1 . '<br />' . mysqli_error($base));
+$exClasse1 = mysqli_query($base, $sqlClasse1) or die('Erreur SQL !<br>' . $sqlClasse1 . '<br>' . mysqli_error($base));
 
 
 $c = 1;
@@ -15,7 +15,7 @@ while ($classeDefenseur = mysqli_fetch_array($exClasse1)) {
 }
 
 $sqlClasse1 = 'SELECT * FROM molecules WHERE proprietaire=\'' . $actions['attaquant'] . '\' ORDER BY numeroclasse ASC';
-$exClasse1 = mysqli_query($base, $sqlClasse1) or die('Erreur SQL !<br />' . $sqlClasse1 . '<br />' . mysqli_error($base));
+$exClasse1 = mysqli_query($base, $sqlClasse1) or die('Erreur SQL !<br>' . $sqlClasse1 . '<br>' . mysqli_error($base));
 
 
 $c = 1;
@@ -45,11 +45,11 @@ foreach ($nomsRes as $num => $ressource) {
 
 
 $sqlionisateur = 'SELECT ionisateur FROM constructions WHERE login=\'' . $actions['attaquant'] . '\'';
-$exionisateur = mysqli_query($base, $sqlionisateur) or die('Erreur SQL !<br />' . $sqlionisateur . '<br />' . mysqli_error($base));
+$exionisateur = mysqli_query($base, $sqlionisateur) or die('Erreur SQL !<br>' . $sqlionisateur . '<br>' . mysqli_error($base));
 $ionisateur = mysqli_fetch_array($exionisateur);
 
 $sqlchampdeforce = 'SELECT champdeforce FROM constructions WHERE login=\'' . $actions['defenseur'] . '\'';
-$exchampdeforce = mysqli_query($base, $sqlchampdeforce) or die('Erreur SQL !<br />' . $sqlchampdeforce . '<br />' . mysqli_error($base));
+$exchampdeforce = mysqli_query($base, $sqlchampdeforce) or die('Erreur SQL !<br>' . $sqlchampdeforce . '<br>' . mysqli_error($base));
 $champdeforce = mysqli_fetch_array($exchampdeforce);
 
 $exDuplicateurAttaque = mysqli_query($base, 'SELECT idalliance FROM autre WHERE login=\'' . $actions['attaquant'] . '\'');
@@ -168,18 +168,18 @@ $sqlUpdateDefenseur2 = 'UPDATE molecules SET nombre=\'' . ($classeDefenseur2['no
 $sqlUpdateDefenseur3 = 'UPDATE molecules SET nombre=\'' . ($classeDefenseur3['nombre'] - $classe3DefenseurMort) . '\' WHERE id=\'' . $classeDefenseur3['id'] . '\'';
 $sqlUpdateDefenseur4 = 'UPDATE molecules SET nombre=\'' . ($classeDefenseur4['nombre'] - $classe4DefenseurMort) . '\' WHERE id=\'' . $classeDefenseur4['id'] . '\'';
 
-mysqli_query($base, $sqlUpdateDefenseur1) or die('Erreur SQL !<br />' . $sqlUpdateDefenseur1 . '<br />' . mysqli_error($base));
-mysqli_query($base, $sqlUpdateDefenseur2) or die('Erreur SQL !<br />' . $sqlUpdateDefenseur2 . '<br />' . mysqli_error($base));
-mysqli_query($base, $sqlUpdateDefenseur3) or die('Erreur SQL !<br />' . $sqlUpdateDefenseur3 . '<br />' . mysqli_error($base));
-mysqli_query($base, $sqlUpdateDefenseur4) or die('Erreur SQL !<br />' . $sqlUpdateDefenseur4 . '<br />' . mysqli_error($base));
+mysqli_query($base, $sqlUpdateDefenseur1) or die('Erreur SQL !<br>' . $sqlUpdateDefenseur1 . '<br>' . mysqli_error($base));
+mysqli_query($base, $sqlUpdateDefenseur2) or die('Erreur SQL !<br>' . $sqlUpdateDefenseur2 . '<br>' . mysqli_error($base));
+mysqli_query($base, $sqlUpdateDefenseur3) or die('Erreur SQL !<br>' . $sqlUpdateDefenseur3 . '<br>' . mysqli_error($base));
+mysqli_query($base, $sqlUpdateDefenseur4) or die('Erreur SQL !<br>' . $sqlUpdateDefenseur4 . '<br>' . mysqli_error($base));
 
 // Gestion du pillage
 $sql = 'SELECT * FROM ressources WHERE login=\'' . $actions['defenseur'] . '\'';
-$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 $ressourcesDefenseur = mysqli_fetch_array($ex);
 
 $sql1 = 'SELECT * FROM ressources WHERE login=\'' . $actions['attaquant'] . '\'';
-$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 $ressourcesJoueur = mysqli_fetch_array($ex1);
 if ($gagnant == 2 || $gagnant == 0) { // Si le joueur gagnant est l'attaquant
 	$ressourcesTotalesDefenseur = 0;
@@ -388,7 +388,7 @@ foreach ($nomsRes as $num => $ressource) {
 }
 
 $sql = 'UPDATE ressources SET ' . $chaine . ' WHERE login=\'' . $actions['attaquant'] . '\'';
-mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
 $chaine = "";
 foreach ($nomsRes as $num => $ressource) {
@@ -400,14 +400,14 @@ foreach ($nomsRes as $num => $ressource) {
 }
 
 $sql1 = 'UPDATE ressources SET ' . $chaine . ' WHERE login=\'' . $actions['defenseur'] . '\'';
-mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
 $sql2 = 'SELECT nbattaques FROM autre WHERE login=\'' . $actions['attaquant'] . '\'';
-$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br />' . $sql2 . '<br />' . mysqli_error($base));
+$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
 $nbattaques = mysqli_fetch_array($ex2);
 
 $sql3 = 'UPDATE autre SET nbattaques=\'' . ($nbattaques['nbattaques'] + 1) . '\' WHERE login=\'' . $actions['attaquant'] . '\'';
-mysqli_query($base, $sql3) or die('Erreur SQL !<br />' . $sql3 . '<br />' . mysqli_error($base));
+mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
 
 // Si les alliances sont en guerre on inscrit les pertes
 
