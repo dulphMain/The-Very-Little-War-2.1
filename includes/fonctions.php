@@ -1886,8 +1886,8 @@ function affichageTemps($secondes, $petitTemps = false)
         return (floor($secondes / 3600 / 24 * 100) / 100) . ' jours';
     }
 
-    $heures = intval($secondes / 3600) . ':';
-    $minutes = intval(($secondes % 3600) / 60) . ':';
+    $heures = intval($secondes / 3600);
+    $minutes = intval(($secondes % 3600) / 60);
     if ($minutes < 10) {
         $minutes = '0' . $minutes;
     }
@@ -1895,7 +1895,7 @@ function affichageTemps($secondes, $petitTemps = false)
     if ($secondes < 10) {
         $secondes = '0' . $secondes;
     }
-    return $heures . $minutes . $secondes;
+    return $heures . ':' . $minutes . ':' . $secondes;
 }
 function coutEnergie($cout)
 {
