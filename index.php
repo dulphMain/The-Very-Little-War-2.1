@@ -46,9 +46,10 @@ $nb = mysqli_num_rows($retour);
 if ($nb == 0) {
     $donnees['titre'] = "Aucun news";
     $contenuNews = 'Aucune news pour l\'instant.';
+} else {
+    $donnees = mysqli_fetch_array($retour);
+    $contenuNews = nl2br(stripslashes($donnees['contenu']));
 }
-$donnees = mysqli_fetch_array($retour);
-$contenuNews = nl2br(stripslashes($donnees['contenu']));
 
 debutCarte();
 debutAccordion();
