@@ -1230,7 +1230,7 @@ function initPlayer($joueur)
             'niveau' => $constructions['producteur'],
             'revenu' => $constructions['pointsProducteurRestants'] . ' points restants',
             'revenu1' => '+' . $points['producteur'] . ' points à placer',
-            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', time() + $max) . ' à ' . date('H\hi', time() + $max) . '<br><br>
+            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', round(time() + $max)) . ' à ' . date('H\hi', round(time() + $max)) . '<br><br>
                     ' . important("Production") . '
                     ' . $production,
             'description' => 'Le producteur <strong>produit des atomes</strong> à partir d\'énergie. A chaque niveau supplémentaire, vous obtenez un certain nombre de points qu\'il faut placer dans les atomes que vous voulez produire. Plus il y a de points dans un atome, plus sa production sera grande.',
