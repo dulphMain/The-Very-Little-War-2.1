@@ -4,15 +4,15 @@ include("includes/redirectionVacance.php");
 
 if (isset($_POST['emplacementmoleculesupprimer']) and !empty($_POST['emplacementmoleculesupprimer']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculesupprimer']) and $_POST['emplacementmoleculesupprimer'] <= 5) { // Si l'on veut supprimer une classe de molécules
     $sql2 = 'SELECT formule,id FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND numeroclasse=\'' . $_POST['emplacementmoleculesupprimer'] . '\'';
-    $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
+    $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
     $molecules = mysqli_fetch_array($ex2);
 
     if ($molecules['formule'] != "Vide") {
         $sql3 = 'SELECT niveauclasse FROM ressources WHERE login=\'' . $_SESSION['login'] . '\'';
-        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
+        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
         $niveauclasse = mysqli_fetch_array($ex3);
         $sql1 = 'UPDATE ressources SET niveauclasse = \'' . ($niveauclasse['niveauclasse'] - 1) . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+        $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
         $chaine = ""; // on passe toutes les chaines sauf conditions pour les ressources en dynamique 
         foreach ($nomsRes as $num => $ressource) {
@@ -24,7 +24,7 @@ if (isset($_POST['emplacementmoleculesupprimer']) and !empty($_POST['emplacement
         }
 
         $sql = 'UPDATE molecules SET formule = default, ' . $chaine . ', nombre = default WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND numeroclasse=\'' . $_POST['emplacementmoleculesupprimer'] . '\'';
-        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+        $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
         query('DELETE FROM actionsformation WHERE login=\'' . $_SESSION['login'] . '\' AND idclasse=\'' . $molecules['id'] . '\''); // on enleve les formations en cours, il faut vérifier maitenant s'il y en a d'autres derriere et les mettre à jour
         $nvxDebut = time();
@@ -82,7 +82,7 @@ if (isset($_POST['nombreneutrinos']) and !empty($_POST['nombreneutrinos'])) {
             $autre['neutrinos'] += $_POST['nombreneutrinos'];
 
             $sql3 = 'UPDATE ressources SET energie=\'' . ($ressources['energie'] - $_POST['nombreneutrinos'] * $coutNeutrino) . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-            $req3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
+            $req3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
             query('UPDATE autre SET energieDepensee=\'' . ($autre['energieDepensee'] + $_POST['nombreneutrinos'] * $coutNeutrino) . '\' WHERE login=\'' . $_SESSION['login'] . '\'');
 
             $information = 'Vous avez formé ' . $_POST['nombreneutrinos'] . ' neutrinos.';
@@ -99,10 +99,10 @@ if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmol
     if (isset($_POST['nombremolecules']) and !empty($_POST['nombremolecules']) and preg_match("#^[0-9]*$#", $_POST['nombremolecules'])) {
         $_POST['nombremolecules'] = mysqli_real_escape_string($base, stripslashes(antihtml($_POST['nombremolecules'])));
         $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\'AND numeroclasse=\'' . $_POST['emplacementmoleculeformer'] . '\'';
-        $req = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+        $req = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
         $donneesFormer = mysqli_fetch_array($req);
         $sql1 = 'SELECT * FROM ressources WHERE login=\'' . $_SESSION['login'] . '\'';
-        $req1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());;
+        $req1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));;
         $ressources = mysqli_fetch_array($req1);
 
         $bool = 1;
@@ -113,7 +113,7 @@ if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmol
         }
         if ($bool == 1) {
             $sqlNbMolecules = 'SELECT nombre FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND nombre!=0';
-            $exNbMolecules = mysqli_query($base, $sqlNbMolecules) or die('Erreur SQL !<br>' . $sqlNbMolecules . '<br>' . mysql_error());
+            $exNbMolecules = mysqli_query($base, $sqlNbMolecules) or die('Erreur SQL !<br>' . $sqlNbMolecules . '<br>' . mysqli_error($base));
             $nb_molecules = 0;
             /*while($nbMolecules = mysqli_fetch_array($exNbMolecules)) {
 				$nb_molecules = $nb_molecules + $nbMolecules['nombre'];
@@ -144,7 +144,7 @@ if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmol
                 $chaine = $chaine . '' . $ressource . '=' . ($ressources[$ressource] - ($_POST['nombremolecules'] * $donneesFormer[$ressource])) . '' . $plus;
             }
             $sql3 = 'UPDATE ressources SET ' . $chaine . ' WHERE login=\'' . $_SESSION['login'] . '\'';
-            $req3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
+            $req3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
 
             $information = 'Vous avez lancé la formation de ' . $_POST['nombremolecules'] . ' molécules de ' . couleurFormule($donneesFormer['formule']) . '';
             /*}
@@ -182,7 +182,7 @@ if (isset($_POST['emplacementmoleculecreer1']) and !empty($_POST['emplacementmol
             }
             if ($bool == 0) {
                 $sql = 'SELECT energie, niveauclasse FROM ressources WHERE login=\'' . $_SESSION['login'] . '\'';
-                $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+                $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
                 $cout = mysqli_fetch_array($ex);
                 if ($cout['energie'] >= (coutClasse($cout['niveauclasse']))) {
                     $formule = "";
@@ -200,7 +200,7 @@ if (isset($_POST['emplacementmoleculecreer1']) and !empty($_POST['emplacementmol
                     }
 
                     $sql1 = 'UPDATE ressources SET niveauclasse = \'' . ($cout['niveauclasse'] + 1) . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-                    $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+                    $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 
                     $chaine = "";
                     foreach ($nomsRes as $num => $ressource) {
@@ -211,10 +211,10 @@ if (isset($_POST['emplacementmoleculecreer1']) and !empty($_POST['emplacementmol
                         $chaine = $chaine . '' . $ressource . '=' . $$ressource . '' . $plus;
                     }
                     $sql2 = 'UPDATE molecules SET ' . $chaine . ', formule=\'' . $formule . '\' WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND numeroclasse=\'' . $_POST['emplacementmoleculecreer1'] . '\'';
-                    $req2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
+                    $req2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
 
                     $sql3 = 'UPDATE ressources SET energie = \'' . ($cout['energie'] - coutClasse($cout['niveauclasse'])) . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-                    $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
+                    $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
 
                     $information = "Une nouvelle classe de molécule a été créée.";
                 } else {
@@ -324,11 +324,11 @@ if (isset($_POST['emplacementmoleculecreer'])) {
 if (!isset($_GET['sub']) || $_GET['sub'] == 0) {
     debutCarte('Molécule ' . aide('armee'));
     $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' ORDER BY numeroclasse';
-    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
     $nbclasse = mysqli_num_rows($ex);
 
     $sql1 = 'SELECT * FROM ressources WHERE login=\'' . $_SESSION['login'] . '\'';
-    $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+    $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
     $ressources = mysqli_fetch_array($ex1);
     $compteur = 0;
     while ($molecule = mysqli_fetch_array($ex)) {
@@ -359,7 +359,7 @@ if (!isset($_GET['sub']) || $_GET['sub'] == 0) {
             finListe();
         } else {
             $sql1 = 'SELECT niveauclasse FROM ressources WHERE login=\'' . $_SESSION['login'] . '\'';
-            $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+            $ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
             $cout = mysqli_fetch_array($ex1);
             echo '<input src="images/plus.png" alt="creer" type="image" value="Créer" name="creernouvelleclasse" title="Créer une classe de molécule" style="vertical-align: middle;float:right;" class="w32">
             <input type="hidden" name="emplacementmoleculecreer" value="' . $molecule['numeroclasse'] . '"> ' . coutEnergie(coutClasse($cout['niveauclasse'])) . '<hr></form>';
@@ -380,7 +380,7 @@ if (!isset($_GET['sub']) || $_GET['sub'] == 0) {
     debutCarte("Armée" . aide("vueEnsemble"));
     debutContent();
     $sql = 'SELECT * FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND formule!="Vide" ORDER BY numeroclasse';
-    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+    $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
     $nbclasse = mysqli_num_rows($ex);
 ?>
     <div class="reponsive-table">
