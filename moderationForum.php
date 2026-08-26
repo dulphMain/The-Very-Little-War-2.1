@@ -2,37 +2,36 @@
 include("includes/basicprivatephp.php");
 include("includes/bbcode.php");
 
-// Supression de sanction
-if (isset($_GET['supprimer'])) {
-	$sql4 = 'DELETE FROM sanctions WHERE idSanction=\'' . $_GET['supprimer'] . '\'';;
-	mysqli_query($base, $sql4) or die('Erreur SQL !<br>' . $sql4 . '<br>' . mysql_error());
-}
-
-
-if (isset($_POST['pseudo'], $_POST['dateFin'], $_POST['motif'])) {
-	if (!empty($_POST['pseudo']) && !empty($_POST['dateFin']) && !empty($_POST['motif'])) {
-		$sql2 = 'SELECT * FROM membre WHERE login=\'' . $_POST['pseudo'] . '\'';
-		$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
-		// On vérifie que le joueur existe
-		if (mysqli_num_rows($ex2)) {
-			// Convertion de la date au format anglais
-			list($jour, $mois, $annee) = explode('/', $_POST['dateFin']);
-			$date = $annee . '-' . $mois . '-' . $jour;
-			$sql1 = 'INSERT INTO sanctions VALUES (default,\'' . $_POST['pseudo'] . '\',CURRENT_DATE,\'' . $date . '\',\'' . $_POST['motif'] . '\',\'' . $_SESSION['login'] . '\')';
-			$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
-		} else {
-			$erreur = "<strong>Erreur</strong> : Ce joueur n'existe pas.";
-		}
-	} else {
-		$erreur = "<strong>Erreur</strong> :Tous les champs doivent être remplis.";
-	}
-}
-
 include("includes/tout.php");
 $sql = 'SELECT moderateur FROM membre WHERE login=\'' . $_SESSION['login'] . '\'';
 $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
 $joueur = mysqli_fetch_array($ex);
 if ($joueur['moderateur']) {
+	// Supression de sanction
+	if (isset($_GET['supprimer'])) {
+		$sql4 = 'DELETE FROM sanctions WHERE idSanction=\'' . $_GET['supprimer'] . '\'';;
+		mysqli_query($base, $sql4) or die('Erreur SQL !<br>' . $sql4 . '<br>' . mysql_error());
+	}
+	
+	
+	if (isset($_POST['pseudo'], $_POST['dateFin'], $_POST['motif'])) {
+		if (!empty($_POST['pseudo']) && !empty($_POST['dateFin']) && !empty($_POST['motif'])) {
+			$sql2 = 'SELECT * FROM membre WHERE login=\'' . $_POST['pseudo'] . '\'';
+			$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
+			// On vérifie que le joueur existe
+			if (mysqli_num_rows($ex2)) {
+				// Convertion de la date au format anglais
+				list($jour, $mois, $annee) = explode('/', $_POST['dateFin']);
+				$date = $annee . '-' . $mois . '-' . $jour;
+				$sql1 = 'INSERT INTO sanctions VALUES (default,\'' . $_POST['pseudo'] . '\',CURRENT_DATE,\'' . $date . '\',\'' . $_POST['motif'] . '\',\'' . $_SESSION['login'] . '\')';
+				$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+			} else {
+				$erreur = "<strong>Erreur</strong> : Ce joueur n'existe pas.";
+			}
+		} else {
+			$erreur = "<strong>Erreur</strong> :Tous les champs doivent être remplis.";
+		}
+	}
 
 	debutCarte("Modération du forum");
 
