@@ -169,7 +169,7 @@ include("includes/tout.php");
 if (time() - $membre['timestamp'] < 3600 * 24 * 2) {
     debutCarte();
     echo '<div class="table-responsive"><table>';
-    echo '<tr><td><img src="images/attaquer/baby.png" class="imageChip" alt="bebe"><td><td>Fin de la protection des débutants le ' . strftime('%d/%m/%y à %Hh%M', $membre['timestamp'] + 3600 * 24 * 2);
+    echo '<tr><td><img src="images/attaquer/baby.png" class="imageChip" alt="bebe"><td><td>Fin de la protection des débutants le ' . date("d/m/y à H\hh", $membre['timestamp'] + 3600 * 24 * 2);
     echo '</table></div>';
     finCarte();
 }
