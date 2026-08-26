@@ -1,6 +1,4 @@
 <style>
-
-    
     .page-content {
         padding-right: 5px;
         padding-left: 5px;      
