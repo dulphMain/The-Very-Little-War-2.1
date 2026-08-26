@@ -2,21 +2,21 @@
 
     
     .page-content {
-        padding-right:5px;
-        padding-left:5px;      
+        padding-right: 5px;
+        padding-left: 5px;      
     }
     .button {
         margin-right: auto;
-        margin-left:auto;
-        max-width:200px;
-        color:red;
+        margin-left: auto;
+        max-width: 200px;
+        color: red;
     }
     
     @media only screen and (min-width:750px){
         .page-content{
             background-image : url('images/fondecran.png');
             background-repeat: no-repeat;
-            background-position:center center;
+            background-position: center center;
         }
     }
     
@@ -28,7 +28,7 @@
 
       .card {
         background-image: url('images/accueil/background.jpg');
-          max-width:600px; 
+          max-width: 600px; 
           margin-left: auto;
           margin-right: auto;
       }
@@ -65,19 +65,19 @@
 
       .atome {
         font-family: bpmoleculesregular;
-        font-weight:bold;
-        font-size:20px;
+        font-weight: bold;
+        font-size: 20px;
       }
 
       .imageAtome {
-        float:left;
-        width:70px;
-        height:70px;
+        float: left;
+        width: 70px;
+        height: 70px;
       }
     
     .card-header{
         font-family: magmawave_capsbold;
-        color:white;
+        color: white;
         background-color: black;
     }
     
@@ -104,25 +104,25 @@
     }
     
     .important {
-        font-weight:bold;
-        color:black;
+        font-weight: bold;
+        color: black;
         font-variant: small-caps;
     }
     
     .subimportant {
-        font-weight:bold;
+        font-weight: bold;
     }
     
     table {
         border-collapse: collapse;
         width: 94%;
-        margin-right:3%;
-        margin-left:3%;
-        text-align:center;
+        margin-right: 3%;
+        margin-left: 3%;
+        text-align: center;
     }
     
     .table-responsive {
-        overflow-x:auto;
+        overflow-x: auto;
     }
 
     td {
@@ -135,7 +135,7 @@
     }
     
     .action {
-        margin-right:25px;
+        margin-right: 25px;
     }
     
     
@@ -147,23 +147,23 @@
         display: block;
         padding: 10px;
         font-family: default;
-        color:black;
+        color: black;
         background-color: white;
     }
     .facebook-card .facebook-avatar {
         float: left;
         font-size: 10px;
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
     .facebook-card .facebook-grade {
         float: right;
         font-size: 10px;
-        margin-bottom:10px;
-        margin-top : 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }  
     .facebook-card .facebook-name {
         margin-left: 80px;
-        margin-top:10px;
+        margin-top: 10px;
         font-size: 17px;
         font-weight: 500;
     }
@@ -171,7 +171,7 @@
         margin-left: 80px;
         font-size: 10px;
         color: #8e8e93;
-        margin-top:-10px;
+        margin-top: -10px;
     }
     .facebook-card .card-footer {
         background: #fafafa;
@@ -188,33 +188,33 @@
     }  
     
     .partie {
-       font-weight:bold;
-        color:red;
+       font-weight: bold;
+        color: red;
         font-variant: small-caps; 
     }
     
     .sousPartie {
-       font-weight:bold;
-        color:black;
+       font-weight: bold;
+        color: black;
         font-variant: small-caps; 
     }
     
     .sousSousPartie {
-       font-weight:bold;
-        color:gray;
+       font-weight: bold;
+        color: gray;
         font-variant: small-caps; 
     }
     
     .image-centree {
 	    text-align: center;
-	    font-weight:bold;
+	    font-weight: bold;
     }
     
     .lienSousMenu {
-        color:white;
-        text-align:center;
-        margin-right:10px;
-        margin-left:10px;
+        color: white;
+        text-align: center;
+        margin-right: 10px;
+        margin-left: 10px;
     }
     
     .lienVisible {
@@ -222,31 +222,31 @@
     }
     
     .imageSousMenu {
-        margin-top:3px;
-        height:32px;
-        width:32px;
+        margin-top: 3px;
+        height: 32px;
+        width: 32px;
     }
     
     .labelSousMenu {
-        color:white;
+        color: white;
     }
     
     .labelClassement{
-        color:black;
+        color: black;
         font-size: 12px;
         font-weight: 500;
     }
     
     .imageAide {
-        width:20px;
-        height:20px;
-        vertical-align:middle;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
     }
     
     .imageAide2 {
-        width:30px;
-        height:30px;
-        vertical-align:-40%;
+        width: 30px;
+        height: 30px;
+        vertical-align: -40%;
     }
     
     .imageChip {
@@ -257,18 +257,18 @@
     
     .imageClassement{
         width: 32px;
-        height; 32px;
+        height: 32px;
     }
 
     .titreAide {
-        background-color:black;
-        width:100%;
+        background-color: black;
+        width: 100%;
         font-size: 17px;
-        height:35px;
+        height: 35px;
         font-family: magmawave_capsbold;
         font-weight: bold;
         text-align: center;
-        color:white;
+        color: white;
         display: block;
         margin: 0px 0px 0px 0px;
     }
@@ -279,17 +279,17 @@
     
     .toolbarcustom {
         box-shadow: 5px 2px 5px 5px rgba(0, 0, 0, 0.2);
-        height:65px;
+        height: 65px;
     }
     
     .imageMedia {
-        width:50px;
-        height:50px;
+        width: 50px;
+        height: 50px;
     }
     
     .iconeMenu {
-        width:25px;
-        height:25px;
+        width: 25px;
+        height: 25px;
     }
     
     .w32 {
