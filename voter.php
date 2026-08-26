@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Origin: *");
 $base = mysqli_connect ('localhost', 'theveryl_admin', 'mno33d65e') ; 
-mysqli_select_db ($base,'theveryl_testconnexion')or die ('Erreur de connexion a la base de données'.mysql_error()); 
+mysqli_select_db ($base,'theveryl_testconnexion')or die ('Erreur de connexion a la base de données'.mysqli_error($base)); 
 mysqli_query($base,"SET NAMES 'utf8'");
 
 if(isset($_GET['reponse']) && isset($_GET['login'])){

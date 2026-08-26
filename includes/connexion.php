@@ -1,4 +1,6 @@
 <?php
-$base = mysql_connect('localhost', 'root', '');
-mysql_select_db('theveryl_theverylittlewar', $base) or die('Erreur de connexion a la base de données' . mysql_error());
+$base = mysqli_connect('localhost', 'root', '', 'theveryl_theverylittlewar');
+if (!$base) {
+    die('Erreur de connexion a la base de données' . mysqli_connect_error());
+}
 mysqli_query($base, "SET NAMES 'utf8'");

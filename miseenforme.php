@@ -9,7 +9,7 @@ function pasDeRisques($chaine)
 function query($a)
 {
     global $base;
-    $v = mysqli_query($base, $a) or die('Erreur SQL !<br>' . mysql_error());
+    $v = mysqli_query($base, $a) or die('Erreur SQL !<br>' . mysqli_error($base));
     return $v;
 }
 

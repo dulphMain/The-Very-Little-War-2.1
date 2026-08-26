@@ -16,8 +16,8 @@ if (isset($_POST['contenu']) and isset($_GET['id'])) {
 				// Modifié par Yojim
 				$sql = 'INSERT INTO reponses VALUES(default, "' . $_GET['id'] . '", "1", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . (time()) . '")';
 				//
-				mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysql_error());
-				mysqli_query($base, 'DELETE FROM statutforum WHERE idsujet=\'' . $_GET['id'] . '\'') or die('Erreur SQL !<br>' . mysql_error());
+				mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
+				mysqli_query($base, 'DELETE FROM statutforum WHERE idsujet=\'' . $_GET['id'] . '\'') or die('Erreur SQL !<br>' . mysqli_error($base));
 				$ex = mysqli_query($base, 'SELECT nbMessages FROM autre WHERE login=\'' . $_SESSION['login'] . '\'');
 				$nbMessages = mysqli_fetch_array($ex);
 				mysqli_query($base, 'UPDATE autre SET nbMessages=\'' . ($nbMessages['nbMessages'] + 1) . '\' WHERE login=\'' . $_SESSION['login'] . '\'');
@@ -37,7 +37,7 @@ include("includes/tout.php");
 
 if (isset($_GET['id'])) {
 	$sql = 'SELECT * FROM reponses WHERE idsujet=\'' . $_GET['id'] . '\'';
-	$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysql_error());
+	$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
 	$nb_resultats = mysqli_num_rows($ex);
 	$nombreDeSujetsParPage = 10;
 	$nombreDePages  = ceil($nb_resultats / $nombreDeSujetsParPage);
@@ -59,7 +59,7 @@ if (isset($_GET['id'])) {
 	// Modifié par Yojim
 	if (isset($_SESSION['login'])) {
 		$sql5 = 'SELECT moderateur FROM membre WHERE login=\'' . $_SESSION['login'] . '\'';
-		$ex5 = mysqli_query($base, $sql5) or die('Erreur SQL !' . $sql5 . '<br>' . mysql_error());
+		$ex5 = mysqli_query($base, $sql5) or die('Erreur SQL !' . $sql5 . '<br>' . mysqli_error($base));
 		$joueur = mysqli_fetch_array($ex5);
 		// Si le joueur est modérateur, il a accès aux messages masqués
 		if ($joueur['moderateur']) {
@@ -78,9 +78,9 @@ if (isset($_GET['id'])) {
 
 
 
-	$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br>' . mysql_error());
+	$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br>' . mysqli_error($base));
 	$sql3 = 'SELECT * FROM sujets WHERE id=\'' . $_GET['id'] . '\'';
-	$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !' . $sql3 . '<br>' . mysql_error());
+	$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !' . $sql3 . '<br>' . mysqli_error($base));
 	$sujet = mysqli_fetch_array($ex3);
 
 	$javascript = false;
@@ -93,7 +93,7 @@ if (isset($_GET['id'])) {
 		$existeDeja = mysqli_fetch_array($ex);
 
 		if ($existeDeja['existeDeja'] == 0 and $sujet['statut'] != 1) {
-			mysqli_query($base, 'INSERT INTO statutforum VALUES("' . $_SESSION['login'] . '", "' . $_GET['id'] . '", "' . $sujet['idforum'] . '")') or die('Erreur SQL !<br>' . mysql_error());
+			mysqli_query($base, 'INSERT INTO statutforum VALUES("' . $_SESSION['login'] . '", "' . $_GET['id'] . '", "' . $sujet['idforum'] . '")') or die('Erreur SQL !<br>' . mysqli_error($base));
 		}
 	}
 	$ex = mysqli_query($base, 'SELECT titre FROM forums WHERE id=\'' . $sujet['idforum'] . '\'');
@@ -103,7 +103,7 @@ if (isset($_GET['id'])) {
 	// On vérifie si l'utilisateur n'est pas banni du forum
 	if (isset($_SESSION['login'])) {
 		$sql4 = 'SELECT * FROM sanctions WHERE joueur=\'' . $_SESSION['login'] . '\'';
-		$ex4 = mysqli_query($base, $sql4) or die('Erreur SQL !' . $sql4 . '<br>' . mysql_error());
+		$ex4 = mysqli_query($base, $sql4) or die('Erreur SQL !' . $sql4 . '<br>' . mysqli_error($base));
 	} else {
 		$ex4 = mysqli_query($base, 'SELECT * FROM sanctions WHERE joueur="lakzknsdjnsqjdnjibqsdhubqsdjqushd"'); //pour qu'il n'y ait aucun resultat si pas co
 	}

@@ -14,7 +14,7 @@ if (isset($_POST['titre']) and isset($_POST['contenu']) and isset($_GET['id'])) 
 				$_POST['titre'] = mysqli_real_escape_string($base, ($_POST['titre']));
 				$_POST['contenu'] = mysqli_real_escape_string($base, $_POST['contenu']);
 				$sql = 'INSERT INTO sujets VALUES(default, "' . $_GET['id'] . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", default, "' . (time()) . '")';
-				mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysql_error());
+				mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
 
 				$ex = query('SELECT id FROM sujets WHERE contenu=\'' . $_POST['contenu'] . '\'');
 				$sujet = mysqli_fetch_array($ex);
@@ -42,7 +42,7 @@ if (isset($_SESSION['login'])) {
 }
 
 $sql = 'SELECT titre, id FROM forums WHERE id=\'' . $_GET['id'] . '\'';
-$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysql_error());
+$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
 $idforum = mysqli_fetch_array($ex);
 ?>
 
@@ -51,7 +51,7 @@ $idforum = mysqli_fetch_array($ex);
 	if (isset($_GET['id'])) {
 		debutCarte($idforum['titre']);
 		$sql = 'SELECT * FROM sujets WHERE idforum=\'' . $_GET['id'] . '\'';
-		$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysql_error());
+		$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
 		$nb_resultats = mysqli_num_rows($ex);
 		$nombreDeSujetsParPage = 10;
 		$nombreDePages  = ceil($nb_resultats / $nombreDeSujetsParPage);
@@ -66,7 +66,7 @@ $idforum = mysqli_fetch_array($ex);
 		// On calcule le numéro du premier message qu'on prend pour le LIMIT de MySQL
 		$premierSujetAafficher = ($page - 1) * $nombreDeSujetsParPage;
 		$sql1 = 'SELECT * FROM sujets WHERE idforum=\'' . $_GET['id'] . '\' ORDER BY statut, timestamp DESC LIMIT ' . $premierSujetAafficher . ', ' . $nombreDeSujetsParPage . '';
-		$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br>' . mysql_error());
+		$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !' . $sql1 . '<br>' . mysqli_error($base));
 		if ($nb_resultats > 0) {
 			echo '
         <div class="table-responsive">

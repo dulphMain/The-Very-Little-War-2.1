@@ -35,7 +35,7 @@ debutCarte();
     echo '<form action="historique.php?sub='.$_GET['sub'].'" method="post" name="formHistorique">';
 
     $sql2 = 'SELECT * FROM parties ORDER BY id DESC';
-    $ex2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysql_error());
+    $ex2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysqli_error($base));
     $options = "";
     while ($data = mysqli_fetch_array($ex2)) {
         $s = "";
