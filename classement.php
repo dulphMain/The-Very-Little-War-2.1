@@ -124,7 +124,7 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 
 	$premierJoueurAafficher = ($page - 1) * $nombreDeJoueursParPage;
     
-	$classement = mysqli_query($base,'SELECT * FROM autre ORDER BY '.$order.' DESC LIMIT ' . $premierJoueurAafficher . ', ' . $nombreDeJoueursParPage)or die('Erreur SQL !<br />'.mysql_error());   
+	$classement = mysqli_query($base,'SELECT * FROM autre ORDER BY '.$order.' DESC LIMIT ' . $premierJoueurAafficher . ', ' . $nombreDeJoueursParPage)or die('Erreur SQL !<br>'.mysql_error());   
 	$compteur = $nombreDeJoueursParPage*($page-1)+1;
 	
 	if(isset($_SESSION['login'])) {
@@ -138,15 +138,15 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 	<table class="table table-striped table-bordered">
 	<thead>
 	<tr>
-	<th><img src="images/classement/up.png" alt="up" class="imageSousMenu"/><br/><span class="labelClassement">Rang</span></th>
-    <th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="imageSousMenu"/><br/><span class="labelClassement">Joueur</span></th>
-	<th><a href="classement.php?sub=0"><img src="images/classement/points.png" alt="points" title="Points" class="imageSousMenu"/><br/><span class="labelClassement">Points</span></a></th>
-	<th><img src="images/classement/alliance.png" alt="alliance" title="Equipe" class="imageSousMenu"/><br/><span class="labelClassement">Equipe</span></th>
-	<th><a href="classement.php?sub=0&clas=5"><img src="images/classement/museum.png" alt="pointCs" title="Points de construction" class="imageSousMenu"/><br/><span class="labelClassement">Constructions</span></a></th>
-	<th><a href="classement.php?sub=0&clas=2"><img src="images/classement/sword.png" alt="att" title="Attaque" class="imageSousMenu"/><br/><span class="labelClassement">Attaque</span></a></th>
-	<th><a href="classement.php?sub=0&clas=3"><img src="images/classement/shield.png" alt="def" title="Défense" class="imageSousMenu"/><br/><span class="labelClassement">Défense</span></a></th>
-	<th><a href="classement.php?sub=0&clas=4"><img src="images/classement/bag.png" alt="bag" title="Pillage" class="imageSousMenu"/><br/><span class="labelClassement">Pillage</span></a></th>
-	<th><a href="classement.php?sub=0&clas=1"><img src="images/classement/victoires.png" alt="victoires" title="Points de victoire" class="imageSousMenu"/><br/><span class="labelClassement">Victoire</span></a></th>
+	<th><img src="images/classement/up.png" alt="up" class="imageSousMenu"><br><span class="labelClassement">Rang</span></th>
+    <th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="imageSousMenu"><br><span class="labelClassement">Joueur</span></th>
+	<th><a href="classement.php?sub=0"><img src="images/classement/points.png" alt="points" title="Points" class="imageSousMenu"><br><span class="labelClassement">Points</span></a></th>
+	<th><img src="images/classement/alliance.png" alt="alliance" title="Equipe" class="imageSousMenu"><br><span class="labelClassement">Equipe</span></th>
+	<th><a href="classement.php?sub=0&clas=5"><img src="images/classement/museum.png" alt="pointCs" title="Points de construction" class="imageSousMenu"><br><span class="labelClassement">Constructions</span></a></th>
+	<th><a href="classement.php?sub=0&clas=2"><img src="images/classement/sword.png" alt="att" title="Attaque" class="imageSousMenu"><br><span class="labelClassement">Attaque</span></a></th>
+	<th><a href="classement.php?sub=0&clas=3"><img src="images/classement/shield.png" alt="def" title="Défense" class="imageSousMenu"><br><span class="labelClassement">Défense</span></a></th>
+	<th><a href="classement.php?sub=0&clas=4"><img src="images/classement/bag.png" alt="bag" title="Pillage" class="imageSousMenu"><br><span class="labelClassement">Pillage</span></a></th>
+	<th><a href="classement.php?sub=0&clas=1"><img src="images/classement/victoires.png" alt="victoires" title="Points de victoire" class="imageSousMenu"><br><span class="labelClassement">Victoire</span></a></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -155,15 +155,15 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 		$enGuerre = "#2C2C2C";
 		if($donnees['idalliance'] > 0){
 			$sql = 'SELECT tag, id FROM alliances WHERE id=\'' . $donnees['idalliance'] . '\'';
-			$req = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
+			$req = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
 			$alliance = mysqli_fetch_array($req);
 		}
 		$sql1 = 'SELECT id FROM membre WHERE login =\'' . addslashes($donnees['login']) . '\'';
-		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br />'.mysql_error());
+		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysql_error());
 		$donnees1 = mysqli_fetch_array($req1);
 		
 		$sql4 = 'SELECT nombre FROM molecules WHERE proprietaire=\''.$donnees['login'].'\' AND nombre!=0';
-		$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br />'.$sql4.'<br />'.mysql_error());
+		$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br>'.$sql4.'<br>'.mysql_error());
 		$nb_molecules = 0;
 		while($donnees4 = mysqli_fetch_array($req4)) {
 			$nb_molecules = $nb_molecules + $donnees4['nombre'];
@@ -242,18 +242,18 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 	}
     debutListe();
         echo important("Rechercher");
-        item(['floating' => true, 'form' => ['classement.php?sub=0'.$plus, "rechercher"], 'titre' => 'Nom du joueur', 'input' => '<input type="text" name="joueurRecherche" id="joueurRecherche" class="form-control"/>']);
-        echo '<br/>'.submit(['form' => 'rechercher', 'titre' => 'Rechercher', 'image' => 'images/boutons/rechercher.png']);
+        item(['floating' => true, 'form' => ['classement.php?sub=0'.$plus, "rechercher"], 'titre' => 'Nom du joueur', 'input' => '<input type="text" name="joueurRecherche" id="joueurRecherche" class="form-control">']);
+        echo '<br>'.submit(['form' => 'rechercher', 'titre' => 'Rechercher', 'image' => 'images/boutons/rechercher.png']);
 	finListe();
 	}
 }
 elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(antihtml($_GET['sub']))) == 1){
 	$sql = 'SELECT id FROM alliances';
-	$req =  mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
+	$req =  mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
 	
 	while($donnees = mysqli_fetch_array($req)) {
 		$sql1 = 'SELECT * FROM autre WHERE idalliance =\''.$donnees['id'].'\'';
-		$req1 =  mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br />'.mysql_error());
+		$req1 =  mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysql_error());
 		$pointstotaux = 0;
         $cTotal = 0;
         $aTotal = 0;
@@ -268,7 +268,7 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 		}
 	
 		$sql2 = 'UPDATE alliances SET pointstotaux =\''.$pointstotaux.'\',totalConstructions=\''.$cTotal.'\',totalAttaque=\''.$aTotal.'\', totalDefense=\''.$dTotal.'\', totalPillage=\''.$pTotal.'\' WHERE id =\''.$donnees['id'].'\'';
-		$req2 =  mysqli_query($base,$sql2) or die('Erreur SQL !'.$sql2.'<br />'.mysql_error());
+		$req2 =  mysqli_query($base,$sql2) or die('Erreur SQL !'.$sql2.'<br>'.mysql_error());
 	}
 	
 	
@@ -337,16 +337,16 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 	<table class="table table-striped table-bordered">
 	<thead>
 	<tr>
-	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"/><br/><span class="labelClassement">Rang</span></th>
-	<th><img src="images/classement/post-it.png" alt="post" class="imageSousMenu"/><br/><span class="labelClassement">TAG</span></th>
-	<th><img src="images/classement/alliance.png" alt="alliance" title="Nombre de joueurs" class="imageSousMenu"/><br/><span class="labelClassement">Membres</span></th>
-    <th><a href="classement.php?sub=1"><img src="images/classement/points.png" alt="points" title="Points totaux" class="imageSousMenu"/><br/><span class="labelClassement">Points</span></a></th>
-	<th><img src="images/classement/sum-sign.png" alt="post" class="imageSousMenu"/><br/><span class="labelClassement">Moyenne</span></th>
-	<th><a href="classement.php?sub=1&clas=1"><img src="images/classement/museum.png" alt="pointCs" title="Points de construction" class="imageSousMenu"/><br/><span class="labelClassement">Constructions</span></a></th>
-	<th><a href="classement.php?sub=1&clas=2"><img src="images/classement/sword.png" alt="att" title="Attaque" class="imageSousMenu"/><br/><span class="labelClassement">Attaque</span></a></th>
-	<th><a href="classement.php?sub=1&clas=3"><img src="images/classement/shield.png" alt="def" title="Défense" class="imageSousMenu"/><br/><span class="labelClassement">Défense</span></a></th>
-	<th><a href="classement.php?sub=1&clas=4"><img src="images/classement/bag.png" alt="bag" title="Pillage" class="imageSousMenu"/><br/><span class="labelClassement">Pillage</span></a></th>
-	<th><a href="classement.php?sub=1&clas=5"><img src="images/classement/victoires.png" alt="bag" title="Points de victoire" class="imageSousMenu"/><br/><span class="labelClassement">Victoire</span></a></th>
+	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"><br><span class="labelClassement">Rang</span></th>
+	<th><img src="images/classement/post-it.png" alt="post" class="imageSousMenu"><br><span class="labelClassement">TAG</span></th>
+	<th><img src="images/classement/alliance.png" alt="alliance" title="Nombre de joueurs" class="imageSousMenu"><br><span class="labelClassement">Membres</span></th>
+    <th><a href="classement.php?sub=1"><img src="images/classement/points.png" alt="points" title="Points totaux" class="imageSousMenu"><br><span class="labelClassement">Points</span></a></th>
+	<th><img src="images/classement/sum-sign.png" alt="post" class="imageSousMenu"><br><span class="labelClassement">Moyenne</span></th>
+	<th><a href="classement.php?sub=1&clas=1"><img src="images/classement/museum.png" alt="pointCs" title="Points de construction" class="imageSousMenu"><br><span class="labelClassement">Constructions</span></a></th>
+	<th><a href="classement.php?sub=1&clas=2"><img src="images/classement/sword.png" alt="att" title="Attaque" class="imageSousMenu"><br><span class="labelClassement">Attaque</span></a></th>
+	<th><a href="classement.php?sub=1&clas=3"><img src="images/classement/shield.png" alt="def" title="Défense" class="imageSousMenu"><br><span class="labelClassement">Défense</span></a></th>
+	<th><a href="classement.php?sub=1&clas=4"><img src="images/classement/bag.png" alt="bag" title="Pillage" class="imageSousMenu"><br><span class="labelClassement">Pillage</span></a></th>
+	<th><a href="classement.php?sub=1&clas=5"><img src="images/classement/victoires.png" alt="bag" title="Points de victoire" class="imageSousMenu"><br><span class="labelClassement">Victoire</span></a></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -368,7 +368,7 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 			$enGuerre = "160,160,160";
 		}
 		$sql1 = 'SELECT login FROM autre WHERE idalliance="'.$donnees['id'].'"';
-		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br />'.$sql1.'<br />'.mysql_error());
+		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
 		$nbjoueurs = mysqli_num_rows($req1);
 		if ($nbjoueurs != 0) { // Pour éviter la division par zéro
 			?> 
@@ -388,10 +388,10 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 		}
 		else {
 			$sql3 = 'DELETE FROM alliances WHERE id=\''.$donnees['id'].'\'';
-			$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br />'.$sql3.'<br />'.mysql_error());
+			$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br>'.$sql3.'<br>'.mysql_error());
 	
 			$sql5 = 'DELETE FROM invitations WHERE idalliance=\''.$donnees['id'].'\'';
-			$ex5 = mysqli_query($base,$sql5) or die('Erreur SQL !<br />'.$sql5.'<br />'.mysql_error());
+			$ex5 = mysqli_query($base,$sql5) or die('Erreur SQL !<br>'.$sql5.'<br>'.mysql_error());
 		}
 	}
 	?>
@@ -449,11 +449,11 @@ elseif(isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(anti
 	<table class="table table-striped table-bordered">
 	<thead>
 	<tr>
-	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"/><br/><span class="labelClassement">Rang</span></th>
-	<th><img src="images/classement/adversaires.png" alt="adversaires" title="Adversaires" class="imageSousMenu"/><br/><span class="labelClassement">Adversaires</span></th>
-	<th><img src="images/classement/morts.png" alt="morts" title="Nombre de molécules perdues" class="imageSousMenu"/><br/><span class="labelClassement">Pertes</span></th>
-	<th><img src="images/classement/calendrier.png" alt="calendrier" title="Durée (jours)" class="imageSousMenu"/><br/><span class="labelClassement">Durée</span></th>
-	<th><img src="images/classement/copy.png" alt="copy" class="imageSousMenu"/><br/><span class="labelClassement">Détails</span></th>
+	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"><br><span class="labelClassement">Rang</span></th>
+	<th><img src="images/classement/adversaires.png" alt="adversaires" title="Adversaires" class="imageSousMenu"><br><span class="labelClassement">Adversaires</span></th>
+	<th><img src="images/classement/morts.png" alt="morts" title="Nombre de molécules perdues" class="imageSousMenu"><br><span class="labelClassement">Pertes</span></th>
+	<th><img src="images/classement/calendrier.png" alt="calendrier" title="Durée (jours)" class="imageSousMenu"><br><span class="labelClassement">Durée</span></th>
+	<th><img src="images/classement/copy.png" alt="copy" class="imageSousMenu"><br><span class="labelClassement">Détails</span></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -475,7 +475,7 @@ elseif(isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(anti
 		<td><?php echo alliance($alliance1['tag']); ?> contre <?php echo alliance($alliance2['tag']); ?></td>
 		<td><?php echo number_format($donnees['pertesTotales'], 0 , ' ', ' '); ?></td>
 		<td><?php echo round(($donnees['fin'] - $donnees['timestamp'])/86400);?></td>
-		<td><a href="guerre.php?id=<?php echo $donnees['id']; ?>" class="lienVisible"><img src="images/classement/details.png" alt="details" title="Détails"/></a></td>
+		<td><a href="guerre.php?id=<?php echo $donnees['id']; ?>" class="lienVisible"><img src="images/classement/details.png" alt="details" title="Détails"></a></td>
 		</tr> 
 		<?php
 		$compteur++;
@@ -535,12 +535,12 @@ else {
 	<table class="table table-striped table-bordered">
 	<thead>
 	<tr>
-	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"/><br/><span class="labelClassement">Rang</span></th>
-	<th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="imageSousMenu"/><br/><span class="labelClassement">Joueur</span></th>
-	<th><a href="classement.php?sub=3"><img src="images/classement/reponses.png" alt="reponses" title="Nombre de réponses" class="imageSousMenu"/><br/><span class="labelClassement">Réponses</span></a></th>
-	<th><img src="images/classement/sujets.png" alt="reponses" title="Nombre de sujets" class="imageSousMenu"/><br/><span class="labelClassement">Sujets</span></th>
-	<th><a href="classement.php?sub=3&clas=0"><img src="images/classement/bombe.png" alt="bombe" title="Nombre de bombes gagnées" class="imageSousMenu"/><br/><span class="labelClassement">Bombe</span></a></th>
-	<th><a href="classement.php?sub=3&clas=1"><img src="images/classement/alea.png" alt="alea" title="Médaille aléatoire" class="imageSousMenu"/><br/><span class="labelClassement">Aléatoire</span></a></th>
+	<th><img src="images/classement/up.png" alt="up" title="Classement" class="imageSousMenu"><br><span class="labelClassement">Rang</span></th>
+	<th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="imageSousMenu"><br><span class="labelClassement">Joueur</span></th>
+	<th><a href="classement.php?sub=3"><img src="images/classement/reponses.png" alt="reponses" title="Nombre de réponses" class="imageSousMenu"><br><span class="labelClassement">Réponses</span></a></th>
+	<th><img src="images/classement/sujets.png" alt="reponses" title="Nombre de sujets" class="imageSousMenu"><br><span class="labelClassement">Sujets</span></th>
+	<th><a href="classement.php?sub=3&clas=0"><img src="images/classement/bombe.png" alt="bombe" title="Nombre de bombes gagnées" class="imageSousMenu"><br><span class="labelClassement">Bombe</span></a></th>
+	<th><a href="classement.php?sub=3&clas=1"><img src="images/classement/alea.png" alt="alea" title="Médaille aléatoire" class="imageSousMenu"><br><span class="labelClassement">Aléatoire</span></a></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -643,8 +643,8 @@ else {
 		<td><?php echo joueur($donnees['login']); ?></td>
 		<td><?php echo $donnees1['nbMessages']; ?></td>
 		<td><?php echo $nbSujets['nbSujets']; ?></td>
-		<td><img alt="bombe" style="width:40px;height:40px" src="images/medailles/bombe<?php echo $donnees1['bombe'];?>.png"/></td>
-		<td><img alt="troll" style="width:40px;height:40px" src="images/classement/<?php echo $troll['troll'];?>.png"/></td>
+		<td><img alt="bombe" style="width:40px;height:40px" src="images/medailles/bombe<?php echo $donnees1['bombe'];?>.png"></td>
+		<td><img alt="troll" style="width:40px;height:40px" src="images/classement/<?php echo $troll['troll'];?>.png"></td>
 		</tr> 
 		<?php
 		$compteur++;

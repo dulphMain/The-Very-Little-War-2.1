@@ -18,8 +18,8 @@ if(isset($_GET['id'])){
             $joueur = mysqli_fetch_array($ex);
             echo important("Cible");
 
-            echo chip(joueur($attaque['defenseur']),'<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;"/>',"white",false,true);
-            echo chip('<a href="attaquer.php?x='.$joueur['x'].'&y='.$joueur['y'].'">'.$joueur['x'].';'.$joueur['y'].' - '.(round(10*(pow(pow($membre['x']-$joueur['x'],2)+pow($membre['y']-$joueur['y'],2),0.5)))/10).' cases</a>','<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;"/>',"white",false,true);
+            echo chip(joueur($attaque['defenseur']),'<img alt="coupe" src="images/classement/joueur.png" class="imageChip" style="width:25px;border-radius:0px;">',"white",false,true);
+            echo chip('<a href="attaquer.php?x='.$joueur['x'].'&y='.$joueur['y'].'">'.$joueur['x'].';'.$joueur['y'].' - '.(round(10*(pow(pow($membre['x']-$joueur['x'],2)+pow($membre['y']-$joueur['y'],2),0.5)))/10).' cases</a>','<img alt="coupe" src="images/attaquer/map.png" class="imageChip" style="width:25px;border-radius:0px;">',"white",false,true);
             if(time() > $attaque['tempsAttaque']){
                 echo nombreTemps('<strong>Retour</strong> : <span id="affichage'.$attaque['id'].'">'.affichageTemps($attaque['tempsRetour']-time()).'</span>');
                 echo '
@@ -59,7 +59,7 @@ if(isset($_GET['id'])){
                     </script>';
             }
             
-            echo '<br/><br/>';
+            echo '<br><br>';
             echo important("Troupes attaquantes");
             echo '<div class="table-responsive"><table>';
             $troupes = explode(";",$attaque['troupes']);

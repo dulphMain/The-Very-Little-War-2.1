@@ -9,7 +9,7 @@ $contenu = nl2br(stripslashes($donnees['contenu']));
 echo important($donnees['titre'] . '<em> le ' . date('d/m/Y Ã H\hi', $donnees['timestamp']) . '</em>');
 echo ' 
 <p>
-<br/>
+<br>
 ' . $contenu . '
 </p>
 </div>

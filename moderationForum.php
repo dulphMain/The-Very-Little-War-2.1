@@ -5,21 +5,21 @@ include("includes/bbcode.php");
 // Supression de sanction
 if (isset($_GET['supprimer'])) {
 	$sql4 = 'DELETE FROM sanctions WHERE idSanction=\'' . $_GET['supprimer'] . '\'';;
-	mysqli_query($base, $sql4) or die('Erreur SQL !<br />' . $sql4 . '<br />' . mysql_error());
+	mysqli_query($base, $sql4) or die('Erreur SQL !<br>' . $sql4 . '<br>' . mysql_error());
 }
 
 
 if (isset($_POST['pseudo'], $_POST['dateFin'], $_POST['motif'])) {
 	if (!empty($_POST['pseudo']) && !empty($_POST['dateFin']) && !empty($_POST['motif'])) {
 		$sql2 = 'SELECT * FROM membre WHERE login=\'' . $_POST['pseudo'] . '\'';
-		$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br/>' . $sql2 . '<br />' . mysql_error());
+		$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
 		// On vérifie que le joueur existe
 		if (mysqli_num_rows($ex2)) {
 			// Convertion de la date au format anglais
 			list($jour, $mois, $annee) = explode('/', $_POST['dateFin']);
 			$date = $annee . '-' . $mois . '-' . $jour;
 			$sql1 = 'INSERT INTO sanctions VALUES (default,\'' . $_POST['pseudo'] . '\',CURRENT_DATE,\'' . $date . '\',\'' . $_POST['motif'] . '\',\'' . $_SESSION['login'] . '\')';
-			$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br/>' . $sql1 . '<br />' . mysql_error());
+			$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
 		} else {
 			$erreur = "<strong>Erreur</strong> : Ce joueur n'existe pas.";
 		}
@@ -30,7 +30,7 @@ if (isset($_POST['pseudo'], $_POST['dateFin'], $_POST['motif'])) {
 
 include("includes/tout.php");
 $sql = 'SELECT moderateur FROM membre WHERE login=\'' . $_SESSION['login'] . '\'';
-$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysql_error());
+$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
 $joueur = mysqli_fetch_array($ex);
 if ($joueur['moderateur']) {
 
@@ -41,8 +41,8 @@ if ($joueur['moderateur']) {
 	<form method="post" action="moderationForum.php" name="formModeration">
 		<?php
 		debutListe();
-		item(['input' => '<input type="text" name="pseudo" id="pseudo" class="form-control"/>', 'floating' => true, 'titre' => 'Pseudo']);
-		item(['floating' => false, 'titre' => 'Date de début', 'input' => '<input type="text" id="dateDebut" name="dateDebut" readonly class="form-control" value="' . date("d/m/Y  H:i:s") . '"/>', 'disabled' => true]);
+		item(['input' => '<input type="text" name="pseudo" id="pseudo" class="form-control">', 'floating' => true, 'titre' => 'Pseudo']);
+		item(['floating' => false, 'titre' => 'Date de début', 'input' => '<input type="text" id="dateDebut" name="dateDebut" readonly class="form-control" value="' . date("d/m/Y  H:i:s") . '">', 'disabled' => true]);
 		item(['floating' => false, 'titre' => 'Date de fin', 'input' => '<input type="text" placeholder="Sélectionnez" readonly id="calVacs"  name="dateFin">']);
 		creerBBcode("motif");
 		item(['floating' => false, 'titre' => "Motif", 'input' => '<textarea name="motif" id="motif" rows="10" cols="50"></textarea>']);
@@ -51,10 +51,10 @@ if ($joueur['moderateur']) {
 		?>
 	</form>
 	<!-- Script JQuery pour la selection des dates -->
-	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-	<link rel="stylesheet" href="/resources/demos/style.css" />
+	<link rel="stylesheet" href="/resources/demos/style.css">
 	<script>
 		$(function() {
 			// Construction et paramétrage du selecteur de date
@@ -67,12 +67,12 @@ if ($joueur['moderateur']) {
 			});
 			$("#dateFin").datepicker("option", "dateFormat", "dd/mm/yy");
 		});
-	</script><br />
+	</script><br>
 	<?php
 	finCarte();
 	debutCarte("Sanctions en cours");
 	$sql3 = 'SELECT * FROM sanctions';
-	$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br/>' . $sql3 . '<br />' . mysql_error());
+	$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
 	if (!mysqli_num_rows($ex3)) {
 		debutContent();
 		echo "Aucune sanction en cours.";

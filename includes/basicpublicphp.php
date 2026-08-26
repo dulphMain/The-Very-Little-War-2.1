@@ -23,7 +23,7 @@ if (isset($_POST['loginConnexion']) && isset($_POST['passConnexion'])) {
 		$_POST['loginConnexion'] = ucfirst(mb_strtolower(antiXSS($_POST['loginConnexion'])));
 		$_POST['passConnexion'] = md5(antiXSS($_POST['passConnexion']));
 		$sql = 'SELECT count(*) FROM membre WHERE login="' . $_POST['loginConnexion'] . '" AND pass_md5="' . $_POST['passConnexion'] . '"';
-		$req = mysqli_query($base, $sql) or die('Erreur SQL !<br/>' . $sql . '<br />' . mysqli_error($base));
+		$req = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 		$data = mysqli_fetch_array($req);
 		mysqli_free_result($req);
 
@@ -40,7 +40,7 @@ if (isset($_POST['loginConnexion']) && isset($_POST['passConnexion'])) {
 			mysqli_query($base, $sql);
 
 			$sql1 = 'SELECT niveaututo FROM autre WHERE login=\'' . $_SESSION['login'] . '\'';
-			$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br />' . $sql1 . '<br />' . mysqli_error($base));
+			$ex1 = mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 			$joueur = mysqli_fetch_array($ex1);
 			echo '
             <script>

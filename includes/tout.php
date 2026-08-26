@@ -28,7 +28,7 @@
                 </div>
                 <div class="center">
                 <p>
-                <img alt="banniere" src="images/banniere.png" id="titre" style="position:fixed;top:10px;left:15%;width:260px;height:27px;"/>
+                <img alt="banniere" src="images/banniere.png" id="titre" style="position:fixed;top:10px;left:15%;width:260px;height:27px;">
                 </p>
                 </div>
               </div>
@@ -41,11 +41,11 @@
         
             <div class="toolbar toolbar-bottom toolbarcustom">
             <div class="toolbar-inner">
-                <a class="tab-link lienSousMenu" href="classement.php?sub=0"><img src="images/sous-menus/joueur.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Joueurs</span></a>
-                <a class="tab-link lienSousMenu" href="classement.php?sub=1"><img src="images/sous-menus/alliance.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Equipes</span></a>
-                <a class="tab-link lienSousMenu" href="classement.php?sub=2"><img src="images/sous-menus/swords.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Guerres</span></a>
-                <a class="tab-link lienSousMenu" href="classement.php?sub=3"><img src="images/sous-menus/forum.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Forum</span></a>
-                <a class="tab-link lienSousMenu" href="historique.php?sub=0"><img src="images/sous-menus/parchemin.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Archives</span></a>
+                <a class="tab-link lienSousMenu" href="classement.php?sub=0"><img src="images/sous-menus/joueur.png" class="imageSousMenu"><br><span class="labelSousMenu">Joueurs</span></a>
+                <a class="tab-link lienSousMenu" href="classement.php?sub=1"><img src="images/sous-menus/alliance.png" class="imageSousMenu"><br><span class="labelSousMenu">Equipes</span></a>
+                <a class="tab-link lienSousMenu" href="classement.php?sub=2"><img src="images/sous-menus/swords.png" class="imageSousMenu"><br><span class="labelSousMenu">Guerres</span></a>
+                <a class="tab-link lienSousMenu" href="classement.php?sub=3"><img src="images/sous-menus/forum.png" class="imageSousMenu"><br><span class="labelSousMenu">Forum</span></a>
+                <a class="tab-link lienSousMenu" href="historique.php?sub=0"><img src="images/sous-menus/parchemin.png" class="imageSousMenu"><br><span class="labelSousMenu">Archives</span></a>
             </div>
             </div>
             <?php } 
@@ -55,8 +55,8 @@
         
             <div class="toolbar toolbar-bottom toolbarcustom">
             <div class="toolbar-inner">
-                <a class="tab-link lienSousMenu" href="marche.php?sub=0"><img src="images/sous-menus/back-forth.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Echanger</span></a>
-                <a class="tab-link lienSousMenu" href="marche.php?sub=1"><img src="images/sous-menus/present.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Envoyer</span></a>
+                <a class="tab-link lienSousMenu" href="marche.php?sub=0"><img src="images/sous-menus/back-forth.png" class="imageSousMenu"><br><span class="labelSousMenu">Echanger</span></a>
+                <a class="tab-link lienSousMenu" href="marche.php?sub=1"><img src="images/sous-menus/present.png" class="imageSousMenu"><br><span class="labelSousMenu">Envoyer</span></a>
             </div>
             </div>
             <?php } 
@@ -66,8 +66,8 @@
         
             <div class="toolbar toolbar-bottom toolbarcustom" >
             <div class="toolbar-inner">
-                <a class="tab-link lienSousMenu" href="armee.php?sub=0"><img src="images/sous-menus/sword-spin.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Formation</span></a>
-                <a class="tab-link lienSousMenu" href="armee.php?sub=1"><img src="images/sous-menus/rally-the-troops.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Vue d'ensemble</span></a>
+                <a class="tab-link lienSousMenu" href="armee.php?sub=0"><img src="images/sous-menus/sword-spin.png" class="imageSousMenu"><br><span class="labelSousMenu">Formation</span></a>
+                <a class="tab-link lienSousMenu" href="armee.php?sub=1"><img src="images/sous-menus/rally-the-troops.png" class="imageSousMenu"><br><span class="labelSousMenu">Vue d'ensemble</span></a>
             </div>
             </div>
             <?php }
@@ -79,11 +79,11 @@
                 <?php
                 echo chipInfo(attaque(0,$niveauoxygene,$_SESSION['login']),'images/molecule/sword.png','attaque');
                 echo chipInfo(defense(0,$niveaucarbone,$_SESSION['login']),'images/molecule/shield.png','defense');
-                echo chipInfo(pointsDeVieMolecule(0,$niveaubrome),'images/molecule/sante.png','vie').'<br/>';
+                echo chipInfo(pointsDeVieMolecule(0,$niveaubrome),'images/molecule/sante.png','vie').'<br>';
                 echo chipInfo(vitesse(0,$niveauchlore).' cases/h','images/molecule/vitesse.png','vitesse');
                 echo chipInfo(potentielDestruction(0,$niveauhydrogene),'images/molecule/fire.png','destruction');
                 echo chipInfo(affichageTemps(tempsFormation(0,$niveauazote,0,$_SESSION['login']),true),'images/molecule/temps.png','tempsFormation');
-                echo chipInfo(pillage(0,$niveausoufre,$_SESSION['login']).' ressources','images/molecule/bag.png','pillage').'<br/>';
+                echo chipInfo(pillage(0,$niveausoufre,$_SESSION['login']).' ressources','images/molecule/bag.png','pillage').'<br>';
                 echo nombreEnergie('<span style="color:green">+'.productionEnergieMolecule(0,$niveauiode).'/h</span>','productionIode');
                 echo chipInfo(affichageTemps(demiVie($_SESSION['login'],0,1)),'images/molecule/demivie.png','demiVie');
                 ?>
@@ -160,10 +160,10 @@
             if(in_array("historique.php",explode("/",$_SERVER['PHP_SELF']))){ ?>
             <div class="toolbar toolbar-bottom toolbarcustom">
             <div class="toolbar-inner">
-                <a class="tab-link lienSousMenu" href="historique.php?sub=0"><img src="images/sous-menus/joueur.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Joueurs</span></a>
-                <a class="tab-link lienSousMenu" href="historique.php?sub=1"><img src="images/sous-menus/alliance.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Equipes</span></a>
-                <a class="tab-link lienSousMenu" href="historique.php?sub=2"><img src="images/sous-menus/swords.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Guerres</span></a>
-                <a class="tab-link lienSousMenu" href="classement.php?sub=0"><img src="images/sous-menus/podium.png" class="imageSousMenu"/><br/><span class="labelSousMenu">Partie en cours</span></a>
+                <a class="tab-link lienSousMenu" href="historique.php?sub=0"><img src="images/sous-menus/joueur.png" class="imageSousMenu"><br><span class="labelSousMenu">Joueurs</span></a>
+                <a class="tab-link lienSousMenu" href="historique.php?sub=1"><img src="images/sous-menus/alliance.png" class="imageSousMenu"><br><span class="labelSousMenu">Equipes</span></a>
+                <a class="tab-link lienSousMenu" href="historique.php?sub=2"><img src="images/sous-menus/swords.png" class="imageSousMenu"><br><span class="labelSousMenu">Guerres</span></a>
+                <a class="tab-link lienSousMenu" href="classement.php?sub=0"><img src="images/sous-menus/podium.png" class="imageSousMenu"><br><span class="labelSousMenu">Partie en cours</span></a>
             </div>
             </div>
             <?php } ?>

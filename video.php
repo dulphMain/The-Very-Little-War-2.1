@@ -14,7 +14,7 @@ include("include.php");
 	    <meta name="description" content="">
 	    <meta name="viewport" content="width=device-width">
 	        
-	    <link rel="icon" type="image/x-png" href="img/grenade.png" />
+	    <link rel="icon" type="image/x-png" href="img/grenade.png">
 	    <script type="text/javascript" src="afterglow.min.js"></script>
 	        
 	</head>
@@ -27,7 +27,7 @@ include("include.php");
 
 		} ?>
 		<video class="afterglow" id="myvideo" width="1280" height="720">
-	    	<source type="video/mp4" src="<?php echo $data['lien']; ?>" />
+	    	<source type="video/mp4" src="<?php echo $data['lien']; ?>">
 	    </video>
 	    <iframe src="<?php echo $data['lien']; ?>">
 	    </iframe>

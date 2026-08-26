@@ -5,7 +5,7 @@
   <title>PlanetHoster - Votre hébergement est actif!</title>
   <meta name="description" content="PlanetHoster solutions d'hébergement web, que ce soit des hébergements mutualisés, des plans revendeurs, des serveurs dédiés, des serveurs virtuels ou de l'hébergement E-commerce">
   <meta name="author" content="PlanetHoster Inc.">
-  <link rel="icon" href="//www.planethoster.net/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="//www.planethoster.net/favicon.ico" type="image/x-icon">
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -290,19 +290,19 @@
       <div id="step-1" class="step">
         <h3>1</h3>
         <p class="step-txt">Si vous êtes le propriétaire, téléversez (upload) vos fichiers dans le répertoire public_html</p>
-        <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel"><img src="//cdn.planethoster.net/welcome/dossier_cp.png" class="step-img-logo" /></a>
+        <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel"><img src="//cdn.planethoster.net/welcome/dossier_cp.png" class="step-img-logo"></a>
         <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel" class="step-cta">CONNEXION CPANEL</a>
       </div>
       <div id="step-2" class="step">
         <h3>2</h3>
         <p class="step-txt">Pour plus d’informations, consultez la base des connaissances</p>
-        <a href="https://my.planethoster.net/knowledgebase" target="_blank"><img src="//cdn.planethoster.net/welcome/livrs_cp.png" class="step-img-logo" /></a>
+        <a href="https://my.planethoster.net/knowledgebase" target="_blank"><img src="//cdn.planethoster.net/welcome/livrs_cp.png" class="step-img-logo"></a>
         <a href="https://my.planethoster.net/knowledgebase" target="_blank" class="step-cta">VOIR BASE DE CONNAISSANCE</a>
       </div>
       <div id="step-3" class="step">
         <h3>3</h3>
         <p class="step-txt">Visionnez cette vidéo pour vous assister à la connexion au </p>
-        <a href="https://my.planethoster.net/tutorial-video?id=sI7l8RGbDgk" target="_blank"><img src="//cdn.planethoster.net/welcome/ordi_pg.png" class="step-img-logo" /></a>
+        <a href="https://my.planethoster.net/tutorial-video?id=sI7l8RGbDgk" target="_blank"><img src="//cdn.planethoster.net/welcome/ordi_pg.png" class="step-img-logo"></a>
         <a href="https://my.planethoster.net/tutorial-video?id=sI7l8RGbDgk" target="_blank" class="step-cta">VISIONNER LA VIDÉO</a>
       </div>
     </div>

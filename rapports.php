@@ -4,11 +4,11 @@ include("includes/basicprivatephp.php");
 if(isset($_GET['supprimer']) AND preg_match("#\d#",$_GET['supprimer'])) {
 	if($_GET['supprimer'] == 1) {
 		$sql = 'DELETE FROM rapports WHERE destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	}
 	else {
 		$sql = 'DELETE FROM rapports WHERE id=\''.$_GET['supprimer'].'\' AND destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	}
 }
 
@@ -17,12 +17,12 @@ include("includes/tout.php");
 if(isset($_GET['rapport'])) {
 	$_GET['rapport'] = mysqli_real_escape_string($base,stripslashes(antihtml($_GET['rapport'])));
 	$sql = 'SELECT * FROM rapports WHERE id=\''.$_GET['rapport'].'\' AND destinataire=\''.$_SESSION['login'].'\'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	$rapports = mysqli_fetch_array($ex);
 	$nb_rapports = mysqli_num_rows($ex);
 	if($nb_rapports > 0) {
 		$sql1 = 'UPDATE rapports SET statut=1 WHERE id=\''.$_GET['rapport'].'\'';
-		$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br />'.$sql1.'<br />'.mysql_error());
+		$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
 		
         debutCarte($rapports['titre']);
 		debutContent();
@@ -56,7 +56,7 @@ else {
 	$premierRapportAafficher = ($page - 1) * $nombreDeRapportsParPage;  
 	
 	$sql = 'SELECT * FROM rapports WHERE destinataire=\''.$_SESSION['login'].'\' ORDER BY timestamp DESC LIMIT ' . $premierRapportAafficher . ', ' . $nombreDeRapportsParPage .''; 
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	$nb_rapports = mysqli_num_rows($ex);
     
     debutCarte("Rapports");
@@ -109,7 +109,7 @@ else {
         $pages ="";
         $supprimer = "";
         debutContent();
-		echo "<br/>Vous n'avez aucun rapports.<br/>";
+		echo "<br>Vous n'avez aucun rapports.<br>";
         finContent();
 	}
 	finCarte($supprimer.$pages);	

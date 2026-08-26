@@ -115,11 +115,11 @@ if (isset($_POST['energieEnvoyee']) and $bool == 1 and isset($_POST['destinatair
                         $chaine = "";
                         foreach ($nomsRes as $num => $ressource) {
                             if ($_POST[$ressource . 'Envoyee'] > 0) {
-                                $chaine = $chaine . ' ' . number_format($_POST[$ressource . 'Envoyee'], 0, ' ', ' ') . ' <img class="imageAide" src="images/' . $ressource . '.png" alt="' . $ressource . '"/>';
+                                $chaine = $chaine . ' ' . number_format($_POST[$ressource . 'Envoyee'], 0, ' ', ' ') . ' <img class="imageAide" src="images/' . $ressource . '.png" alt="' . $ressource . '">';
                             }
                         }
                         if ($_POST['energieEnvoyee'] > 0) {
-                            $information = "Vous avez envoyé " . number_format($_POST['energieEnvoyee'], 0, ' ', ' ') . "<img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\"/> " . $chaine . ' à ' . $_POST['destinataire'];
+                            $information = "Vous avez envoyé " . number_format($_POST['energieEnvoyee'], 0, ' ', ' ') . "<img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\"> " . $chaine . ' à ' . $_POST['destinataire'];
                         } else {
                             $information = "Vous avez envoyé " . $chaine . " à " . $_POST['destinataire'];
                         }
@@ -174,9 +174,9 @@ if (isset($_POST['typeRessourceAAcheter']) and isset($_POST['nombreRessourceAAch
                     }
                 }
 
-                mysqli_query($base, 'INSERT INTO cours VALUES (default,"' . $chaine . '","' . time() . '")') or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+                mysqli_query($base, 'INSERT INTO cours VALUES (default,"' . $chaine . '","' . time() . '")') or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
-                $information = "Vous avez acheté " . number_format($_POST['nombreRessourceAAcheter'], 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/" . $_POST['typeRessourceAAcheter'] . ".png\" alt=\"" . $_POST['typeRessourceAAcheter'] . "\"/> pour " . number_format(round($tabCours[$numRes] * $_POST['nombreRessourceAAcheter']), 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\"/>";
+                $information = "Vous avez acheté " . number_format($_POST['nombreRessourceAAcheter'], 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/" . $_POST['typeRessourceAAcheter'] . ".png\" alt=\"" . $_POST['typeRessourceAAcheter'] . "\"> pour " . number_format(round($tabCours[$numRes] * $_POST['nombreRessourceAAcheter']), 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\">";
 
                 $ex = mysqli_query($base, 'SELECT * FROM cours ORDER BY timestamp DESC LIMIT 0,1'); // cours actuel
                 $val = mysqli_fetch_array($ex);
@@ -226,7 +226,7 @@ if (isset($_POST['typeRessourceAVendre']) and isset($_POST['nombreRessourceAVend
 
                 mysqli_query($base, 'INSERT INTO cours VALUES (default,"' . $chaine . '","' . time() . '")');
 
-                $information = "Vous avez vendu " . number_format($_POST['nombreRessourceAVendre'], 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/" . $_POST['typeRessourceAVendre'] . ".png\" alt=\"" . $_POST['typeRessourceAVendre'] . "\"/> pour " . number_format(round($tabCours[$numRes] * $_POST['nombreRessourceAVendre']), 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\"/>";
+                $information = "Vous avez vendu " . number_format($_POST['nombreRessourceAVendre'], 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/" . $_POST['typeRessourceAVendre'] . ".png\" alt=\"" . $_POST['typeRessourceAVendre'] . "\"> pour " . number_format(round($tabCours[$numRes] * $_POST['nombreRessourceAVendre']), 0, ' ', ' ') . " <img class=\"imageAide\" src=\"images/energie.png\" alt=\"energie\">";
 
                 $ex = mysqli_query($base, 'SELECT * FROM cours ORDER BY timestamp DESC LIMIT 0,1'); // cours actuel
                 $val = mysqli_fetch_array($ex);
@@ -261,9 +261,9 @@ if ($nb > 0) {
     while ($actionsenvoi = mysqli_fetch_array($ex)) {
 
         if ($_SESSION['login'] == $actionsenvoi['envoyeur']) { // faire si retour ou non
-            echo '<tr><td><img src="images/rapports/envoi.png" class="imageChip" alt="fleche"/></td><td><a href="joueur.php?id=' . $actionsenvoi['receveur'] . '">' . $actionsenvoi['receveur'] . '</a></td><td id="affichage' . $actionsenvoi['id'] . '">' . affichageTemps($actionsenvoi['tempsArrivee'] - time()) . '</td></tr>';
+            echo '<tr><td><img src="images/rapports/envoi.png" class="imageChip" alt="fleche"></td><td><a href="joueur.php?id=' . $actionsenvoi['receveur'] . '">' . $actionsenvoi['receveur'] . '</a></td><td id="affichage' . $actionsenvoi['id'] . '">' . affichageTemps($actionsenvoi['tempsArrivee'] - time()) . '</td></tr>';
         } else {
-            echo '<tr><td><img src="images/rapports/retour.png" class="imageChip" alt="fleche"/></td><td><a href="joueur.php?id=' . $actionsenvoi['envoyeur'] . '">' . $actionsenvoi['envoyeur'] . '</a></td><td id="affichage' . $actionsenvoi['id'] . '">' . affichageTemps($actionsenvoi['tempsArrivee'] - time()) . '</td></tr>';
+            echo '<tr><td><img src="images/rapports/retour.png" class="imageChip" alt="fleche"></td><td><a href="joueur.php?id=' . $actionsenvoi['envoyeur'] . '">' . $actionsenvoi['envoyeur'] . '</a></td><td id="affichage' . $actionsenvoi['id'] . '">' . affichageTemps($actionsenvoi['tempsArrivee'] - time()) . '</td></tr>';
         }
         echo '
                 <script>
@@ -294,13 +294,13 @@ if ($_GET['sub'] == 1) {
     <form action="marche.php?sub=1" method="post" name="formEnvoyer">
 
         <?php
-        item(['floating' => true, 'input' => '<input type="text" name="energieEnvoyee" id="energieEnvoyee" class="form-control"/>', 'titre' => 'Energie', 'after' => nombreEnergie(number_format($ressources['energie'], 0, ' ', ' '))]);
+        item(['floating' => true, 'input' => '<input type="text" name="energieEnvoyee" id="energieEnvoyee" class="form-control">', 'titre' => 'Energie', 'after' => nombreEnergie(number_format($ressources['energie'], 0, ' ', ' '))]);
 
         foreach ($nomsRes as $num => $ressource) {
-            item(['floating' => true, 'input' => '<input type="text" name="' . $ressource . 'Envoyee" id="' . $ressource . 'Envoyee" class="form-control"/>', 'titre' => ucfirst($nomsAccents[$num]), 'after' => nombreAtome($num, number_format($ressources['energie'], 0, ' ', ' '))]);
+            item(['floating' => true, 'input' => '<input type="text" name="' . $ressource . 'Envoyee" id="' . $ressource . 'Envoyee" class="form-control">', 'titre' => ucfirst($nomsAccents[$num]), 'after' => nombreAtome($num, number_format($ressources['energie'], 0, ' ', ' '))]);
         }
 
-        item(['floating' => true, 'input' => '<input type="text" name="destinataire" id="destinataire" class="form-control"/>', 'titre' => 'Destinataire']);
+        item(['floating' => true, 'input' => '<input type="text" name="destinataire" id="destinataire" class="form-control">', 'titre' => 'Destinataire']);
         item(['input' => submit(['form' => 'formEnvoyer', 'titre' => 'Envoyer'])]);
         finListe();
         finCarte();
@@ -334,8 +334,8 @@ if ($_GET['sub'] == 0) {
             }
 
             item(['floating' => false, 'select' => ["typeRessourceAAcheter", $options, "javascript" => 'onChange="majAchat(true)"', "hauteur" => 450], 'titre' => 'Atome']);
-            item(['floating' => false, 'input' => '<input type="text" name="nombreRessourceAAcheter" id="nombreRessourceAAcheter" class="form-control" onChange="majAchat(true)"/>', 'titre' => 'Nombre']);
-            item(['floating' => false, 'input' => '<input type="text" name="coutEnergieAchat" id="coutEnergieAchat" class="form-control" onChange="majAchat(false)"/>', 'titre' => 'Coût en énergie (' . chiffrePetit($ressources['energie']) . ')']);
+            item(['floating' => false, 'input' => '<input type="text" name="nombreRessourceAAcheter" id="nombreRessourceAAcheter" class="form-control" onChange="majAchat(true)">', 'titre' => 'Nombre']);
+            item(['floating' => false, 'input' => '<input type="text" name="coutEnergieAchat" id="coutEnergieAchat" class="form-control" onChange="majAchat(false)">', 'titre' => 'Coût en énergie (' . chiffrePetit($ressources['energie']) . ')']);
             item(['input' => submit(['form' => 'formAcheter', 'titre' => 'Acheter', 'image' => 'images/marche/achat.png'])]);
             ?>
         </form>
@@ -354,8 +354,8 @@ if ($_GET['sub'] == 0) {
             }
 
             item(['floating' => false, 'select' => ["typeRessourceAVendre", $options, "javascript" => 'onChange="majVente(true)"', "hauteur" => 450], 'titre' => 'Atome']);
-            item(['floating' => false, 'input' => '<input type="text" name="nombreRessourceAVendre" id="nombreRessourceAVendre" class="form-control" onChange="majVente(true)"/>', 'titre' => 'Nombre']);
-            item(['floating' => false, 'input' => '<input type="text" name="apportEnergieVente" id="apportEnergieVente" class="form-control" onChange="majVente(false)"/>', 'titre' => 'Apport en énergie']);
+            item(['floating' => false, 'input' => '<input type="text" name="nombreRessourceAVendre" id="nombreRessourceAVendre" class="form-control" onChange="majVente(true)">', 'titre' => 'Nombre']);
+            item(['floating' => false, 'input' => '<input type="text" name="apportEnergieVente" id="apportEnergieVente" class="form-control" onChange="majVente(false)">', 'titre' => 'Apport en énergie']);
             item(['input' => submit(['form' => 'formVendre', 'titre' => 'Vendre', 'image' => 'images/marche/vente.png'])]);
 
             ?>

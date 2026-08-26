@@ -2,9 +2,9 @@
     <div class="panel-overlay"></div>
   <div class="panel panel-left panel-cover">
     <div style="display:block;width:100%;height:150px;color:white;font-size:20px;background-color: black;text-align: center">
-    <br/>
+    <br>
     <p style="display:inline;">
-    <img src="images/tvlw.png" style="vertical-align :middle;width:90px;height:90px" alt="icone"/>
+    <img src="images/tvlw.png" style="vertical-align :middle;width:90px;height:90px" alt="icone">
     </p>
     </div>
     <?php include("statistiques.php"); 

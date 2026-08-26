@@ -7,7 +7,7 @@ if (isset($_GET['supprimer']))
 $_GET['supprimer'] = addslashes($_GET['supprimer']);
 $modif = 'DELETE FROM reponses WHERE id =\'' . $_GET['supprimer'] . '\'';
 
-$ex = mysqli_query($base,$modif) or die('Erreur SQL !<br/>'.$modif.'<br/>'.mysql_error());
+$ex = mysqli_query($base,$modif) or die('Erreur SQL !<br>'.$modif.'<br>'.mysql_error());
 }
 ?>
 
@@ -15,7 +15,7 @@ $ex = mysqli_query($base,$modif) or die('Erreur SQL !<br/>'.$modif.'<br/>'.mysql
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 <head>
 <title>Neocrea - Supprimmer une réponse(Forum)</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 h3, th, td

@@ -19,7 +19,7 @@ include("../includes/connexion.php");
 
 $retour = mysqli_query($base,'SELECT * FROM membre WHERE ip=\''.$_GET['ip'].'\'');
 while ($donnees = mysqli_fetch_array($retour)) {
-	echo '<a href="../joueur.php?id='.$donnees['login'].'">'.$donnees['login'].'</a><br/>';
+	echo '<a href="../joueur.php?id='.$donnees['login'].'">'.$donnees['login'].'</a><br>';
 }
 echo '</p>';
 ?>

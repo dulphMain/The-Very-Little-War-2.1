@@ -5,7 +5,7 @@ include("../includes/fonctions.php");
 if (isset($_POST['supprimercompte']))
 {
 $sql = 'SELECT login FROM membre WHERE login=\''.$_POST['supprimer'].'\'';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br/>'.$sql.'<br/>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 $joueurExiste = mysqli_num_rows($ex);
 
 if($joueurExiste > 0 ) {
@@ -21,15 +21,15 @@ if($joueurExiste > 0 ) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
 <head>
 <title>Neocrea - Supprimmer un compte</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
-<h3>Supprimer un compte</h3><br/>
+<h3>Supprimer un compte</h3><br>
 <form method = "post" action = "supprimercompte.php">
 <p> 
-Login : <input type="text" name="supprimer"><br />
+Login : <input type="text" name="supprimer"><br>
 <input type="submit" name="supprimercompte" value="Supprimer le compte">
 </form>
 <?php 

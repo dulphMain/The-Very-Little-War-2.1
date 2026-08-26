@@ -21,7 +21,7 @@ function loadBarreDOM(){
 	{name:"Pyromagnon",href:"http://www.pyromagnon.fr",src:"http://www.theverylittlewar.com/images/partenariat/pyromagnon.jpg",alt:"Pyromagnon",txt:"Jeu de gestion/stratégie préhistorique"}],t='<div class="ring_barre degrade_ring_barre">'+'	<div class="ico"></div>'+'	<p class="titre" style="color:#FFAF9B">Jeux par navigateur indépendants <span id="ring_news" style="color: white">'+'</span></p>	<p class="nos_jeux">Liste des jeux<span class="fleche_menu"></span></p>'+"</div>"+'<div id="ring_barre_wrapper">';
 	
 	for(i in e){
-		t+='<div id="partenaire_'+i+'">'+'	<p><a href="'+e[i].href+'" target="_blank"><img class="img-responsive" src="'+e[i].src+'" alt="'+e[i].alt+'" /></a></p>'+'	<p><a href="'+e[i].href+'" target="_blank"><span style="font-weight: bold;">'+e[i].name+"</span> - "+e[i].txt+"</a></p>"+"</div>"
+		t+='<div id="partenaire_'+i+'">'+'	<p><a href="'+e[i].href+'" target="_blank"><img class="img-responsive" src="'+e[i].src+'" alt="'+e[i].alt+'"></a></p>'+'	<p><a href="'+e[i].href+'" target="_blank"><span style="font-weight: bold;">'+e[i].name+"</span> - "+e[i].txt+"</a></p>"+"</div>"
 	}
 	
 	$("body").prepend(t)

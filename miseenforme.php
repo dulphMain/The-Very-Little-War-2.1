@@ -9,7 +9,7 @@ function pasDeRisques($chaine)
 function query($a)
 {
     global $base;
-    $v = mysqli_query($base, $a) or die('Erreur SQL !<br />' . mysql_error());
+    $v = mysqli_query($base, $a) or die('Erreur SQL !<br>' . mysql_error());
     return $v;
 }
 
@@ -54,7 +54,7 @@ if (isset($_POST['soumettre'])) {
     <div id="formulaire">
         <!-- <form action="mise en forme.html" method="post"> -->
         <textarea id="texte" rows="60" cols="100"></textarea>
-        <input type="submit" id="soumettre" value="Mettre en forme" />
+        <input type="submit" id="soumettre" value="Mettre en forme">
         <!-- </form> -->
     </div>
     <div id="texteFinal">
@@ -86,9 +86,9 @@ if (isset($_POST['soumettre'])) {
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="hidden" name="lieu" id="lieu" />
+                        <input type="hidden" name="lieu" id="lieu">
                         <label for="correctionLieu">Correction du lieu :</label>
-                        <input type="text" id="correctionLieu" name="correctionLieu" />
+                        <input type="text" id="correctionLieu" name="correctionLieu">
                     </td>
                     <td></td>
                     <td></td>
@@ -97,9 +97,9 @@ if (isset($_POST['soumettre'])) {
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="hidden" name="commune" id="commune" />
+                        <input type="hidden" name="commune" id="commune">
                         <label for="correctionCommune">Correction de la commune :</label>
-                        <input type="text" id="correctionCommune" name="correctionCommune" />
+                        <input type="text" id="correctionCommune" name="correctionCommune">
                     </td>
                     <td></td>
                     <td></td>
@@ -108,7 +108,7 @@ if (isset($_POST['soumettre'])) {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><input type="submit" name="soumettre" value="Corriger" /></td>
+                    <td><input type="submit" name="soumettre" value="Corriger"></td>
                 </form>
             </tr>
         </table>
@@ -220,7 +220,7 @@ if (isset($_POST['soumettre'])) {
                         typeCommercial = "";
                     }
 
-                    var chaine = "- " + typeVeh + " " + marque + " " + modele + " " + typeCommercial + " " + couleurPrincipale + " " + plaque + "<br/>";
+                    var chaine = "- " + typeVeh + " " + marque + " " + modele + " " + typeCommercial + " " + couleurPrincipale + " " + plaque + "<br>";
                     if (tabVeh.indexOf(chaine) == -1) {
                         if (add == "Véhicule terrestre (Volé)") {
                             vehVol += chaine;

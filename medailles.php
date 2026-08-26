@@ -56,31 +56,31 @@ if((isset($_GET['login']) AND !empty($_GET['login'])) OR isset($_SESSION['login'
                 $bonus = $infos[5];
                 $medaille = false;
                 $progression = $infos[1].'/'.$infos[2][0]; // pas de médaille
-                $imageMedaille = '<img alt="vide" src="images/classement/vide.png" />';
+                $imageMedaille = '<img alt="vide" src="images/classement/vide.png">';
                 $bonusActuel = "Aucun bonus";
-                $bonusSuivant = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[0].'"/> <strong>'.$paliersMedailles[0].'</strong> : '.$bonus[0].$infos[4];
+                $bonusSuivant = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[0].'"> <strong>'.$paliersMedailles[0].'</strong> : '.$bonus[0].$infos[4];
                 $objetProgression = '<span class="important">'.$infos[3].'</span>';
             
                 foreach($paliersMedailles as $num => $palier){
                     if($infos[1] >= $infos[2][$num]){
                         $medaille = $num;
                         
-                        $bonusActuel = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[$num].'"/> <strong>'.$paliersMedailles[$num].'</strong> : '.$bonus[$num].$infos[4];
+                        $bonusActuel = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[$num].'"> <strong>'.$paliersMedailles[$num].'</strong> : '.$bonus[$num].$infos[4];
                         
                         if($num+1 < sizeof($infos[2])){
                             $progression = $infos[1].'/'.$infos[2][$num+1];
-                            $bonusSuivant = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[$num+1].'"/> <strong>'.$paliersMedailles[$num+1].'</strong> : '.$bonus[$num+1].$infos[4];
+                            $bonusSuivant = '<img alt="medaille" class="imageAide" src="images/classement/'.$imagesMedailles[$num+1].'"> <strong>'.$paliersMedailles[$num+1].'</strong> : '.$bonus[$num+1].$infos[4];
                         }
                         else { // gestion du diamant rouge
                             $progression = $infos[1].' - Niveau maximal';
                             $bonusSuivant = '<strong>Niveau maximal</strong>';
                         }
                         
-                        $imageMedaille = '<img alt="medaille" style="vertical-align:middle;width:40px;height:40px;" src="images/classement/'.$imagesMedailles[$num].'" />';
+                        $imageMedaille = '<img alt="medaille" style="vertical-align:middle;width:40px;height:40px;" src="images/classement/'.$imagesMedailles[$num].'">';
                     }
                 }
                 
-                item(['accordion' => important('Bonus actuel').$bonusActuel.'<br/><br/>'.important('Bonus au prochain niveau').$bonusSuivant, 'titre' => $objetProgression, 'media' => $imageMedaille,'soustitre' => $progression]);
+                item(['accordion' => important('Bonus actuel').$bonusActuel.'<br><br>'.important('Bonus au prochain niveau').$bonusSuivant, 'titre' => $objetProgression, 'media' => $imageMedaille,'soustitre' => $progression]);
             }
         finListe();
         finCarte();

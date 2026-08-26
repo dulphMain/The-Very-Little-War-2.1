@@ -9,8 +9,8 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 ?>
 	<form action="index.php" method="post">
 		<label for="motdepasseadmin">Mot de passe : </label>
-		<input type="password" name="motdepasseadmin" id="motdepasseadmin" />
-		<input type="submit" name="valider" value="Valider" />
+		<input type="password" name="motdepasseadmin" id="motdepasseadmin">
+		<input type="submit" name="valider" value="Valider">
 	</form> <?php
 		} else {
 
@@ -20,7 +20,7 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 			}
 			if (isset($_POST['joueurBombe'])) {
 				$sql = 'SELECT count(login) AS nb FROM membre WHERE login=\'' . $_POST['joueurBombe'] . '\'';
-				$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br/>' . $sql . '<br/>' . mysqli_error($base));
+				$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 				$d = mysqli_fetch_array($ex);
 
 				if ($d['nb'] > 0) {
@@ -105,9 +105,9 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 								if ($num < $nbRes) {
 									$plus = ",";
 								}
-								$chaine = $chaine . '' . number_format($_POST[$ressource . 'Envoyee'], 0, ' ', ' ') . '<img src="../images/' . $ressource . '.png" alt="' . $ressource . '"/>' . $plus;
+								$chaine = $chaine . '' . number_format($_POST[$ressource . 'Envoyee'], 0, ' ', ' ') . '<img src="../images/' . $ressource . '.png" alt="' . $ressource . '">' . $plus;
 							}
-							$erreur = "Vous avez donné " . number_format($_POST['energieEnvoyee'], 0, ' ', ' ') . "<img src=\"../images/energie.png\" alt=\"energie\"/>, " . $chaine . " à " . $_POST['destinataire'] . ".";
+							$erreur = "Vous avez donné " . number_format($_POST['energieEnvoyee'], 0, ' ', ' ') . "<img src=\"../images/energie.png\" alt=\"energie\">, " . $chaine . " à " . $_POST['destinataire'] . ".";
 						} else {
 							$erreur = "Le destinataire n'existe pas.";
 						}
@@ -142,9 +142,9 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 			</div>
 			<div class="panel-body">
 				<p>
-					<!-- <a href="index.php?sub=1">Donner des ressources</a><br /> -->
-					<a href="index.php?sub=2">Multicompte</a><br />
-					<a href="index.php">Accueil modération (bombe + sujets)</a><br />
+					<!-- <a href="index.php?sub=1">Donner des ressources</a><br> -->
+					<a href="index.php?sub=2">Multicompte</a><br>
+					<a href="index.php">Accueil modération (bombe + sujets)</a><br>
 				</p>
 				<?php
 				if (isset($erreur)) {
@@ -155,23 +155,23 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 				?>
 					<!--<p>
 							<form action="index.php?sub=1" method="post">
-								<label for="energieEnvoyee">Energie : </label><input type="number" name="energieEnvoyee" id="energieEnvoyee" /><br />
+								<label for="energieEnvoyee">Energie : </label><input type="number" name="energieEnvoyee" id="energieEnvoyee"><br>
 								<?php
 								/*foreach ($nomsRes as $num => $ressource) {
-									echo '<label for="' . $ressource . 'Envoyee">' . ucfirst($nomsAccents[$num]) . ' : </label><input type="number" name="' . $ressource . 'Envoyee" id="' . $ressource . 'Envoyee"/><br/>';
+									echo '<label for="' . $ressource . 'Envoyee">' . ucfirst($nomsAccents[$num]) . ' : </label><input type="number" name="' . $ressource . 'Envoyee" id="' . $ressource . 'Envoyee"><br>';
 								}*/
 								?>
-								<br />
-								<label for="destinataire">Destinataire : </label><input type="text" name="destinataire" id="destinataire" /><br /><br />
-								<label for="justification">Justification : </label><textarea name="justification" id="justification" /></textarea><br /><br />
-								<input type="submit" name="envoyer" value="Envoyer" />
+								<br>
+								<label for="destinataire">Destinataire : </label><input type="text" name="destinataire" id="destinataire"><br><br>
+								<label for="justification">Justification : </label><textarea name="justification" id="justification"></textarea><br><br>
+								<input type="submit" name="envoyer" value="Envoyer">
 							</form>
 						</p>-->
 					<?php
 					//}
 					if ($_GET['sub'] == 2) { ?>
 						<h4>Liste des multi-comptes</h4>
-						<p>Veuillez donner un avertissement aux joueurs concernés avant de supprimer les comptes.<br /><br />
+						<p>Veuillez donner un avertissement aux joueurs concernés avant de supprimer les comptes.<br><br>
 						<table>
 							<tr>
 								<th>Ip multiple</th>
@@ -194,7 +194,7 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 					<p>
 
 						<span class="important">Ajouter +1 à la bombe</span> :
-					<form action="index.php" method="post"><input type="text" name="joueurBombe" /><input type="submit" name="bombe" value="ajouter" /></form>
+					<form action="index.php" method="post"><input type="text" name="joueurBombe"><input type="submit" name="bombe" value="ajouter"></form>
 					</p>
 					<p>
 					<table>
@@ -237,8 +237,8 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 											}
 											?>
 										</select>
-										<input type="hidden" name="idSujet" value="<?php echo $donnees['id']; ?>" />
-										<input type="submit" value="Déplacer" name="deplacerSubmit" />
+										<input type="hidden" name="idSujet" value="<?php echo $donnees['id']; ?>">
+										<input type="submit" value="Déplacer" name="deplacerSubmit">
 									</form>
 								</td>
 								<td><?php echo date('d/m/Y', $donnees['timestamp']); ?></td>

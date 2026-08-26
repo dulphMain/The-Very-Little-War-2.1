@@ -1,4 +1,4 @@
-<br/>  
+<br>  
 <div style="text-align:center"><?php
            echo nombrePoints($autre['points']);
             $nb_molecules = 0;

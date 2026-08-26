@@ -14,14 +14,14 @@ debutCarte('Historique des connexions'); ?>
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="w32" /></th>
-                <th><img src="images/classement/calendrier.png" alt="date" title="Date de connexion" class="w32" /></th>
+                <th><img src="images/classement/joueur.png" alt="joueur" title="Joueur" class="w32"></th>
+                <th><img src="images/classement/calendrier.png" alt="date" title="Date de connexion" class="w32"></th>
             </tr>
         </thead>
         <tbody>
             <?php
             $sql = 'SELECT login, derniereConnexion FROM membre ORDER BY derniereConnexion DESC';
-            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br />' . $sql . '<br />' . mysqli_error($base));
+            $ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
             while ($donnees = mysqli_fetch_array($ex)) {
                 if ($donnees['login'] != "Guortates") {
                     echo '<tr>
