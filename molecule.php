@@ -5,7 +5,7 @@ include("includes/tout.php");
 
 if(isset($_GET['id']) AND !empty($_GET['id'])) {
 	$sql = 'SELECT * FROM molecules WHERE id=\''.$_GET['id'].'\' AND proprietaire=\''.$_SESSION['login'].'\'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$molecule = mysqli_fetch_array($ex);
 	$nb_resultats = mysqli_num_rows($ex);
     

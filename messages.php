@@ -5,11 +5,11 @@ include("includes/bbcode.php");
 if(isset($_GET['supprimer']) AND preg_match("#\d#",$_GET['supprimer'])) {
 	if($_GET['supprimer'] == 1) {
 		$sql = 'DELETE FROM messages WHERE destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	}
 	else {
 		$sql = 'DELETE FROM messages WHERE id=\''.$_GET['supprimer'].'\' AND destinataire=\''.$_SESSION['login'].'\'';
-		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+		mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	}
 }
 
@@ -18,13 +18,13 @@ include("includes/tout.php");
 if(isset($_GET['message'])) {
 	$_GET['message'] = mysqli_real_escape_string($base,stripslashes(antihtml($_GET['message'])));
 	$sql = 'SELECT * FROM messages WHERE ( destinataire=\''.$_SESSION['login'].'\' OR expeditaire=\''.$_SESSION['login'].'\' ) AND id=\''.$_GET['message'].'\'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$messages = mysqli_fetch_array($ex);
 	$nb_messages = mysqli_num_rows($ex);
 	if($nb_messages > 0) {
 		if($_SESSION['login'] == $messages['destinataire']) {
 			$sql1 = 'UPDATE messages SET statut=1 WHERE id=\''.$_GET['message'].'\'';
-			$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+			$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 		}
 		debutCarte($messages['titre']);
 		debutContent();
@@ -58,7 +58,7 @@ else {
 	$premierMessageAafficher = ($page - 1) * $nombreDeMessagesParPage;  
 	
 	$sql = 'SELECT * FROM messages WHERE destinataire=\''.$_SESSION['login'].'\' ORDER BY timestamp DESC LIMIT ' . $premierMessageAafficher . ', ' . $nombreDeMessagesParPage .'';
-	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$nb_messages = mysqli_num_rows($ex);
 	debutCarte("Messages");
 	if($nb_messages > 0) {

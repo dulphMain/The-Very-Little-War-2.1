@@ -11,7 +11,7 @@ if (isset($_POST['motdepasseadmin'])) {
 if (isset($_SESSION['motdepasseadmin']) and $_SESSION['motdepasseadmin'] == "Faux mot de passe") {
 	if (isset($_GET['supprimercompte'])) {
 		$modif = 'SELECT login FROM membre WHERE ip=\'' . $_GET['supprimercompte'] . '\'';
-		$ex = mysqli_query($base, $modif) or die('Erreur SQL !<br>' . $modif . '<br>' . mysql_error());
+		$ex = mysqli_query($base, $modif) or die('Erreur SQL !<br>' . $modif . '<br>' . mysqli_error($base));
 		while ($login = mysqli_fetch_array($ex)) {
 			supprimerJoueur($login['login']);
 		}

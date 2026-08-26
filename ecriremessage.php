@@ -14,23 +14,23 @@ if (isset($_POST['titre']) and isset($_POST['destinataire']) and isset($_POST['c
 			$ex = mysqli_query($base, 'SELECT * FROM autre WHERE idalliance=\'' . $idalliance['idalliance'] . '\' AND login !=\'' . $_SESSION['login'] . '\'');
 			while ($destinataire = mysqli_fetch_array($ex)) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $destinataire['login'] . '", default)';
-				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 			}
 			$information = "Le message a bien été envoyé à toute l'alliance.";
 		} elseif ($_POST['destinataire'] == "[all]" && $_SESSION['login'] == "Guortates") {
-			$ex = query('SELECT * FROM autre') or die('Erreur SQL !<br><br>' . mysql_error());
+			$ex = query('SELECT * FROM autre') or die('Erreur SQL !<br><br>' . mysqli_error($base));
 			while ($destinataire = mysqli_fetch_array($ex)) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $destinataire['login'] . '", default)';
-				query($sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+				query($sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 			}
 			$information = "Le message a bien été à tous les joueurs.";
 		} else {
 			$sql = 'SELECT login FROM autre WHERE login=\'' . $_POST['destinataire'] . '\'';
-			$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+			$ex = mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 			$joueurExiste = mysqli_num_rows($ex);
 			if ($joueurExiste > 0) {
 				$sql1 = 'INSERT INTO messages VALUES(default, "' . time() . '", "' . $_POST['titre'] . '", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . $_POST['destinataire'] . '", default)';
-				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysql_error());
+				mysqli_query($base, $sql1) or die('Erreur SQL !<br>' . $sql1 . '<br>' . mysqli_error($base));
 				$information =  "Le message a bien été envoyé.";
 				echo '
                 <script>

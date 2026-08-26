@@ -53,7 +53,7 @@ $req1 = mysqli_query($base,$sql1);
 $ressources = mysqli_fetch_array($req1);
 
 $sql2 = 'SELECT nombre FROM molecules WHERE proprietaire=\''.$_SESSION['login'].'\' AND nombre!=0';
-$req2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysql_error());
+$req2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysqli_error($base));
 $nb_moleculesJoueur = 0;
 while($moleculesJoueur = mysqli_fetch_array($req2)) {
 	$nb_moleculesJoueur = $nb_moleculesJoueur + $moleculesJoueur['nombre'];
@@ -230,7 +230,7 @@ else { // si cela n'a pas été initialisé à la première connexion
         item(['media' => '<img src="images/menu/power-button.png" alt="checklist" style="width:25px;height:25px;">', 'titre' => 'Déconnexion', 'link' => 'deconnexion.php', 'style' => 'color:black']);
 				// On vérifie si l'utilisateur connecté est un modérateur
 				$sql3 = 'SELECT moderateur FROM membre WHERE login=\''.$_SESSION['login'].'\'';
-				$ex3 = mysqli_query($base,$sql3) or die ('Erreur SQL !<br>'.$sql3.'<br>'.mysql_error());
+				$ex3 = mysqli_query($base,$sql3) or die ('Erreur SQL !<br>'.$sql3.'<br>'.mysqli_error($base));
 				$joueur = mysqli_fetch_array($ex3);
 				if($joueur['moderateur']) {
                     item(['media' => '<img src="images/menu/forum.png" alt="checklist" style="width:25px;height:25px;">', 'titre' => 'Modération', 'link' => 'moderationForum.php', 'style' => 'color:red']);

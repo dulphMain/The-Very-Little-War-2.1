@@ -7,7 +7,7 @@ if (isset($_GET['supprimer']))
 $_GET['supprimer'] = addslashes($_GET['supprimer']);
 $modif = 'DELETE FROM reponses WHERE id =\'' . $_GET['supprimer'] . '\'';
 
-$ex = mysqli_query($base,$modif) or die('Erreur SQL !<br>'.$modif.'<br>'.mysql_error());
+$ex = mysqli_query($base,$modif) or die('Erreur SQL !<br>'.$modif.'<br>'.mysqli_error($base));
 }
 ?>
 

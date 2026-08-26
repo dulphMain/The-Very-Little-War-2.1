@@ -5,7 +5,7 @@ include("../includes/fonctions.php");
 if (isset($_POST['supprimercompte']))
 {
 $sql = 'SELECT login FROM membre WHERE login=\''.$_POST['supprimer'].'\'';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 $joueurExiste = mysqli_num_rows($ex);
 
 if($joueurExiste > 0 ) {

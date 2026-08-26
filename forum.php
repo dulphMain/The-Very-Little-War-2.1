@@ -19,7 +19,7 @@ debutCarte("Forum"); ?>
 	// On vérifie si l'utilisateur n'est pas banni du forum
 	if(isset($_SESSION['login'])) {
 		$sql4 = 'SELECT * FROM sanctions WHERE joueur=\''.$_SESSION['login'].'\'';
-		$ex4 = mysqli_query($base,$sql4) or die('Erreur SQL !'.$sql4.'<br>'.mysql_error());
+		$ex4 = mysqli_query($base,$sql4) or die('Erreur SQL !'.$sql4.'<br>'.mysqli_error($base));
 	}
 	$ex4 = mysqli_query($base,'SELECT * FROM sanctions WHERE joueur="aabbqsdqsdqsdqsqqsd"'); //je savais pas comment faire :D
 	// Si il est banni
@@ -27,12 +27,12 @@ debutCarte("Forum"); ?>
 		$sanction = mysqli_fetch_array($ex4);
 		// On calcul la différence entre la date de fin et la date actuelle
 		$sql5 = 'SELECT DATEDIFF(CURDATE(),\''.$sanction['dateFin'].'\')';
-		$ex5 = mysqli_query($base,$sql5) or die ('Erreur SQL :<br>'.$sql5.'<br>'.mysql_error());
+		$ex5 = mysqli_query($base,$sql5) or die ('Erreur SQL :<br>'.$sql5.'<br>'.mysqli_error($base));
 		$diff = mysqli_fetch_array($ex5);
 		// Si la date de fin de la sanction est passée, on supprime la sanction
 		if ($diff[0] >= 0){
 			$sql7 = 'DELETE FROM sanctions WHERE joueur=\''.$_SESSION['login'].'\'';
-			$ex7 = mysqli_query($base,$sql7) or die ('Erreur SQL :<br>'.$sql7.'<br>'.mysql_error());
+			$ex7 = mysqli_query($base,$sql7) or die ('Erreur SQL :<br>'.$sql7.'<br>'.mysqli_error($base));
 			// Rafraichissement de la page
 			echo "<script>window.location.replace(\"forum.php\")</script>";
 		}
@@ -63,7 +63,7 @@ if(isset($_SESSION['login'])) {
 <tbody>
 <?php
 $sql = 'SELECT * FROM forums';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysqli_error($base));
 
 while($forum = mysqli_fetch_array($ex)) {
     $ex2 = mysqli_query($base,'SELECT count(*) AS nbSujets FROM sujets WHERE idforum=\''.$forum['id'].'\' AND statut = 0');

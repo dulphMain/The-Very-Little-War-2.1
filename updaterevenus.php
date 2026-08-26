@@ -1,6 +1,5 @@
 <?php
-$base = mysql_connect ('localhost', 'theveryl_admin', 'mno33d65e') ; 
-mysql_select_db ('theveryl_theverylittlewar', $base)or die ('Erreur de connexion a la base de données'.mysql_error()); 
+$base = mysqli_connect('localhost', 'theveryl_admin', 'mno33d65e', 'theveryl_theverylittlewar') or die('Erreur de connexion a la base de données'.mysqli_connect_error());
 $tab = array("soufre","chlore","brome","iode");
 foreach($tab as $num => $ressource) {
 	mysqli_query($base,"ALTER TABLE  `constructions` ADD  `generateur".$ressource."` INT( 11 ) NOT NULL DEFAULT  '1' AFTER  `generateurazote`");
