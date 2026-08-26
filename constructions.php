@@ -144,7 +144,7 @@ function mepConstructions($liste)
                 foreach ($nomsRes as $num => $ressource) {
                     $max = max(3600 * ($liste['cout' . ucfirst($ressource)] - $ressources[$ressource]) / $revenu[$ressource], $max);
                 }
-                $augmenter =  'Assez de ressources le ' . date('d/m/Y', time() + $max) . ' à ' . date('H\hi', time() + $max);
+                $augmenter =  'Assez de ressources le ' . date('d/m/Y', round(time() + $max)) . ' à ' . date('H\hi', round(time() + $max));
             } else {
                 $augmenter =  'L\'espace de stockage est trop petit pour autant de ressources.';
             }

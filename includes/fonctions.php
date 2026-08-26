@@ -1212,7 +1212,7 @@ function initPlayer($joueur)
             'niveau' => $constructions['generateur'],
             'revenu' => nombreEnergie('<span style="color:green" >+' . chiffrePetit(revenuEnergie($constructions['generateur'], $joueur, 4)) . '/h</span>'),
             'revenu1' => nombreEnergie('<span style="color:green" >+' . chiffrePetit(revenuEnergie($niveauActuel['niveau'] + 1, $joueur, 4)) . '/h</span>'),
-            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenu['energie']) . ' à ' . date('H\hi', time() + 3600 * ($placeDepot - $ressources['energie']) / $revenuEnergie),
+            'effetSup' => '<br><br><strong>Stockage plein : </strong>' . date('d/m/Y', round(time() + 3600 * ($placeDepot - $ressources['energie']) / $revenu['energie'])) . ' à ' . date('H\hi', round(time() + 3600 * ($placeDepot - $ressources['energie']) / $revenuEnergie)),
             'description' => 'Le générateur <strong>produit de l\'énergie</strong>.',
             'coutEnergie' => round((1 - ($bonus / 100)) * 50 * pow($niveauActuel['niveau'], 0.4)),
             'coutAtomes' => round((1 - ($bonus / 100)) * 75 * pow($niveauActuel['niveau'], 0.4)),
