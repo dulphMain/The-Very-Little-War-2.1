@@ -9,7 +9,7 @@ $moderateur = mysqli_fetch_array($req);
 // Ajout de Yojim
 // On recherche le sujet que l'on souhaite éditer
 $sql3 = 'SELECT idsujet FROM reponses WHERE id=\''.$_GET['id'].'\'';
-$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !'.$sql3.'<br>'.mysql_error());
+$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !'.$sql3.'<br>'.mysqli_error($base));
 $sujet = mysqli_fetch_array($ex3);
 //
 
@@ -38,13 +38,13 @@ if($_GET['type'] == 3 AND isset($_GET['id']) AND !empty($_GET['id']) AND preg_ma
 // Si on souhaite masquer un message
 if($_GET['type'] == 5 AND isset($_GET['id']) AND !empty($_GET['id']) AND preg_match("#^[0-9]*$#", $_GET['id'])) {
 	$sql = 'UPDATE reponses SET visibilite=0 WHERE id=\''.$_GET['id'].'\'';
-	mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+	mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysqli_error($base));
 	echo "<script>window.location.replace(\"sujet.php?id=".$sujet['idsujet']."\")</script>"; // Redirection
 }
 // Si on souhaite afficher un message
 if($_GET['type'] == 4 AND isset($_GET['id']) AND !empty($_GET['id']) AND preg_match("#^[0-9]*$#", $_GET['id'])) {
 	$sql1 = 'UPDATE reponses SET visibilite=1 WHERE id=\''.$_GET['id'].'\'';
-	mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysql_error());
+	mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysqli_error($base));
 	echo "<script>window.location.replace(\"sujet.php?id=".$sujet['idsujet']."\")</script>"; // Redirection
 }
 //
@@ -59,7 +59,7 @@ if(isset($_POST['contenu']) AND !empty($_POST['contenu']) AND isset($_GET['id'])
 			if($auteur['auteur'] == $_SESSION['login']) {
 				mysqli_query($base,'UPDATE sujets SET contenu=\''.$_POST['contenu'].'\', titre=\''.$_POST['titre'].'\' WHERE id=\''.$_GET['id'].'\'');
 				$information = "Le sujet a bien été modifié";
-				mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$_GET['id'].'\'') or die('Erreur SQL !<br>'.mysql_error());
+				mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$_GET['id'].'\'') or die('Erreur SQL !<br>'.mysqli_error($base));
                 ?>
                 <script>
                     window.location.replace("sujet.php?id=<?php echo $_GET['id']; ?>");
@@ -80,7 +80,7 @@ if(isset($_POST['contenu']) AND !empty($_POST['contenu']) AND isset($_GET['id'])
 				$information = "La réponse a bien été modifiée";
 				$ex = mysqli_query($base,'SELECT * FROM reponses WHERE id=\''.$_GET['id'].'\'');
 				$reponse = mysqli_fetch_array($ex);
-				mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$reponse['idsujet'].'\'') or die('Erreur SQL !<br>'.mysql_error());
+				mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$reponse['idsujet'].'\'') or die('Erreur SQL !<br>'.mysqli_error($base));
                 
                 $ex = mysqli_query($base, 'SELECT idsujet FROM reponses WHERE id=\''.$_GET['id'].'\'');
                 $sujet = mysqli_fetch_array($ex);7
@@ -98,9 +98,9 @@ if(isset($_POST['contenu']) AND !empty($_POST['contenu']) AND isset($_GET['id'])
 			$information = "La réponse a bien été modifiée";
 			$ex = mysqli_query($base,'SELECT * FROM reponses WHERE id=\''.$_GET['id'].'\'');
 			$reponse = mysqli_fetch_array($ex);
-			mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$reponse['idsujet'].'\'') or die('Erreur SQL !<br>'.mysql_error());
+			mysqli_query($base,'DELETE FROM statutforum WHERE idsujet=\''.$reponse['idsujet'].'\'') or die('Erreur SQL !<br>'.mysqli_error($base));
 		}
-		mysqli_query($base,$req1) or die('Erreur SQL !<br>'.mysql_error());
+		mysqli_query($base,$req1) or die('Erreur SQL !<br>'.mysqli_error($base));
 	}
 }
 

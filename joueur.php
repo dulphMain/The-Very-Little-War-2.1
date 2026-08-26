@@ -16,24 +16,24 @@ include("includes/tout.php");
 
 if (isset($_GET['id'])) {
 	$sql = 'SELECT * FROM membre WHERE login="'.mysqli_real_escape_string($base,stripslashes(antihtml($_GET['id']))).'"';
-	$req = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$req = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$membre = mysqli_fetch_array($req);
 	$nb = mysqli_num_rows($req);
 
 	$sql1 = 'SELECT * FROM autre WHERE login="'.mysqli_real_escape_string($base,stripslashes(antihtml($membre['login']))).'"';
-	$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+	$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 	$donnees1 = mysqli_fetch_array($req1);
 	
 	$sql3 = 'SELECT idalliance FROM autre WHERE login="'.mysqli_real_escape_string($base,stripslashes(antihtml($membre['login']))).'"';
-	$req3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br>'.$sql3.'<br>'.mysql_error());
+	$req3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br>'.$sql3.'<br>'.mysqli_error($base));
 	$donnees3 = mysqli_fetch_array($req3);
 	
 	$sql2 = 'SELECT tag FROM alliances WHERE id="'.mysqli_real_escape_string($base,stripslashes(antihtml($donnees3['idalliance']))).'"';
-	$req2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysql_error());
+	$req2 = mysqli_query($base,$sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysqli_error($base));
 	$donnees2 = mysqli_fetch_array($req2);
 	
 	$sql4 = 'SELECT nombre FROM molecules WHERE proprietaire=\''.$membre['login'].'\' AND nombre!=0';
-	$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br>'.$sql4.'<br>'.mysql_error());
+	$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br>'.$sql4.'<br>'.mysqli_error($base));
 	$nb_molecules = 0;
 	while($donnees4 = mysqli_fetch_array($req4)) {
 		$nb_molecules = $nb_molecules + $donnees4['nombre'];

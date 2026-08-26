@@ -3,16 +3,16 @@ include("includes/basicprivatephp.php");
 
 if(isset($_POST['valider'])) {
 	$sql = 'SELECT niveaututo FROM autre WHERE login=\''.$_SESSION['login'].'\'';
-	$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$niveaututo = mysqli_fetch_array($ex);
 	if($niveaututo['niveaututo'] <= 8) {
 		$sqlTuto = 'SELECT * FROM tutoriel WHERE niveau=\''.$niveaututo['niveaututo'].'\'';
-		$exTuto = mysqli_query($base,$sqlTuto) or die ('Erreur SQL !<br>'.$sqlTuto.'<br>'.mysql_error());
+		$exTuto = mysqli_query($base,$sqlTuto) or die ('Erreur SQL !<br>'.$sqlTuto.'<br>'.mysqli_error($base));
 		$tuto = mysqli_fetch_array($exTuto);
 		$valide = "pasok";
 		if($niveaututo['niveaututo'] == 1) {
 			$sql = 'SELECT count(*) AS nb_classes FROM molecules WHERE proprietaire=\''.$_SESSION['login'].'\' AND formule != \'Vide \'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['nb_classes'] > 0) {
 				$valide = "ok";
@@ -20,7 +20,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 2) {
 			$sql = 'SELECT count(*) AS nb_classes FROM molecules WHERE proprietaire=\''.$_SESSION['login'].'\' AND nombre != 0';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['nb_classes'] > 0) {
 				$valide = "ok";
@@ -34,7 +34,7 @@ if(isset($_POST['valider'])) {
 					$chaine = $chaine.'generateur'.$ressource.''.$plus;
 			}
 			$sql = 'SELECT generateurenergie, '.$chaine.' FROM constructions WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			
 			$bool = 1;
@@ -47,7 +47,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 4) {
 			$sql = 'SELECT muraille FROM constructions WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['muraille'] > 0) {
 				$valide = "ok";
@@ -55,7 +55,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 5) {
 			$sql = 'SELECT description FROM autre WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['description'] != "") {
 				$valide = "ok";
@@ -63,7 +63,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 6) {
 			$sql = 'SELECT nbattaques FROM autre WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['nbattaques'] > 0) {
 				$valide = "ok";
@@ -71,7 +71,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 7) {
 			$sql = 'SELECT terrain FROM ressources WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['terrain'] > 100) {
 				$valide = "ok";
@@ -80,7 +80,7 @@ if(isset($_POST['valider'])) {
 		}
 		elseif($niveaututo['niveaututo'] == 8) {
 			$sql = 'SELECT idalliance FROM autre WHERE login=\''.$_SESSION['login'].'\'';
-			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+			$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 			$donnees = mysqli_fetch_array($ex);
 			if($donnees['idalliance'] != 0) {
 				$valide = "ok";
@@ -89,7 +89,7 @@ if(isset($_POST['valider'])) {
 		
 		if($valide == "ok") {
 			$sqlRessources1 = 'SELECT * FROM ressources WHERE login=\''.$_SESSION['login'].'\'';
-			$exRessources1 = mysqli_query($base,$sqlRessources1) or die ('Erreur SQL !<br>'.$sqlRessources1.'<br>'.mysql_error());
+			$exRessources1 = mysqli_query($base,$sqlRessources1) or die ('Erreur SQL !<br>'.$sqlRessources1.'<br>'.mysqli_error($base));
 			$ressources1 = mysqli_fetch_array($exRessources1);
 			$chaine = ""; 
 			foreach($nomsRes as $num => $ressource) {
@@ -98,10 +98,10 @@ if(isset($_POST['valider'])) {
 					$chaine = $chaine.''.$ressource.'='.($ressources1[$ressource] + $tuto['bonus'.$ressource]).''.$plus;
 			}
 			$sqlRessources = 'UPDATE ressources SET energie=\''.($ressources1['energie'] + $tuto['bonusenergie']).'\','.$chaine.' WHERE login=\''.$_SESSION['login'].'\''; 
-			mysqli_query($base,$sqlRessources) or die ('Erreur SQL !<br>'.$sqlRessources.'<br>'.mysql_error());
+			mysqli_query($base,$sqlRessources) or die ('Erreur SQL !<br>'.$sqlRessources.'<br>'.mysqli_error($base));
 			
 			$sqlUpdateNiveau = 'UPDATE autre SET niveaututo=\''.($niveaututo['niveaututo'] + 1).'\' WHERE login=\''.$_SESSION['login'].'\'';
-			mysqli_query($base,$sqlUpdateNiveau) or die ('Erreur SQL !<br>'.$sqlUpdateNiveau.'<br>'.mysql_error());
+			mysqli_query($base,$sqlUpdateNiveau) or die ('Erreur SQL !<br>'.$sqlUpdateNiveau.'<br>'.mysqli_error($base));
 			?>
 			<script LANGUAGE="JavaScript">
 			window.location= "constructions.php";
@@ -122,7 +122,7 @@ if(isset($_POST['valider'])) {
 include("includes/tout.php");
 
 $sql = 'SELECT niveaututo FROM autre WHERE login=\''.$_SESSION['login'].'\'';
-$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 $niveaututo = mysqli_fetch_array($ex);
 if(!(isset($_GET['tuto']))){
 if($niveaututo['niveaututo'] > 8) {
@@ -137,7 +137,7 @@ else {
 	<p>
 	<?php 
 	$sql1 = 'SELECT * FROM tutoriel WHERE niveau=\''.$niveaututo['niveaututo'].'\'';
-	$ex1 = mysqli_query($base,$sql1) or die ('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+	$ex1 = mysqli_query($base,$sql1) or die ('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 	$tutoriel = mysqli_fetch_array($ex1);
 
 	echo $tutoriel['description'];

@@ -1,14 +1,14 @@
 <?php
 //////////////////////////////////////////////////////////// Gestion des ressources
 $sql = 'SELECT tempsPrecedent FROM autre WHERE login=\''.$_POST['joueurAAttaquer'].'\'';
-$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 $adversaire = mysqli_fetch_array($ex);
 $nbsecondesAdverse = time() - $adversaire['tempsPrecedent'];// On calcule la différence de secondes
 $requete = mysqli_query($base,'SELECT depot FROM constructions WHERE login=\''.$_POST['joueurAAttaquer'].'\'');
 $depotAdverse = mysqli_fetch_array($requete);
 
 $sql1 = 'UPDATE autre SET tempsPrecedent=\''.time().'\' WHERE login=\''.$_POST['joueurAAttaquer'].'\'';
-$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+$ex1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////ENERGIE
 
 $sql = mysqli_query($base,'SELECT energie, revenuenergie FROM ressources WHERE login=\''.$_POST['joueurAAttaquer'].'\'');// On prends l'energie en ce moment
@@ -20,7 +20,7 @@ if($energie>=(4*pow(4, $depotAdverse['depot']+2)))
 $energie= (4*pow(4, $depotAdverse['depot']+2)); // on limite l'energie pouvant être reçu (depots de ressources)
 }
 $req='UPDATE ressources SET energie=\'' . $energie . '\' WHERE login = \'' . $_POST['joueurAAttaquer'] . '\'';// on inscrit ce nouveau energie
-$ex = mysqli_query($base,$req) or die ('Erreur SQL !<br>'.$req.'<br>'.mysql_error());
+$ex = mysqli_query($base,$req) or die ('Erreur SQL !<br>'.$req.'<br>'.mysqli_error($base));
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////RESSOURCES
 
@@ -34,13 +34,13 @@ foreach($nomsRes as $num => $ressource) {
 		$$ressource = (4*pow(4, $depotAdverse['depot']+2)); 
 	}
 	$req='UPDATE ressources SET '.$ressource.'=\'' . $$ressource . '\' WHERE login = \'' . $_POST['joueurAAttaquer'] . '\'';
-	$ex = mysqli_query($base,$req) or die ('Erreur SQL !<br>'.$req.'<br>'.mysql_error());
+	$ex = mysqli_query($base,$req) or die ('Erreur SQL !<br>'.$req.'<br>'.mysqli_error($base));
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////Gestion des molécules disparaissant
 
 $sql = 'SELECT * FROM molecules WHERE proprietaire=\''.$_POST['joueurAAttaquer'].'\' AND nombre > 0';
-$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+$ex = mysqli_query($base,$sql) or die ('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 
 while($molecules = mysqli_fetch_array($ex)) {
 	$nbAtomes = 0;
@@ -57,7 +57,7 @@ while($molecules = mysqli_fetch_array($ex)) {
 	}
 	
 	$sql1 = 'UPDATE molecules SET nombre=\''.$moleculesRestantes.'\' WHERE id=\''.$molecules['id'].'\'';
-	$ex1 = mysqli_query($base,$sql1) or die ('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+	$ex1 = mysqli_query($base,$sql1) or die ('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 }
 
 ?>

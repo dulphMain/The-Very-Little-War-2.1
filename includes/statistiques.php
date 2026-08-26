@@ -1,5 +1,5 @@
 <?php $sql = 'SELECT count(*) AS c FROM membre';
-	$req = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+	$req = mysqli_query($base,$sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysqli_error($base));
 	$inscrits = mysqli_fetch_array($req);
 
     $retour = mysqli_query($base,'SELECT COUNT(*) AS c FROM connectes');

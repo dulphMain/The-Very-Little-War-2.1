@@ -124,7 +124,7 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 
 	$premierJoueurAafficher = ($page - 1) * $nombreDeJoueursParPage;
     
-	$classement = mysqli_query($base,'SELECT * FROM autre ORDER BY '.$order.' DESC LIMIT ' . $premierJoueurAafficher . ', ' . $nombreDeJoueursParPage)or die('Erreur SQL !<br>'.mysql_error());   
+	$classement = mysqli_query($base,'SELECT * FROM autre ORDER BY '.$order.' DESC LIMIT ' . $premierJoueurAafficher . ', ' . $nombreDeJoueursParPage)or die('Erreur SQL !<br>'.mysqli_error($base));   
 	$compteur = $nombreDeJoueursParPage*($page-1)+1;
 	
 	if(isset($_SESSION['login'])) {
@@ -155,15 +155,15 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 		$enGuerre = "#2C2C2C";
 		if($donnees['idalliance'] > 0){
 			$sql = 'SELECT tag, id FROM alliances WHERE id=\'' . $donnees['idalliance'] . '\'';
-			$req = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+			$req = mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysqli_error($base));
 			$alliance = mysqli_fetch_array($req);
 		}
 		$sql1 = 'SELECT id FROM membre WHERE login =\'' . addslashes($donnees['login']) . '\'';
-		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysql_error());
+		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysqli_error($base));
 		$donnees1 = mysqli_fetch_array($req1);
 		
 		$sql4 = 'SELECT nombre FROM molecules WHERE proprietaire=\''.$donnees['login'].'\' AND nombre!=0';
-		$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br>'.$sql4.'<br>'.mysql_error());
+		$req4 = mysqli_query($base,$sql4) or die('Erreur SQL !<br>'.$sql4.'<br>'.mysqli_error($base));
 		$nb_molecules = 0;
 		while($donnees4 = mysqli_fetch_array($req4)) {
 			$nb_molecules = $nb_molecules + $donnees4['nombre'];
@@ -249,11 +249,11 @@ if(isset($_GET['sub']) AND $_GET['sub'] == 0) {
 }
 elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(antihtml($_GET['sub']))) == 1){
 	$sql = 'SELECT id FROM alliances';
-	$req =  mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysql_error());
+	$req =  mysqli_query($base,$sql) or die('Erreur SQL !'.$sql.'<br>'.mysqli_error($base));
 	
 	while($donnees = mysqli_fetch_array($req)) {
 		$sql1 = 'SELECT * FROM autre WHERE idalliance =\''.$donnees['id'].'\'';
-		$req1 =  mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysql_error());
+		$req1 =  mysqli_query($base,$sql1) or die('Erreur SQL !'.$sql1.'<br>'.mysqli_error($base));
 		$pointstotaux = 0;
         $cTotal = 0;
         $aTotal = 0;
@@ -268,7 +268,7 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 		}
 	
 		$sql2 = 'UPDATE alliances SET pointstotaux =\''.$pointstotaux.'\',totalConstructions=\''.$cTotal.'\',totalAttaque=\''.$aTotal.'\', totalDefense=\''.$dTotal.'\', totalPillage=\''.$pTotal.'\' WHERE id =\''.$donnees['id'].'\'';
-		$req2 =  mysqli_query($base,$sql2) or die('Erreur SQL !'.$sql2.'<br>'.mysql_error());
+		$req2 =  mysqli_query($base,$sql2) or die('Erreur SQL !'.$sql2.'<br>'.mysqli_error($base));
 	}
 	
 	
@@ -368,7 +368,7 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 			$enGuerre = "160,160,160";
 		}
 		$sql1 = 'SELECT login FROM autre WHERE idalliance="'.$donnees['id'].'"';
-		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysql_error());
+		$req1 = mysqli_query($base,$sql1) or die('Erreur SQL !<br>'.$sql1.'<br>'.mysqli_error($base));
 		$nbjoueurs = mysqli_num_rows($req1);
 		if ($nbjoueurs != 0) { // Pour éviter la division par zéro
 			?> 
@@ -388,10 +388,10 @@ elseif (isset($_GET['sub']) AND mysqli_real_escape_string($base,stripslashes(ant
 		}
 		else {
 			$sql3 = 'DELETE FROM alliances WHERE id=\''.$donnees['id'].'\'';
-			$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br>'.$sql3.'<br>'.mysql_error());
+			$ex3 = mysqli_query($base,$sql3) or die('Erreur SQL !<br>'.$sql3.'<br>'.mysqli_error($base));
 	
 			$sql5 = 'DELETE FROM invitations WHERE idalliance=\''.$donnees['id'].'\'';
-			$ex5 = mysqli_query($base,$sql5) or die('Erreur SQL !<br>'.$sql5.'<br>'.mysql_error());
+			$ex5 = mysqli_query($base,$sql5) or die('Erreur SQL !<br>'.$sql5.'<br>'.mysqli_error($base));
 		}
 	}
 	?>

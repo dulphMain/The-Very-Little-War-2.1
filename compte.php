@@ -15,9 +15,9 @@ if (isset($_POST['dateFin'])) { // Conversion de la date au format anglais
         query('DELETE FROM actionsformation WHERE login=\'' . $_SESSION['login'] . '\'');
         $date = $annee . '-' . $mois . '-' . $jour;
         $sql3 = 'INSERT INTO vacances VALUES (default,' . $membre['id'] . ',CURRENT_DATE,\'' . $date . '\')';
-        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysql_error());
+        $ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
         $sql6 = 'UPDATE membre SET vacance=1 WHERE id=' . $membre['id'] . '';
-        $ex6 = mysqli_query($base, $sql6) or die('Erreur SQL !<br>' . $sql6 . '<br>' . mysql_error());
+        $ex6 = mysqli_query($base, $sql6) or die('Erreur SQL !<br>' . $sql6 . '<br>' . mysqli_error($base));
         // Rafraichissement de la page
         echo "<script>window.location.replace(\"compte.php\")</script>";
     } else {
@@ -33,7 +33,7 @@ if (isset($_POST['changermdp']) and isset($_POST['changermdp1'])) {
         $_POST['changermdp1'] = mysqli_real_escape_string($base, stripslashes(antihtml($_POST['changermdp1'])));
         if ($_POST['changermdp'] == $_POST['changermdp1']) {
             $sql = 'UPDATE membre SET pass_md5=\'' . md5($_POST['changermdp']) . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-            mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+            mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
 
             $information = "Votre mot de passe a été changé.";
         } else {
@@ -49,7 +49,7 @@ if (isset($_POST['changermail'])) {
         if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['changermail'])) {
             $_POST['changermail'] = antiXSS($_POST['changermail']);
             $sql = 'UPDATE membre SET email=\'' . $_POST['changermail'] . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-            mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+            mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
             $information = "Votre adresse e-mail a été changée.";
         } else {
             $erreur = "Votre email n'est pas correct.";
@@ -62,7 +62,7 @@ if (isset($_POST['changermail'])) {
 if (isset($_POST['changerdescription'])) {
     $_POST['changerdescription'] = antiXSS($_POST['changerdescription'], true);
     $sql = 'UPDATE autre SET description=\'' . $_POST['changerdescription'] . '\' WHERE login=\'' . $_SESSION['login'] . '\'';
-    mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysql_error());
+    mysqli_query($base, $sql) or die('Erreur SQL !<br>' . $sql . '<br>' . mysqli_error($base));
     $autre['description'] = $_POST['changerdescription'];
 
     $information = "Votre description a été changée.";
@@ -126,16 +126,16 @@ if (!isset($_POST['supprimercompte'])) {
     finListe();
 
     $sql2 = 'SELECT id FROM membre WHERE login=\'' . $_SESSION['login'] . '\'';
-    $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysql_error());
+    $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
     $joueur = mysqli_fetch_array($ex2);
     $sql4 = 'SELECT vacance FROM membre WHERE id=\'' . $joueur['id'] . '\'';
-    $ex4 = mysqli_query($base, $sql4) or die('Erreur SQL !<br>' . $sql4 . '<br>' . mysql_error());
+    $ex4 = mysqli_query($base, $sql4) or die('Erreur SQL !<br>' . $sql4 . '<br>' . mysqli_error($base));
     $estEnVac = mysqli_fetch_array($ex4);
 
     // Si le joueur est déjà en vacances
     if ($estEnVac[0]) {
         $sql5 = 'SELECT dateDebut, dateFin FROM vacances WHERE idJoueur=\'' . $joueur['id'] . '\'';
-        $ex5 = mysqli_query($base, $sql5) or die('Erreur SQL !<br>' . $sql5 . '<br>' . mysql_error());
+        $ex5 = mysqli_query($base, $sql5) or die('Erreur SQL !<br>' . $sql5 . '<br>' . mysqli_error($base));
         $vacance = mysqli_fetch_array($ex5);
         // Convertion des dates 
         list($annee, $mois, $jour) = explode('-', $vacance['dateDebut']);
