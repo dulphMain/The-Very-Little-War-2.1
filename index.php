@@ -53,7 +53,7 @@ if ($nb == 0) {
 
 debutCarte();
 debutAccordion();
-itemAccordion($donnees['titre'], '<img src="images/accueil/newspaper.png" width="44">', $contenuNews);
+itemAccordion($donnees['titre'], '<img src="images/accueil/newspaper.png" width="44" alt="newspaper">', $contenuNews);
 finAccordion();
 finCarte();
 
