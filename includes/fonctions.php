@@ -1109,7 +1109,7 @@ function initPlayer($joueur)
             });
         </script>';
     }
-    $production = $production . '<br><br><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></center>';
+    $production = $production . '<br><br><div style="text-align: center"><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></div>';
 
     $bonusDuplicateur = 1;
     if ($autre['idalliance'] > 0) {
@@ -1134,7 +1134,7 @@ function initPlayer($joueur)
             });
         </script>';
     }
-    $productionCondenseur = $productionCondenseur . '<br><br><center><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></center>';
+    $productionCondenseur = $productionCondenseur . '<br><br><div style="text-align: center"><input type="image" class="w32" style="margin-right:20px" src="images/yes.png" name="actioninvitation" value="Sauvegarder"></form><a href="constructions.php"><img src="images/croix.png" class="w32" style="margin-left:20px"  alt="Ne pas sauvegarder"></a></div>';
 
 
     /////////////////////////////////////////
@@ -2363,7 +2363,7 @@ function progressBar($vie, $vieMax, $couleur)
         <div class="item-content" style="margin:0;padding:0;">
             <div class="item-inner" style="width: 80px;padding-right:0px;">
               <div data-progress="' . ($vie / $vieMax * 100) . '" class="progressbar color-' . $couleur . '" style="height:6px;border:2px solid black;"></div>
-              <center><strong style="font-size:13px">' . $vie . '/' . $vieMax . '</strong></center>
+              <div style="text-align: center"><strong style="font-size:13px">' . $vie . '/' . $vieMax . '</strong></div>
         </div>
         </div>';
 }
