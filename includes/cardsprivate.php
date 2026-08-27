@@ -30,7 +30,7 @@ if($tuto['niveaututo'] < 10) {
         $titreTuto = 'But du jeu';
         $contenuTuto = 'Le but du jeu est d\'être le joueur à obtenir le plus de points un jour avant la fin du mois. Après quoi, votre position dans le classement vous donnera un certain nombre de points de victoire et une nouvelle partie recommencera un jour plus tard, le 1<sup>er</sup> du mois. Vous trouverez votre nombre de points pour cette partie en cliquant sur le menu en haut à gauche. Pour gagner des points, vous pouver<ul><li><img alt="msusem" src="images/classement/museum.png" class="imageAide"> <strong>Construire</strong> des bâtiments</li><li><img alt="attaquer" src="images/classement/sword.png" class="imageAide"> <strong>Attaquer</strong> des ennemis</li><li><img alt="shield" src="images/classement/shield.png" class="imageAide"> <strong>Défendre</strong> contre vos ennemis</li><li><img alt="msusem" src="images/classement/bag.png" class="imageAide"> <strong>Piller</strong> les adversaires</li></ul><br><br>
         Vous pourrez attaquer les ennemis grâce à votre future armée de molécules ! Essayez d\'explorer et de découvrir le jeu en passant par <strong>le menu en haut à gauche</strong>.<br><br>
-        Afin de montrer que vous avez bien compris l\'interface du jeu, rendez-vous sur la page <nobr><img src="images/menu/classement.png" alt="checklist" class="imageAide"> <strong>Classement</strong></nobr>. Vous obtiendrez alors votre récompense.';
+        Afin de montrer que vous avez bien compris l\'interface du jeu, rendez-vous sur la page <span style="white-space: nowrap"><img src="images/menu/classement.png" alt="checklist" class="imageAide"> <strong>Classement</strong></span>. Vous obtiendrez alors votre récompense.';
         
         $objectif = 'Rendez-vous sur le <strong>Classement</strong>';
         $recompense = nombreEnergie(50).'';
@@ -43,7 +43,7 @@ if($tuto['niveaututo'] < 10) {
         $titreTuto = 'Les atomes';
         $contenuTuto = 'Les ressources principales du jeu sont les atomes : '.$texte.'<br><br>
         La quantité dont vous en disposez peut être trouvée en <strong>haut de ce tutoriel</strong>, en cliquant sur <br><br><center>'.chipInfo('Atomes','images/atom.png').'</center><br><br>
-        Ces atomes sont la brique de base pour vos futures <strong>molécules</strong>. Ce sera avec ces molécules que vous pourrez attaquer et vous défendre contre vos ennemis !<br><br> Pour produire des atomes, il faut augmenter le <nobr><img alt="prod" src="images/batiments/producteur.png" class="imageAide2"> <strong>Producteur</strong></nobr> dans les <nobr><img src="images/menu/constructions.png" alt="checklist" class="imageAide"> <strong>Constructions</strong></nobr><br><br>
+        Ces atomes sont la brique de base pour vos futures <strong>molécules</strong>. Ce sera avec ces molécules que vous pourrez attaquer et vous défendre contre vos ennemis !<br><br> Pour produire des atomes, il faut augmenter le <span style="white-space: nowrap"><img alt="prod" src="images/batiments/producteur.png" class="imageAide2"> <strong>Producteur</strong></span> dans les <span style="white-space: nowrap"><img src="images/menu/constructions.png" alt="checklist" class="imageAide"> <strong>Constructions</strong></span><br><br>
         Une fois augmenté au niveau supérieur, vous aurez obtenu <strong>'.sizeof($nomsRes).' points de production</strong> qu\'il vous faudra placer.
         ';
         
@@ -55,7 +55,7 @@ if($tuto['niveaututo'] < 10) {
         $titreTuto = 'L\'énergie';
         $contenuTuto = 'Il existe une autre ressource que les atomes<br><br><br><center>'.nombreEnergie("Energie").'</center> <br><br>Elle est indispensable pour pouvoir <strong>attaquer</strong>, <strong>construire</strong> ou même <strong>acheter</strong> des atomes sur le marché.<br>Vous pouvez trouver l\'énergie que vous possédez juste au <strong>dessus de ce tutoriel</strong>. Exemple : <br><br>
         <center>'.nombreEnergie(floor($ressources['energie']).'/'.$placeDepot.' <span style="color:green;margin-left:10px"> +'.chiffrePetit(revenuEnergie($constructions['generateur'],$_SESSION['login'])).'</span>/h').'</center> <br>signifie que vous possédez <strong>'.floor($ressources['energie']).'</strong> sur les <strong>'.$placeDepot.'</strong> que vous pouvez posséder au maximum. De plus vous produisez <strong>'.revenuEnergie($constructions['generateur'],$_SESSION['login']).'</strong> d\'énergie par heure.<br><br><hr><br>
-        Il existe deux manières de produire de l\'énergie : augmenter le <nobr><img alt="prod" src="images/batiments/generateur.png" class="imageAide2"> <strong>Générateur</strong></nobr> dans les constructions ou <strong>créer des molécules</strong>. Pour qu\'une molécule produise de l\'énergie, il faut qu\'elle soit composée <strong style="color:pink">d\'iode</strong>. Pour produire de l\'iode, il faut placer les <strong>points de production</strong> obtenus.<br><br>Voici comment faire : 
+        Il existe deux manières de produire de l\'énergie : augmenter le <span style="white-space: nowrap"><img alt="prod" src="images/batiments/generateur.png" class="imageAide2"> <strong>Générateur</strong></span> dans les constructions ou <strong>créer des molécules</strong>. Pour qu\'une molécule produise de l\'énergie, il faut qu\'elle soit composée <strong style="color:pink">d\'iode</strong>. Pour produire de l\'iode, il faut placer les <strong>points de production</strong> obtenus.<br><br>Voici comment faire : 
         <ul><li><img alt="msusem" src="images/batiments/producteur.png" class="imageAide"> <strong>Cliquez</strong> sur le Producteur dans les <strong>Constructions</strong>.</li>
         <li><img alt="plus" src="images/add.png" class="imageAide"> <strong>Cliquez</strong> sur <img alt="plus" src="images/add.png" class="imageAide"> à côté de l\'atome dont vous voulez aumenter la production (<img style="vertical-align:middle;width:20px;height:20px;" alt="Energie" src="images/iode.png" alt="iode" title="Iode"> est l\'iode)</li> 
         <li>- <strong>Répétez</strong> cette action <strong>'.(sizeof($nomsRes)-1).' fois</strong> (sur différents atomes).</li>
@@ -72,7 +72,7 @@ if($tuto['niveaututo'] < 10) {
         $titreTuto = 'L\'armée';
         $contenuTuto = 'Les atomes sont la brique de base pour vos <strong>molécules</strong>. Ces molécules, comme des <strong>soldats</strong> permettront d\'attaquer ou de vous défendre contre d\'autres joueurs.<br><br>
         La particularité de The Very Little War est que <strong>vous choisissez les caractéristiques de vos soldats (ou molécules)</strong>. La <strong>composition</strong> de votre molécule en atomes déterminera ses caractéristiques au combat. Chaque atome possède sa caractéristique propre : '.$texte.'<br><br>
-        Pour créer votre molécule, cliquez sur <nobr><img alt="c" src="images/menu/armee.png" class="imageAide"> <strong>Armée</strong></nobr> dans le menu.';
+        Pour créer votre molécule, cliquez sur <span style="white-space: nowrap"><img alt="c" src="images/menu/armee.png" class="imageAide"> <strong>Armée</strong></span> dans le menu.';
          
         $objectif = 'Aller sur la page <strong>Armée</strong>';
         $recompense = 'Ma gratitude';
@@ -91,7 +91,7 @@ if($tuto['niveaututo'] < 10) {
     elseif($tuto['niveaututo'] == 7) {
         $image = 'images/tutoriel/map.png';
         $titreTuto = 'Carte';
-        $contenuTuto = 'Votre armée sera bientôt prête ! Maintenant, sélectionnez <nobr><img alt="c" src="images/menu/attaquer.png" class="imageAide"> <strong>Carte</strong></nobr> dans le menu à gauche.<hr><br>
+        $contenuTuto = 'Votre armée sera bientôt prête ! Maintenant, sélectionnez <span style="white-space: nowrap"><img alt="c" src="images/menu/attaquer.png" class="imageAide"> <strong>Carte</strong></span> dans le menu à gauche.<hr><br>
         Vous vous trouvez alors devant une <strong>carte</strong> que vous pouvez déplacer. Votre emplacement est entouré <strong style="color:orange">d\'orange</strong>, <strong style="color:blue">votre équipe en bleue</strong>, vos <strong style="color:green">alliés (pacte) en vert</strong> et vos <strong style="color:red">adversaires (guerre) en rouge</strong>.<br><br>
         <strong>Cliquez sur un joueur</strong> sur la carte : vous tombez alors sur son profil. Vous pouvez effectuer différentes actions telles que <strong>l\'espionner</strong> <img alt="att" src="images/rapports/binoculars.png" class="imageAide">, lui <strong>envoyer un message</strong> <img alt="att" src="images/message_ferme.png" class="imageAide">, voir ses <strong>médailles</strong> <img alt="att" src="images/medailles.png" class="imageAide"> et bientôt <strong>l\'attaquer</strong> <img alt="att" src="images/rapports/sword.png" class="imageAide">. Malheureusement, vous êtes encore sous <strong>protection débutant</strong> pour <strong>deux jours</strong>, retenez vos pulsions meurtrières jusque là !';
         
@@ -101,7 +101,7 @@ if($tuto['niveaututo'] < 10) {
     elseif($tuto['niveaututo'] == 8) {
         $image = 'images/tutoriel/team.png';
         $titreTuto = 'Equipe';
-        $contenuTuto = 'En attendant, afin d\'être plus puissant face aux autres joueurs, rejoindre une équipe est une bonne manière de fonctionner.<br>Rendez-vous sur la page  <nobr><img alt="c" src="images/menu/alliance.png" class="imageAide"> <strong>Equipe</strong></nobr>.<br><br><strong>Deux possibilités</strong> : en créer une nouvelle ou demander à un membre d\'une équipe déjà existante de vous inviter dans la sienne.';
+        $contenuTuto = 'En attendant, afin d\'être plus puissant face aux autres joueurs, rejoindre une équipe est une bonne manière de fonctionner.<br>Rendez-vous sur la page  <span style="white-space: nowrap"><img alt="c" src="images/menu/alliance.png" class="imageAide"> <strong>Equipe</strong></span>.<br><br><strong>Deux possibilités</strong> : en créer une nouvelle ou demander à un membre d\'une équipe déjà existante de vous inviter dans la sienne.';
         
         $objectif = 'Rejoindre une équipe';
         $recompense = 'Champ de force <span class="important">niveau 1</span> et '.nombreEnergie(50);
@@ -109,7 +109,7 @@ if($tuto['niveaututo'] < 10) {
     elseif($tuto['niveaututo'] == 9) {
         $image = 'images/tutoriel/question.png';
         $titreTuto = 'Fin du tutoriel';
-        $contenuTuto = 'Voilà les bases du jeu mais il reste encore beaucoup à découvrir, explorez le menu ! Le <nobr><img alt="c" src="images/menu/classement.png" class="imageAide"> <strong>Classement</strong></nobr> vous permettra de vous évaluer par rapport aux autres, les <nobr><img alt="c" src="images/menu/medailles.png" class="imageAide"> <strong>Médailles</strong></nobr> vous donnent des étapes pour obtenir des bonus, le <nobr><img alt="c" src="images/menu/marche.png" class="imageAide"> <strong>Marché</strong></nobr> vous permet d\'échanger et d\'envoyer des ressources, le <nobr><img alt="c" src="images/menu/forum.png" class="imageAide"> <strong>Forum</strong></nobr> vous permettra d\'échanger et de proposer des améliorations ou des bugs...<br><br>
+        $contenuTuto = 'Voilà les bases du jeu mais il reste encore beaucoup à découvrir, explorez le menu ! Le <span style="white-space: nowrap"><img alt="c" src="images/menu/classement.png" class="imageAide"> <strong>Classement</strong></span> vous permettra de vous évaluer par rapport aux autres, les <span style="white-space: nowrap"><img alt="c" src="images/menu/medailles.png" class="imageAide"> <strong>Médailles</strong></span> vous donnent des étapes pour obtenir des bonus, le <span style="white-space: nowrap"><img alt="c" src="images/menu/marche.png" class="imageAide"> <strong>Marché</strong></span> vous permet d\'échanger et d\'envoyer des ressources, le <span style="white-space: nowrap"><img alt="c" src="images/menu/forum.png" class="imageAide"> <strong>Forum</strong></span> vous permettra d\'échanger et de proposer des améliorations ou des bugs...<br><br>
         Bon jeu et bonne chance sur <span class="important">The Very Little War !</span>';
         
         if(preg_match("#Visiteur[0-9]+#",$_SESSION['login'])) {
