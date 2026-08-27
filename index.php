@@ -69,7 +69,7 @@ debutContent(); ?>
 <div style="margin-right:15%"><span style="color:#F9B106;" class="atome">soufre</span><img alt="so" src="images/accueil/soufre.png" class="imageAtome"></div>
 
 <br>
-<div style="margin-left:5%;text-align:middle"><span style="color:#087625;" class="atome">chlore</span><img alt="so" src="images/accueil/chlore.png" class="imageAtome"></div>
+<div style="margin-left:5%;text-align:center"><span style="color:#087625;" class="atome">chlore</span><img alt="so" src="images/accueil/chlore.png" class="imageAtome"></div>
 
 <br>
 <div style="margin-left:40%">
@@ -77,7 +77,7 @@ debutContent(); ?>
 </div>
 <div style="margin-left:40%">
     <img alt="so" src="images/accueil/iode.png" style="float:left;" class="imageAtome">
-    <img alt="so" src="images/accueil/brome.png" style="text-align:middle;" class="imageAtome">
+    <img alt="so" src="images/accueil/brome.png" style="text-align:center;" class="imageAtome">
 </div>
 <br>
 <br><br><br>
