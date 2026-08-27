@@ -387,7 +387,7 @@ else { // si cela n'a pas été initialisé à la première connexion
                    
     'vueEnsemble' => 'Sur cette page se trouve un résumé de l\'ensemble de votre armée. En cliquant sur le nom (la formule) de la molécule, vous pouvez voir ses statistiques',
                    
-    'composition' => 'Vous créez ici le <strong>plan de base</strong> d\'une de vos classes de molécules. Vous pourrez après <strong>créer des molécules ayant la composition que vous allez indiquer</strong>. Plus il y a certains atomes dans cette molécule, plus la caractéristique indiquée sera augmentée.<br><br><img src="images/danger.png" class="imageAide"> <span style="color:red">Plus il y a d\'atomes dans votre molécule, plus elle sera <strong>instable</strong> (elle s\'auto-détruira plus rapidement au cours du temps). </span>',
+    'composition' => 'Vous créez ici le <strong>plan de base</strong> d\'une de vos classes de molécules. Vous pourrez après <strong>créer des molécules ayant la composition que vous allez indiquer</strong>. Plus il y a certains atomes dans cette molécule, plus la caractéristique indiquée sera augmentée.<br><br><img src="images/danger.png" class="imageAide" alt="danger"> <span style="color:red">Plus il y a d\'atomes dans votre molécule, plus elle sera <strong>instable</strong> (elle s\'auto-détruira plus rapidement au cours du temps). </span>',
         
     'demivie' => 'Cela signifie que la moitié des molécules de cette classe seront mortes au bout de ce temps là.',
                    
