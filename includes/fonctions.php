@@ -2068,8 +2068,7 @@ function debutCarte($titre = false, $style = "", $image = false, $overflow = fal
     <div class="card ' . $classe . '" >
         <div class="card-content" >
             ' . $titre . '
-            <div class="card-content-inner" ' . $overflow . ' >
-            <p>';
+            <div class="card-content-inner" ' . $overflow . '>';
 }
 
 function finCarte($footer = false)
@@ -2081,8 +2080,7 @@ function finCarte($footer = false)
     } else {
         $footer = "";
     }
-    echo '   </p>
-    	   </div>
+    echo '</div>
            ' . $footer . '
 	   </div>
     </div>
