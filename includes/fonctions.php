@@ -1708,8 +1708,7 @@ function remiseAZero()
         }
         $chaine = $chaine . '' . $ressource . '=default' . $plus;
     }
-    $sql = 'UPDATE ressources SET energie=default, terrain=default, revenuenergie=default, niveauclasse=1, ' . $chaine . '';
-    echo $sql;
+    $sql = 'UPDATE ressources SET energie=default, terrain=default, revenuenergie=default, niveauclasse=1, ' . $chaine;
     mysqli_query($base, $sql);
     mysqli_query($base, 'DELETE FROM declarations');
     mysqli_query($base, 'DELETE FROM invitations');
@@ -1863,15 +1862,25 @@ function supprimerJoueur($joueur)
 
 function transformInt($nombre)
 {
-    $nombre = preg_replace('#K#i', '000', $nombre);
-    $nombre = preg_replace('#M#i', '000000', $nombre);
-    $nombre = preg_replace('#G#i', '000000000', $nombre);
-    $nombre = preg_replace('#T#i', '000000000000', $nombre);
-    $nombre = preg_replace('#P#i', '000000000000000', $nombre);
-    $nombre = preg_replace('#E#i', '000000000000000000', $nombre);
-    $nombre = preg_replace('#Z#i', '000000000000000000000', $nombre);
-    $nombre = preg_replace('#Y#i', '000000000000000000000000', $nombre);
-    return $nombre;
+    $si = [
+        [ "value" => 1E24, "symbol" => "Y" ],
+        [ "value" => 1E21, "symbol" => "Z" ],
+        [ "value" => 1E18, "symbol" => "E" ],
+        [ "value" => 1E15, "symbol" => "P" ],
+        [ "value" => 1E12, "symbol" => "T" ],
+        [ "value" => 1E9,  "symbol" => "G" ],
+        [ "value" => 1E6,  "symbol" => "M" ],
+        [ "value" => 1E3,  "symbol" => "K" ]
+    ];
+    $value = floatval($nombre);
+    for ($i = 0; $i < strlen($nombre); $i++) {
+        for ($j = 0; $j < count($si); $j++) {
+            if ($nombre[$i] == $si[$j]["symbol"]) {
+                $value *= $si[$j]["value"];
+            }
+        }
+    }
+    return $value;
 }
 
 // Affichage

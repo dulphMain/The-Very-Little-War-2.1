@@ -85,7 +85,6 @@ if (!$joueurEnVac[0]) {
     $nbsecondes = time() - $donnees['tempsPrecedent'];
 
     updateActions($_SESSION['login']);
-    include("includes/constantes.php");
 }
 // Ajout par Yojim
 // Si le joueur est encore en mode vacances

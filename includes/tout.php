@@ -14,7 +14,7 @@
     }
     ?>
     
-    <!-- commun au publique et au privé
+    <!-- commun au publique et au privé -->
     <div class="views tabs">
       <!-- Your main view, should have "view-main" class -->
       <div class="view tab view-main tab active " >
