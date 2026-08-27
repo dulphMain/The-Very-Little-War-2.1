@@ -90,7 +90,7 @@ debutContent(); ?>
 
             debutCarte();
             debutContent(); ?>
-<center><img src="images/accueil/molecules.png" alt="2" class="w32"></center><br>Créez vos propres molécules à partir des différents atomes : <strong>carbone</strong> pour la défense, <span style="color:red">oxygène</span> pour l'attaque, reste à découvrir les capacités du <span style="color:orange">soufre</span>, <span style="color:maroon">brome</span>, <span style="color:lightGray">hydrogène</span>, <span style="color:fuschia">iode</span> et <span style="color:blue">azote</span> !
+<center><img src="images/accueil/molecules.png" alt="2" class="w32"></center><br>Créez vos propres molécules à partir des différents atomes : <strong>carbone</strong> pour la défense, <span style="color:red">oxygène</span> pour l'attaque, reste à découvrir les capacités du <span style="color:orange">soufre</span>, <span style="color:maroon">brome</span>, <span style="color:lightGray">hydrogène</span>, <span style="color:fuchsia">iode</span> et <span style="color:blue">azote</span> !
 <?php
 finContent();
 finCarte();
