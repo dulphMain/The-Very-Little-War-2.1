@@ -59,7 +59,7 @@ finCarte();
 
 debutCarte("The Very Little War", "", 'images/accueil/wallpaper.jpg');
 debutContent(); ?>
-<span style="text-align: center">Depuis la nuit des temps, les atomes se livrent une guerre sans fin...</span><br><br>
+<div style="text-align: center">Depuis la nuit des temps, les atomes se livrent une guerre sans fin...</div><br><br>
 <img alt="so" src="images/accueil/azote.png" class="imageAtome"><img alt="so" src="images/accueil/carbone.png" style="float:right" class="imageAtome">
 <div style="text-align:left;"><span style="color:#0024A7" class="atome">azote</span></div>
 <div style="text-align:right;"><span class="atome">carbone</span></div>
@@ -90,28 +90,28 @@ debutContent(); ?>
 
             debutCarte();
             debutContent(); ?>
-<span style="text-align: center"><img src="images/accueil/molecules.png" alt="2" class="w32"></span><br>Créez vos propres molécules à partir des différents atomes : <strong>carbone</strong> pour la défense, <span style="color:red">oxygène</span> pour l'attaque, reste à découvrir les capacités du <span style="color:orange">soufre</span>, <span style="color:maroon">brome</span>, <span style="color:lightGray">hydrogène</span>, <span style="color:fuchsia">iode</span> et <span style="color:blue">azote</span> !
+<div style="text-align: center"><img src="images/accueil/molecules.png" alt="2" class="w32"></div><br>Créez vos propres molécules à partir des différents atomes : <strong>carbone</strong> pour la défense, <span style="color:red">oxygène</span> pour l'attaque, reste à découvrir les capacités du <span style="color:orange">soufre</span>, <span style="color:maroon">brome</span>, <span style="color:lightGray">hydrogène</span>, <span style="color:fuchsia">iode</span> et <span style="color:blue">azote</span> !
 <?php
 finContent();
 finCarte();
 
 debutCarte();
 debutContent(); ?>
-<span style="text-align: center"><img src="images/accueil/deal.png" alt="alliance" class="w32"></span><br><strong>Alliez-vous</strong> avec d'autres joueurs afin d'obtenir des bonus grâce au duplicateur : l'union fait la force !
+<div style="text-align: center"><img src="images/accueil/deal.png" alt="alliance" class="w32"></div><br><strong>Alliez-vous</strong> avec d'autres joueurs afin d'obtenir des bonus grâce au duplicateur : l'union fait la force !
 <?php
 finContent();
 finCarte();
 
 debutCarte();
 debutContent(); ?>
-<span style="text-align: center"><img src="images/accueil/crown.png" alt="victoire" class="w32"></span><br>Prenez la tête des 4 différents classements en détruisant vos ennemis et <strong>remportez la victoire</strong> au bout du mois ! Une nouvelle partie recommencera tous les premiers du mois pour permettre de repartir sur un pied d'égalité...<br><br>
+<div style="text-align: center"><img src="images/accueil/crown.png" alt="victoire" class="w32"></div><br>Prenez la tête des 4 différents classements en détruisant vos ennemis et <strong>remportez la victoire</strong> au bout du mois ! Une nouvelle partie recommencera tous les premiers du mois pour permettre de repartir sur un pied d'égalité...<br><br>
 <?php
 finContent();
 finCarte();
 
 debutCarte();
 debutContent(); ?>
-<span style="text-align: center"><img src="images/accueil/agenda.png" alt="1" class="w32"></span><br>Découvrez le bon côté de la physique, <strong>aucune connaissance scientifique</strong> n'est requise pour ce jeu ! Vous pouvez quand même en apprendre plus grâce aux cours <strong><a href="sinstruire.php">S'instruire</a></strong>.
+<div style="text-align: center"><img src="images/accueil/agenda.png" alt="1" class="w32"></div><br>Découvrez le bon côté de la physique, <strong>aucune connaissance scientifique</strong> n'est requise pour ce jeu ! Vous pouvez quand même en apprendre plus grâce aux cours <strong><a href="sinstruire.php">S'instruire</a></strong>.
 <?php
 finContent();
 finCarte();
