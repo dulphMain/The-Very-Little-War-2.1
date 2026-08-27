@@ -81,10 +81,10 @@ debutContent(); ?>
 </div>
 <br>
 <br><br><br>
-<span style="text-align: center">Prenez part à ce combat éternel en contrôlant votre propre armée de molécules !<br><br><img src="images/icone.png" style="height:50px;width:50px" alt="atome"><br><br>
+<div style="text-align: center">Prenez part à ce combat éternel en contrôlant votre propre armée de molécules !<br><br><img src="images/icone.png" style="height:50px;width:50px" alt="atome"><br><br>
     Rejoignez une communauté investie autour d'un jeu complétement <strong>gratuit</strong>, seule votre stratégie pourra vous sauver ! <br><br>
     <?php echo submit(['link' => 'inscription.php', 'titre' => 'S\'inscrire']); ?><br>
-</span><?php
+</div><?php
             finContent();
             finCarte();
 
