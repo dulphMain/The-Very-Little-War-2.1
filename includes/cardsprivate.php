@@ -149,7 +149,7 @@ if($tuto['niveaututo'] < 10) {
             else {
                 $recompense = important('Récompense').$recompense;
             }
-            itemAccordion($titreTuto,'<img src="'.$image.'" class="imageMedia">',$contenuTuto.'<br><br>'.$objectif.$recompense,"tutorielAccordion");
+            itemAccordion($titreTuto,'<img src="'.$image.'" class="imageMedia" alt="tuto image">',$contenuTuto.'<br><br>'.$objectif.$recompense,"tutorielAccordion");
         finListe();
     finCarte();
     }
