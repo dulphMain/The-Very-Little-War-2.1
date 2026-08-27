@@ -300,11 +300,11 @@ else { // si cela n'a pas été initialisé à la première connexion
     <?php
     // liste des aides
     
-    $listeRessources = '<center>';
+    $listeRessources = '<div style="text-align: center">';
     foreach($nomsRes as $num => $ressource) { 
         $listeRessources = $listeRessources.nombreAtome($num,'<span id="affichage'.$ressource.'" style="font-size:12px;">'.chiffrePetit($ressources[$ressource]).'/'.$ressourcesMax.'</span><span style="color:green;margin-left:3px;font-size:10px;">+'.chiffrePetit(revenuAtome($num,$_SESSION['login'])).'/h</span> <span style="color:'.$couleurs[$num].';font-size:10px;font-style:italic;margin-left:10px">'.$utilite[$num].'</span> ').'<br>';
     } 
-    $listeRessources = $listeRessources.'</center>';
+    $listeRessources = $listeRessources.'</div>';
     
     echo '
         <div class="popover popover-ressources">
