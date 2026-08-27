@@ -2246,7 +2246,7 @@ function item($options)
         $accordion = '
         <div class="accordion-item-content">
             <div class="content-block">
-                ' . $options["accordion"] . '
+                <p>' . $options["accordion"] . '</p>
             </div>
         </div>';
     } else {
@@ -2402,7 +2402,7 @@ function itemAccordion($titre = false, $media = false, $contenu = false, $id = f
         </div></a>
         <div class="accordion-item-content">
             <div class="content-block">
-                <p>' . $contenu . '</p>
+                ' . $contenu . '
             </div>
         </div>
     </li>';
