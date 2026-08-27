@@ -312,7 +312,7 @@ else { // si cela n'a pas été initialisé à la première connexion
             <div class="popover-inner">
                 <div class="content-block-title titreAide">Atomes</div>
                 <div class="content-block">
-                <p>'.$listeRessources.'</p>
+                '.$listeRessources.'
                 </div>
             </div>
         </div>';
