@@ -207,10 +207,10 @@ if (!isset($_POST['supprimercompte'])) {
     important("Supprimer votre compte ?");
     debutListe();
     item(['input' => '
-                 <span style="text-align: center">
+                 <div style="text-align: center">
                     <input type="image" style="vertical-align:middle;margin-right:80px" src="images/yes.png" name="oui" value="Oui"><input src="images/croix.png" style="vertical-align:middle" type ="image" name="non" value="Non">
 	               <input type="hidden" name="verification">
-                </span>', 'form' => ["compte.php", "supprimerLeCompte"]]);
+                </div>', 'form' => ["compte.php", "supprimerLeCompte"]]);
     finListe();
     finCarte();
 }
