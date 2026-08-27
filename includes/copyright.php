@@ -14,8 +14,6 @@ finCarte();
         </div>
     </div>
 </div>
-</body>
-</html>
 
 
   <script type="text/javascript" src="cordova.js"></script>
@@ -260,3 +258,5 @@ if(isset($_GET['deployer'])){
 	}
 
 </script>
+</body>
+</html>
