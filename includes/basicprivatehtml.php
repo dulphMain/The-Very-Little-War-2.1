@@ -405,7 +405,7 @@ else { // si cela n'a pas été initialisé à la première connexion
     [i]Italique[/i] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> <span style="font-style:italic">Italique</span><br>
     Texte[sup]Puissance[/sup] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> Texte<sup>Puissance</sup><br>
     Texte[sub]Indice[/sub] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> Texte<sub>Indice</sub><br>
-    [center]Texte centré[/center] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> <center>Texte centré</center><br>
+    [center]Texte centré[/center] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> </p><div style="text-align: center">Texte centré</div><p><br>
     <nobr>[title]Titre[/title] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> <span style="font-size: 25px;font-weight:bold">Titre</span></nobr><br>
     [color=red]Rouge[/color] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> <span style="color:red">Rouge</span><br>
     [color=blue]Bleu[/color] <img alt="fleche" src="images/attaquer/arrow.png" style="vertical-align:middle" class="w16"> <span style="color:blue">Bleu</span><br>
