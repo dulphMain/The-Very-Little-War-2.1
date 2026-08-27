@@ -1544,7 +1544,7 @@ function image($num)
 {
     global $nomsRes;
     global $nomsAccents;
-    return '<img style="vertical-align:middle;width:37px;height:37px;" alt="Energie" src="images/' . $nomsRes[$num] . '.png" alt="' . $nomsRes[$num] . '" title="' . ucfirst($nomsAccents[$num]) . '">';
+    return '<img style="vertical-align:middle;width:37px;height:37px;" src="images/' . $nomsRes[$num] . '.png" alt="' . $nomsRes[$num] . '" title="' . ucfirst($nomsAccents[$num]) . '">';
 }
 
 function imageEnergie($imageAide = false)
