@@ -214,7 +214,7 @@ else { // si cela n'a pas été initialisé à la première connexion
 
 ?>
 
-<body class="theme-black" style="font-weight:regular">
+<body class="theme-black" style="font-weight: normal">
     <div class="panel-overlay"></div>
   <div class="panel panel-left panel-cover">
     <div style="display:block;width:100%;height:70px;color:white;font-size:20px;background-color: black;box-shadow: 5px 2px 5px 5px rgba(0, 0, 0, 0.2);">
