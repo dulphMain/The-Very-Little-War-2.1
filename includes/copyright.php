@@ -16,15 +16,15 @@ finCarte();
 </div>
 
 
-  <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/notification.js"></script>
-    <script type="text/javascript" src="js/PushNotification.js"></script>
+  <script src="cordova.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/PushNotification.js"></script>
 
-    <script type="text/javascript" src="js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="js/loader.js"></script>
-    <script type="text/javascript" src="js/aes.js"></script>
-    <script type="text/javascript" src="js/aes-json-format.js"></script>
+    <script src="js/framework7.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/aes-json-format.js"></script>
     
 <script>
     document.getElementById('titre').style.marginLeft = window.innerWidth*0.32-105+"px";
