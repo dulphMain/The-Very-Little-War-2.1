@@ -7,7 +7,7 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
 <link href="style/css/font-awesome.min.css" rel="stylesheet">
 <link href="style/css/bootstrap.min.css" rel="stylesheet">
 <link href="style/css/templatemo-style.css" rel="stylesheet">
