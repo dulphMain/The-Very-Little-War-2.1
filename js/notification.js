@@ -53,7 +53,7 @@ var app = {
                       req.send(null);
                     }
 
-                    ajaxGet("http://www.theverylittlewar.com/tests/inscrireCle.php?cle="+e.regid,function(){
+                    ajaxGet("https://www.theverylittlewar.com/tests/inscrireCle.php?cle="+e.regid,function(){
                     })
           
                 }
