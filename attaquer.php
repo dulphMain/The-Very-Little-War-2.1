@@ -13,7 +13,7 @@ foreach ($paliersTerreur as $num => $palier) {
     }
 }
 
-$coutPourUnAtome = 0.15 * (1 + $bonus / 100);
+$coutPourUnAtome = 0.15 * (1 - $bonus / 100);
 
 $ex = mysqli_query($base, 'SELECT nbattaques FROM autre WHERE login=\'' . $_SESSION['login'] . '\'');
 $donnees = mysqli_fetch_array($ex);
