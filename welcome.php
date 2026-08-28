@@ -7,7 +7,7 @@
   <meta name="author" content="PlanetHoster Inc.">
   <link rel="icon" href="//www.planethoster.net/favicon.ico" type="image/x-icon">
 <!--[if lt IE 9]>
-<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 <style type="text/css">
   html{
@@ -277,7 +277,7 @@
   <div id="content">
     <div id="header-title">
       <div class="container">
-        <h1 id="title">Votre Hébergement <a href="http://<?php if (!(preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_SERVER['SERVER_NAME']))) echo "<a href='http://".$_SERVER['SERVER_NAME']."'>".$_SERVER['SERVER_NAME']."</a>"; ?>"><?php if (!(preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_SERVER['SERVER_NAME']))) echo "<a href='http://".$_SERVER['SERVER_NAME']."'>".$_SERVER['SERVER_NAME']."</a>"; ?></a> est maintenant actif !</h1>
+        <h1 id="title">Votre Hébergement <a href="https://<?php if (!(preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_SERVER['SERVER_NAME']))) echo "<a href='https://".$_SERVER['SERVER_NAME']."'>".$_SERVER['SERVER_NAME']."</a>"; ?>"><?php if (!(preg_match('/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\z/', $_SERVER['SERVER_NAME']))) echo "<a href='https://".$_SERVER['SERVER_NAME']."'>".$_SERVER['SERVER_NAME']."</a>"; ?></a> est maintenant actif !</h1>
       </div>
     </div>
     <div id="title-step">
@@ -290,8 +290,8 @@
       <div id="step-1" class="step">
         <h3>1</h3>
         <p class="step-txt">Si vous êtes le propriétaire, téléversez (upload) vos fichiers dans le répertoire public_html</p>
-        <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel"><img src="//cdn.planethoster.net/welcome/dossier_cp.png" class="step-img-logo"></a>
-        <a href="http://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel" class="step-cta">CONNEXION CPANEL</a>
+        <a href="https://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel"><img src="//cdn.planethoster.net/welcome/dossier_cp.png" class="step-img-logo"></a>
+        <a href="https://<?php echo $_SERVER['SERVER_NAME'];?>/cpanel" class="step-cta">CONNEXION CPANEL</a>
       </div>
       <div id="step-2" class="step">
         <h3>2</h3>
