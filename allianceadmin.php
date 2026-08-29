@@ -57,18 +57,22 @@ if ($gradeChef) {
 
 	if (isset($_POST['changernom'])) {
 		if (!empty($_POST['changernom'])) {
-			$_POST['changernom'] = mysqli_real_escape_string($base, stripslashes(antihtml($_POST['changernom'])));
-			$sql2 = 'SELECT nom FROM alliances WHERE nom=\'' . $_POST['changernom'] . '\' ';
-			$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
-			$nballiance = mysqli_num_rows($ex2);
-
-			if ($nballiance == 0) {
-				$sql3 = 'UPDATE alliances SET nom=\'' . $_POST['changernom'] . '\' WHERE id=\'' . $idalliance['idalliance'] . '\'';
-				$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
-
-				$information = 'Le nom de l\'équipe a bien été changé et est devenu ' . $_POST['changernom'] . '.';
+			if (preg_match("#^[a-zA-Z0-9_]{3,16}$#", $_POST['changernom'])) {
+				$_POST['changernom'] = mysqli_real_escape_string($base, stripslashes(antihtml($_POST['changernom'])));
+				$sql2 = 'SELECT nom FROM alliances WHERE nom=\'' . $_POST['changernom'] . '\' ';
+				$ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
+				$nballiance = mysqli_num_rows($ex2);
+	
+				if ($nballiance == 0) {
+					$sql3 = 'UPDATE alliances SET nom=\'' . $_POST['changernom'] . '\' WHERE id=\'' . $idalliance['idalliance'] . '\'';
+					$ex3 = mysqli_query($base, $sql3) or die('Erreur SQL !<br>' . $sql3 . '<br>' . mysqli_error($base));
+	
+					$information = 'Le nom de l\'équipe a bien été changé et est devenu ' . $_POST['changernom'] . '.';
+				} else {
+					$erreur = "Une équipe avec ce nom existe déjà.";
+				}
 			} else {
-				$erreur = "Une équipe avec ce nom existe déjà.";
+				$erreur = "Le TAG de l'alliance ne peut être composé que de lettres, nombres, \"_\", entre 3 et 16 caractères.";
 			}
 		} else {
 			$erreur = "Le nom de votre équipe doit au moins comporter un caractère.";
