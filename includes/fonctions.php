@@ -1337,7 +1337,7 @@ function initPlayer($joueur)
             'revenu1' => ($niveauActuelStabilisateur['niveau'] + 1) * 0.5 . '% de réduction des chances de disparition des molécules',
             'effetSup' => '',
             'description' => 'Le stabilisateur permet à vos <strong>molécules d\'être plus stables</strong>, c\'est à dire qu\'elles disparaitront au bout d\'un temps plus long',
-            'coutAtomes' => round((1 - ($bonus / 100)) * 75 * pow(niveauActuelStabilisateur['niveau'], 0.8)),
+            'coutAtomes' => round((1 - ($bonus / 100)) * 75 * pow($niveauActuelStabilisateur['niveau'], 0.8)),
             'points' => 3 + floor($niveauActuelStabilisateur['niveau'] * 0.1),
             'tempsConstruction' => round(120 * pow($niveauActuelStabilisateur['niveau'] + 1, 1.7))
         ]
