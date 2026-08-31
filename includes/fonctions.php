@@ -1696,7 +1696,7 @@ function remiseAZero()
 
     mysqli_query($base, 'UPDATE autre SET points=0, niveaututo=1, nbattaques=0, neutrinos=default,moleculesPerdues=0, energieDepensee=0, energieDonnee=0, bombe=0, batMax=1, totalPoints=0, pointsAttaque=0, pointsDefense=0, ressourcesPillees = 0, missions=\'\'');
     mysqli_query($base, 'UPDATE constructions SET generateur=default, producteur=default,pointsProducteur=default,pointsProducteurRestants=default, pointsCondenseur=default, pointsCondenseurRestants=default,champdeforce=default, lieur=default,ionisateur=default, depot=1, stabilisateur=default, condenseur=0,vieGenerateur=' . pointsDeVie(1) . ', vieChampdeforce=' . vieChampDeForce(0) . ', vieProducteur=' . pointsDeVie(1) . ', vieDepot=' . pointsDeVie(1) . '');
-    mysqli_query($base, 'UPDATE alliances SET energieAlliance=0,duplicateur=0');
+    mysqli_query($base, 'UPDATE alliances SET energieAlliance=0,energieTotaleRecue=0,duplicateur=0');
     mysqli_query($base, 'UPDATE molecules SET formule="Vide", nombre=0');
     mysqli_query($base, 'UPDATE membre SET timestamp=' . time() . '');
 

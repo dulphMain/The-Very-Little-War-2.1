@@ -24,7 +24,7 @@ if($_GET['type'] == 3 AND isset($_GET['id']) AND !empty($_GET['id']) AND preg_ma
 		mysqli_query($base,'DELETE FROM reponses WHERE id=\''.$_GET['id'].'\'');
 		$ex = mysqli_query($base,'SELECT nbMessages FROM autre WHERE login=\''.$_SESSION['login'].'\'');
 		$nbMessages = mysqli_fetch_array($ex);
-		mysqli_query($base,'UPDATE autre SET nbMessages=\''.($nbMessages['nbMessages']-1).'\' WHERE login=\''.$_SESSION['login'].'\'');
+		mysqli_query($base,'UPDATE autre SET nbMessages=\''.($nbMessages['nbMessages']-1).'\' WHERE login=\''.$auteur['auteur'].'\'');
 		// Modifié par Yojim
 		echo "<script>window.location.replace(\"sujet.php?id=".$sujet['idsujet']."\")</script>"; // Redirection
 		//
