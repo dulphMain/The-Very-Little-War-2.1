@@ -89,9 +89,7 @@ if (isset($_POST['joueurAAttaquer'])) {
                     for ($i = 1; $i <= $nbClasses; $i++) {
                         if (!isset($_POST['nbclasse' . $i])) {
                             $_POST['nbclasse' . $i] = 0;
-                        }
-
-                        if ($_POST['nbclasse' . $i] < 0) {
+                        } elseif ($_POST['nbclasse' . $i] < 0) {
                             $troupesPositives = false;
                         }
                     }
