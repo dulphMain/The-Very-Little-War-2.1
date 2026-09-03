@@ -256,6 +256,7 @@ if ($hydrogeneTotal > 0) { // si il y a de l'hydrogène
 						break;
 					case 3:
 						$degatsProducteur += $degatsAMettre;
+						break;
 					default:
 						$degatsDepot += $degatsAMettre;
 						break;
