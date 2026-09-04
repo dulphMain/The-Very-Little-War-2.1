@@ -160,15 +160,15 @@ $idforum = mysqli_fetch_array($ex);
 				debutCarte("Créer un sujet");
 
 				?><form action="listesujets.php?id=<?php if (isset($_GET['id'])) {
-												echo $_GET['id'];
-											} ?>" method="post" name="formCreerSujet"><?php
-																																		debutListe();
-																																		item(['titre' => 'Titre', 'input' => '<input type="text" name="titre" id="titre" class="form-control">', 'floating' => true]);
-																																		creerBBcode("contenu");
-																																		item(['floating' => true, 'titre' => "Contenu", 'input' => '<textarea name="contenu" id="contenu" rows="10" cols="50"></textarea>']);
-																																		item(['input' => submit(['titre' => 'Créer', 'form' => 'formCreerSujet'])]);
-																																		finListe();
-																																		?></form><?php
+						echo $_GET['id'];
+					} ?>" method="post" name="formCreerSujet"><?php
+					debutListe();
+					item(['titre' => 'Titre', 'input' => '<input type="text" name="titre" id="titre" class="form-control">', 'floating' => true]);
+					creerBBcode("contenu");
+					item(['floating' => true, 'titre' => "Contenu", 'input' => '<textarea name="contenu" id="contenu" rows="10" cols="50"></textarea>']);
+					item(['input' => submit(['titre' => 'Créer', 'form' => 'formCreerSujet'])]);
+					finListe();
+					?></form><?php
 					finCarte();
 				}
 			} else {
