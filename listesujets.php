@@ -48,7 +48,7 @@ $idforum = mysqli_fetch_array($ex);
 
 <div class="table-responsive">
 	<?php
-	if (isset($_GET['id'])) {
+	if (isset($_GET['id']) and isset($idforum['titre'])) {
 		debutCarte($idforum['titre']);
 		$sql = 'SELECT * FROM sujets WHERE idforum=\'' . $_GET['id'] . '\'';
 		$ex = mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
