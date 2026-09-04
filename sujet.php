@@ -12,16 +12,20 @@ if (isset($_POST['contenu']) and isset($_GET['id'])) {
 	if (preg_match("#^[0-9]*$#", $_GET['id'])) {
 		if (isset($_SESSION['login'])) {
 			if (!empty($_POST['contenu'])) {
-				$_POST['contenu'] = mysqli_real_escape_string($base, ($_POST['contenu']));
-				// Modifié par Yojim
-				$sql = 'INSERT INTO reponses VALUES(default, "' . $_GET['id'] . '", "1", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . (time()) . '")';
-				//
-				mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
-				mysqli_query($base, 'DELETE FROM statutforum WHERE idsujet=\'' . $_GET['id'] . '\'') or die('Erreur SQL !<br>' . mysqli_error($base));
-				$ex = mysqli_query($base, 'SELECT nbMessages FROM autre WHERE login=\'' . $_SESSION['login'] . '\'');
-				$nbMessages = mysqli_fetch_array($ex);
-				mysqli_query($base, 'UPDATE autre SET nbMessages=\'' . ($nbMessages['nbMessages'] + 1) . '\' WHERE login=\'' . $_SESSION['login'] . '\'');
-				$information = "Votre réponse a été créée.";
+				if (mysqli_fetch_array(query("SELECT count(*) FROM sujets WHERE id=1"))[0] != 1) {
+					$_POST['contenu'] = mysqli_real_escape_string($base, ($_POST['contenu']));
+					// Modifié par Yojim
+					$sql = 'INSERT INTO reponses VALUES(default, "' . $_GET['id'] . '", "1", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . (time()) . '")';
+					//
+					mysqli_query($base, $sql) or die('Erreur SQL !' . $sql . '<br>' . mysqli_error($base));
+					mysqli_query($base, 'DELETE FROM statutforum WHERE idsujet=\'' . $_GET['id'] . '\'') or die('Erreur SQL !<br>' . mysqli_error($base));
+					$ex = mysqli_query($base, 'SELECT nbMessages FROM autre WHERE login=\'' . $_SESSION['login'] . '\'');
+					$nbMessages = mysqli_fetch_array($ex);
+					mysqli_query($base, 'UPDATE autre SET nbMessages=\'' . ($nbMessages['nbMessages'] + 1) . '\' WHERE login=\'' . $_SESSION['login'] . '\'');
+					$information = "Votre réponse a été créée.";
+				} else {
+					$erreur = "Le sujet n'existe pas";
+				}
 			} else {
 				$erreur = "Tous les champs ne sont pas remplis.";
 			}
