@@ -216,61 +216,71 @@ if (date('n', time()) != date('n', $debut["debut"])) {
     //mise à jour du nombre de victoires et des news
     mysqli_query($base, "INSERT INTO news VALUES(default, '" . $titre . "', '" . $contenu . "', '" . (time()) .  "')");
 
-    //envoi des mails
-    $ex = mysqli_query($base, "SELECT email,login FROM membre");
-    while ($donnees = mysqli_fetch_array($ex)) {
-        $mail = $donnees['email']; // Déclaration de l'adresse de destination.
-        if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $mail)) // On filtre les serveurs qui rencontrent des bogues.
-        {
-            $passage_ligne = "\r\n";
-        } else {
-            $passage_ligne = "\n";
+    define('BREVO_API_KEY', 'PRIVATE API KEY');
+        //envoi des mails
+    // ===== Boucle sur les membres =====
+    $ex = mysqli_query($base, "SELECT email, login FROM membre");
+    if ($ex === false) {
+        error_log("Erreur SQL: " . mysqli_error($base));
+    } else {
+        while ($donnees = mysqli_fetch_assoc($ex)) {
+            $mail = trim($donnees['email']);
+
+            if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+                continue;
+            }
+
+            $login_safe = htmlspecialchars($donnees['login'], ENT_QUOTES, 'UTF-8');
+            $winner_safe = htmlspecialchars($_SESSION['login'], ENT_QUOTES, 'UTF-8');
+            $date_fmt = date('d/m/Y à H\hi', time());
+
+            $sujet = "Début d'une nouvelle partie";
+
+            $message_txt = "Bonjour " . $donnees['login'] . " ! " . $_SESSION['login'] . " vient de remporter la partie en cours le " . $date_fmt . ". Les points de tous les joueurs vont être remis à zéro et vous pourrez commencer à rejouer la nouvelle partie à partir du " . $date_fmt . " ! Ne manquez pas cette occasion de prendre la tête du classement. Je vous souhaite donc bonne chance pour la suite et à bientôt sur The Very Little War !\n\nSi vous ne souhaitez plus recevoir ce genre de mail il suffit de changer votre adresse e-mail sur www.theverylittlewar.com dans la partie \"Mon compte\".";
+
+            $message_html = "<html><head></head><body>Bonjour " . $login_safe . " ! <b>" . $winner_safe . "</b> vient de remporter la partie en cours le " . $date_fmt . ". Les points de tous les joueurs vont être remis à zéro et vous pourrez commencer à rejouer la nouvelle partie à partir du <b>" . $date_fmt . "</b> ! Ne manquez pas cette occasion de prendre la tête du classement. Je vous souhaite donc bonne chance pour la suite et à bientôt sur <a href=\"http://www.theverylittlewar.com\">The Very Little War</a> !<br><br><br><br><i>Si vous ne souhaitez plus recevoir ce genre de mail il suffit de changer votre adresse e-mail sur <a href=\"http://www.theverylittlewar.com\">www.theverylittlewar.com</a> dans la partie \"Mon compte\".</i></body></html>";
+
+            envoyerMail($mail, $donnees['login'], $sujet, $message_html, $message_txt);
         }
-        //=====Déclaration des messages au format texte et au format HTML.
-        $message_txt = "Bonjour " . $donnees['login'] . " ! " . $_SESSION['login'] . " vient de remporter la partie en cours le " . date('d/m/Y à H\hi', time()) . ". Les points de tous les joueurs vont être remis à zéro et
-            vous pourrez commencer à rejouer la nouvelle partie à partir du " . date('d/m/Y Ã H\hi', time()) . " ! Ne manquez pas cette occasion de prendre la tête du classement. Je vous souhaite donc bonne chance pour la suite
-            et à bientôt sur The Very Little War !
-            Si vous ne souhaitez plus recevoir ce genre de mail il suffit de changer votre adresse e-mail sur www.theverylittlewar.com dans la partie \"Mon compte\".";
-        $message_html = "<html><head></head><body>Bonjour " . $donnees['login'] . " ! <b>" . $_SESSION['login'] . "</b> vient de remporter la partie en cours le " . date('d/m/Y à H\hi', time()) . ". Les points de tous les joueurs vont être remis à zéro et
-            vous pourrez commencer à rejouer la nouvelle partie à partir du <b>" . date('d/m/Y Ã H\hi', time()) . "</b> ! Ne manquez pas cette occasion de prendre la tête du classement. Je vous souhaite donc bonne chance pour la suite
-            et à bientôt sur <a href=\"www.theverylittlewar.com\">The Very Little War</a> !<br><br><br><br>
-            <i>Si vous ne souhaitez plus recevoir ce genre de mail il suffit de changer votre adresse e-mail sur <a href=\"www.theverylittlewar.com\">www.theverylittlewar.com</a> dans la partie \"Mon compte\".</i></body></html>";
-        //==========
+    }
+}
 
-        //=====Création de la boundary
-        $boundary = "-----=" . md5(rand());
-        //==========
+function envoyerMail($destinataire, $nomDestinataire, $sujet, $htmlContent, $textContent) {
+    $data = [
+        "sender" => [
+            "name" => "The Very Little War 2.1",
+            "email" => "PRIVATE EMAIL"
+        ],
+        "to" => [
+            ["email" => $destinataire, "name" => $nomDestinataire]
+        ],
+        "replyTo" => [
+            "email" => "PRIVATE EMAIL"
+        ],
+        "subject" => $sujet,
+        "htmlContent" => $htmlContent,
+        "textContent" => $textContent
+    ];
 
-        //=====Définition du sujet.
-        $sujet = "Début d'une nouvelle partie";
-        //=========
+    $ch = curl_init("https://api.brevo.com/v3/smtp/email");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "accept: application/json",
+        "api-key: " . BREVO_API_KEY,
+        "content-type: application/json"
+    ]);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 
-        //=====Création du header de l'e-mail.
-        $header = "From: \"The Very Little War\"<noreply@theverylittewar.com>" . $passage_ligne;
-        $header .= "Reply-to: \"The Very Little War\" <theverylittewar@gmail.com>" . $passage_ligne;
-        $header .= "MIME-Version: 1.0" . $passage_ligne;
-        $header .= "Content-Type: multipart/alternative;" . $passage_ligne . " boundary=\"$boundary\"" . $passage_ligne;
-        //==========
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
 
-        //=====Création du message.
-        $message = $passage_ligne . "--" . $boundary . $passage_ligne;
-        //=====Ajout du message au format texte.
-        $message .= "Content-Type: text/plain; charset=\"UTF-8\"" . $passage_ligne;
-        $message .= "Content-Transfer-Encoding: 8bit" . $passage_ligne;
-        $message .= $passage_ligne . $message_txt . $passage_ligne;
-        //==========
-        $message .= $passage_ligne . "--" . $boundary . $passage_ligne;
-        //=====Ajout du message au format HTML
-        $message .= "Content-Type: text/html; charset=\"UTF-8\"" . $passage_ligne;
-        $message .= "Content-Transfer-Encoding: 8bit" . $passage_ligne;
-        $message .= $passage_ligne . $message_html . $passage_ligne;
-        //==========
-        $message .= $passage_ligne . "--" . $boundary . "--" . $passage_ligne;
-        $message .= $passage_ligne . "--" . $boundary . "--" . $passage_ligne;
-        //==========
-
-        //=====Envoi de l'e-mail.
-        mail($mail, $sujet, $message, $header);
-        //==========
+    if ($httpCode >= 200 && $httpCode < 300) {
+        return true;
+    } else {
+        error_log("Erreur Brevo ($httpCode) pour $destinataire : " . $response);
+        return false;
     }
 }
