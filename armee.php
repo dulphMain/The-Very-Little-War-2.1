@@ -2,7 +2,7 @@
 include("includes/basicprivatephp.php");
 include("includes/redirectionVacance.php");
 
-if (isset($_POST['emplacementmoleculesupprimer']) and !empty($_POST['emplacementmoleculesupprimer']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculesupprimer']) and $_POST['emplacementmoleculesupprimer'] <= 5) { // Si l'on veut supprimer une classe de molécules
+if (isset($_POST['emplacementmoleculesupprimer']) and !empty($_POST['emplacementmoleculesupprimer']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculesupprimer']) and $_POST['emplacementmoleculesupprimer'] <= 4) { // Si l'on veut supprimer une classe de molécules
     $sql2 = 'SELECT formule,id FROM molecules WHERE proprietaire=\'' . $_SESSION['login'] . '\' AND numeroclasse=\'' . $_POST['emplacementmoleculesupprimer'] . '\'';
     $ex2 = mysqli_query($base, $sql2) or die('Erreur SQL !<br>' . $sql2 . '<br>' . mysqli_error($base));
     $molecules = mysqli_fetch_array($ex2);
@@ -94,7 +94,7 @@ if (isset($_POST['nombreneutrinos']) and !empty($_POST['nombreneutrinos'])) {
     }
 }
 
-if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmoleculeformer']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculeformer']) and $_POST['emplacementmoleculeformer'] <= 5) {
+if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmoleculeformer']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculeformer']) and $_POST['emplacementmoleculeformer'] <= 4) {
     $_POST['nombremolecules'] = transformInt($_POST['nombremolecules']);
     if (isset($_POST['nombremolecules']) and !empty($_POST['nombremolecules']) and preg_match("#^[0-9]*$#", $_POST['nombremolecules'])) {
         $_POST['nombremolecules'] = mysqli_real_escape_string($base, stripslashes(antihtml($_POST['nombremolecules'])));
@@ -159,7 +159,7 @@ if (isset($_POST['emplacementmoleculeformer']) and !empty($_POST['emplacementmol
     }
 }
 
-if (isset($_POST['emplacementmoleculecreer1']) and !empty($_POST['emplacementmoleculecreer1']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculecreer1']) and $_POST['emplacementmoleculecreer1'] <= 5) {
+if (isset($_POST['emplacementmoleculecreer1']) and !empty($_POST['emplacementmoleculecreer1']) and preg_match("#^[0-9]*$#", $_POST['emplacementmoleculecreer1']) and $_POST['emplacementmoleculecreer1'] <= 4) {
     $bool = 1;
     foreach ($nomsRes as $num => $ressource) {
         if (!(isset($_POST[$ressource]) and preg_match("#^[0-9]*$#", $_POST[$ressource]))) {
