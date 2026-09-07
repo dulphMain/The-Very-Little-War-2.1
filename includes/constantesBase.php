@@ -3,6 +3,7 @@ $nomsRes = array("carbone","azote","hydrogene","oxygene","chlore","soufre","brom
 $nomsAccents = array("carbone","azote","hydrogène","oxygène","chlore","soufre","brome","iode");
 $couleurs = ['black','blue','gray','red','green','#D07D00','#840000','#BB6668'];
 $couleursSimples = ['black','blue','gray','red','green','orange','brown','pink'];
+$couleursRegex = ['C' => 'black','N' => 'blue','H' => 'gray','O' => 'red','Cl' => 'green','S' => '#D07D00','Br' => '#840000', 'I' =>'#BB6668'];
 $utilite = array("Défense","Temps de formation","Dégâts aux bâtiments","Attaque","Vitesse de déplacement","Capacité de pillage","Points de vie","Produit de l'énergie");
 $lettre = array("C", "N", "H", "O", "Cl","S","Br","I");
 $aidesAtomes = ['Le carbone augmente la défense de votre molécule. Ce sont les dégâts que votre molécule infligera aux molécules adverses lorsque l\'on vous attaquera.',
