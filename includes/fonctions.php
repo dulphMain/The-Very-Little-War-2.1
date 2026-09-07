@@ -2003,15 +2003,11 @@ function ajouter($champ, $bdd, $nombre, $joueur)
 
 function couleurFormule($formule)
 {
-    global $nomsRes;
-    global $lettre;
-    global $couleurs;
+    global $couleursRegex;
 
-    foreach ($nomsRes as $num => $ressource) {
-        $formule = preg_replace('#(' . $lettre[$num] . ')(<sub>[0-9]*</sub>)#', '<span style="color:' . $couleurs[$num] . ';font-weight:bold;">$1$2</span>', $formule);
-    }
-
-    return $formule;
+    return preg_replace_callback('#(Cl|N|H|O|C|S|Br|I)(<sub>[0-9]*</sub>)?#', function($match) use ($couleursRegex) {
+    return '<span style="color:' . $couleursRegex[$match[1]] . ';font-weight:bold;">' . $match[1] . ($match[2] ?? '') . '</span>';
+}, $formule);
 }
 
 function popover($nom, $image)
