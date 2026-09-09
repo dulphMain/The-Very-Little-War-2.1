@@ -327,7 +327,7 @@ function BBCode($text,$javascript=false){
 	$text = preg_replace('!\[title\](.+)\[/title\]!isU', '<span style="font-size: 130%;">$1</span>', $text);
 	$text = preg_replace('!\[joueur=([a-z0-9_-]{3,16})/\]!isU', '<a href="joueur.php?id=$1">$1</a>', $text);
 	$text = preg_replace('!\[alliance=([a-z0-9_-]{3,16})/\]!isU', '<a href="alliance.php?id=$1">$1</a>', $text);
-	$text = preg_replace('!\[url=((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)\](.+)\[/url\]!isU', '<a href="$1">$6</a>', $text);
+	$text = preg_replace('!\[url=((?i)https?:\\/\\/(?:[a-zA-Z0-9]{2,63}\\.)*[\\w-]{1,63}\\.[a-zA-Z]{2,63}(?::\\d+)?(?:\\/[\\w.-]*)*(?:\\?(?:[\\w%+.:\\/-]+=[\\w%+.:\\/-]+&?)+)?(?:#[\\w-]+)?)\](.+)\[/url\]!isU', '<a href="$1">$6</a>', $text);
 	$text = preg_replace('!\[img=(https?:\/\/(.*)\.(gif|png|jpg|jpeg))\]!isU', '<img alt="undefinded" src="$1">', $text);
 	$text = preg_replace('!\[color=(blue|red|green|white|black|beige|brown|cyan|yellow|orange|gray|purple|maroon)\](.+)\[/color\]!isU', '<span style="color: $1;">$2</span>', $text);
 	
