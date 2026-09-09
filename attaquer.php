@@ -61,12 +61,14 @@ if (isset($_POST['joueurAAttaquer'])) {
         $_POST['joueurAAttaquer'] = antiXSS($_POST['joueurAAttaquer']);
         if ($_POST['joueurAAttaquer'] != $_SESSION['login']) {
 
-            $sqlVac = 'SELECT vacance,timestamp FROM membre WHERE login=\'' . $_POST['joueurAAttaquer'] . '\'';
+            $sqlVac = 'SELECT vacance,timestamp,x FROM membre WHERE login=\'' . $_POST['joueurAAttaquer'] . '\'';
             $exVac = mysqli_query($base, $sqlVac);
             $enVac = mysqli_fetch_array($exVac);
 
             if ($enVac['vacance']) {
                 $erreur = "Vous ne pouvez pas attaquer un joueur en vacances";
+            } elseif ($enVac['x'] == -1000) {
+                $erreur = "Vous ne pouvez pas attaquer un joueur inactif";
             } elseif (time() - $enVac['timestamp'] < 3600 * 24 * 2) {
                 $erreur = "Le joueur est encore sous protection des débutants.";
             } elseif (time() - $membre['timestamp'] < 3600 * 24 * 2) {
