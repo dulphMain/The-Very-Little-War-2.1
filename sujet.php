@@ -33,7 +33,7 @@ if (isset($_POST['contenu']) and isset($_GET['id'])) {
 			$erreur = "T'as essayé de m'avoir ? Eh bah non !";
 		}
 	} else {
-		$erreur = "Mais c'est que tu es trés marrant toi ?";
+		$erreur = "Mais c'est que tu es très marrant toi ?";
 	}
 }
 
@@ -236,7 +236,7 @@ if (isset($_GET['id'])) {
 					item(['input' => submit(['titre' => 'Répondre', 'form' => 'reponseForm'])]);
 					finListe();
 				} else {
-					echo "Ce sujet est vérouillé.";
+					echo "Ce sujet est verrouillé.";
 				}
 				finCarte();
 			}
