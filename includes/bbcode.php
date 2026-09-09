@@ -1,5 +1,5 @@
 <script language="Javascript">
-var isMozilla = (navigator.userAgent.toLowerCase().indexOf('gecko')!=-1) ? true : false;
+var isMozilla = navigator.userAgent.toLowerCase().indexOf('gecko') != -1;
 var regexp = new RegExp("[\r]","gi");
 
 function storeCaret(selec)
