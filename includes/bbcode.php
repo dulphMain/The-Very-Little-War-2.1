@@ -319,7 +319,7 @@ $text = htmlentities($text);
 $text = preg_replace('!localStorage.getItem\(("|\')mdp!isU', '', $text);
 $text = preg_replace('!0:(-)?\)!isU', '<img alt="angel" src="images/smileys/icon_angel.gif">', $text);
 $text = preg_replace('!\[b\](.+)\[/b\]!isU', '<span style="font-weight: bold">$1</span>', $text);
-$text = preg_replace('!\[elfique\](.+)\[/elfique\]!isU', '<span style="font-family: quenya;font-size:2em">$1</span>', $text);
+$text = preg_replace('!\[elfique\](.+)\[/elfique\]!isU', '<span style="font-family: quenya; font-size: 2em">$1</span>', $text);
 $text = preg_replace('!\[i\](.+)\[/i\]!isU', '<span style="font-style: italic">$1</span>', $text);
 $text = preg_replace('!\[u\](.+)\[/u\]!isU', '<span style="text-decoration:underline;">$1</span>', $text);
 $text = preg_replace('!\[sup\](.+)\[/sup\]!isU', '<sup>$1</sup>', $text);
@@ -330,7 +330,7 @@ $text = preg_replace('!\[joueur=([a-z0-9_-]{3,16})/\]!isU', '<a href="joueur.php
 $text = preg_replace('!\[alliance=([a-z0-9_-]{3,16})/\]!isU', '<a href="alliance.php?id=$1">$1</a>', $text);
 $text = preg_replace('!\[url=((https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?)\](.+)\[/url\]!isU', '<a href="$1">$6</a>', $text);
 $text = preg_replace('!\[img=(https?:\/\/(.*)\.(gif|png|jpg|jpeg))\]!isU', '<img alt="undefinded" src="$1">', $text);
-$text = preg_replace('!\[color=(blue|red|green|white|black|beige|brown|cyan|yellow|orange|gray|purple|maroon)\](.+)\[/color\]!isU', '<span style="color:$1;">$2</span>', $text);
+$text = preg_replace('!\[color=(blue|red|green|white|black|beige|brown|cyan|yellow|orange|gray|purple|maroon)\](.+)\[/color\]!isU', '<span style="color: $1;">$2</span>', $text);
 
 $text = preg_replace('!\[latex\](.+)\[/latex\]!isU', '\$\$$1\$\$', $text);
 
