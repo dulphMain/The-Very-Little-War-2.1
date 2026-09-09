@@ -12,7 +12,7 @@ if (isset($_POST['contenu']) and isset($_GET['id'])) {
 	if (preg_match("#^[0-9]*$#", $_GET['id'])) {
 		if (isset($_SESSION['login'])) {
 			if (!empty($_POST['contenu'])) {
-				if (mysqli_fetch_array(query("SELECT count(*) FROM sujets WHERE id=1"))[0] != 1) {
+				if (mysqli_fetch_array(query("SELECT count(*) FROM sujets WHERE id=".$_GET['id']."))[0] == 1) {
 					$_POST['contenu'] = mysqli_real_escape_string($base, ($_POST['contenu']));
 					// Modifié par Yojim
 					$sql = 'INSERT INTO reponses VALUES(default, "' . $_GET['id'] . '", "1", "' . $_POST['contenu'] . '", "' . $_SESSION['login'] . '", "' . (time()) . '")';
