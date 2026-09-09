@@ -50,8 +50,8 @@ if (isset($_GET['deverouillersujet']))
 ?>
 <table>
 <tr>
-<th>Vérouiller</th>
-<th>Dévérouiller</th>
+<th>Verrouiller</th>
+<th>Déverrouiller</th>
 <th>Supprimer</th>
 <th>Titre</th>
 <th>Auteur</th>
@@ -64,12 +64,12 @@ while ($donnees = mysqli_fetch_array($retour))
 {
 ?>
 <tr>
-<td><?php echo '<a href="listesujets.php?verouillersujet=' . $donnees['id'] . '">'; ?>Vérouiller</a></td>
-<td><?php echo '<a href="listesujets.php?deverouillersujet=' . $donnees['id'] . '">'; ?>Dévérouiller</a></td>
+<td><?php echo '<a href="listesujets.php?verouillersujet=' . $donnees['id'] . '">'; ?>Verrouiller</a></td>
+<td><?php echo '<a href="listesujets.php?deverouillersujet=' . $donnees['id'] . '">'; ?>Déverrouiller</a></td>
 <td><?php echo '<a href="listesujets.php?supprimersujet=' . $donnees['id'] . '">'; ?>Supprimer</a></td>
 <td><?php echo stripslashes($donnees['titre']); ?></td>
 <td><?php echo stripslashes($donnees['auteur']); ?></td>
-<td><?php if($donnees['statut'] == 0){ echo "Ouvert"; } else { echo "Vérouillé"; } ?></td>
+<td><?php if($donnees['statut'] == 0){ echo "Ouvert"; } else { echo "Verrouillé"; } ?></td>
 <td><?php echo date('d/m/Y', $donnees['timestamp']); ?></td>
 </tr>
 <?php
