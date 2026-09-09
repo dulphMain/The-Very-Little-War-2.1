@@ -199,8 +199,8 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 					<p>
 					<table>
 						<tr>
-							<th>Vérouiller</th>
-							<th>Dévérouiller</th>
+							<th>Verrouiller</th>
+							<th>Déverrouiller</th>
 							<th>Supprimer</th>
 							<th>Titre</th>
 							<th>Auteur</th>
@@ -213,15 +213,15 @@ if (!isset($_SESSION['motdepasseadmin']) or $_SESSION['motdepasseadmin'] != "Fau
 						while ($donnees = mysqli_fetch_array($retour)) {
 						?>
 							<tr>
-								<td><?php echo '<a href="index.php?verouillersujet=' . $donnees['id'] . '">'; ?>Vérouiller</a></td>
-								<td><?php echo '<a href="index.php?deverouillersujet=' . $donnees['id'] . '">'; ?>Dévérouiller</a></td>
+								<td><?php echo '<a href="index.php?verouillersujet=' . $donnees['id'] . '">'; ?>Verrouiller</a></td>
+								<td><?php echo '<a href="index.php?deverouillersujet=' . $donnees['id'] . '">'; ?>Déverrouiller</a></td>
 								<td><?php echo '<a href="index.php?supprimersujet=' . $donnees['id'] . '">'; ?>Supprimer</a></td>
 								<td><?php echo stripslashes($donnees['titre']); ?></td>
 								<td><?php echo stripslashes($donnees['auteur']); ?></td>
 								<td><?php if ($donnees['statut'] == 0) {
 										echo "Ouvert";
 									} else {
-										echo "Vérouillé";
+										echo "Verrouillé";
 									} ?></td>
 								<td>
 									<form action="index.php" method="post">
