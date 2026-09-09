@@ -44,7 +44,7 @@ debutCarte();
     }
 
     item(['select' => ["numeropartie",$options]]);
-    item(['input' => submit(['form' => 'formHistorique', 'titre' => 'Séléctionner'])]);
+    item(['input' => submit(['form' => 'formHistorique', 'titre' => 'Sélectionner'])]);
 
     echo '</form>';
     finListe();
@@ -188,7 +188,7 @@ if(isset($_POST['numeropartie'])) {
 }
 else {
 	debutContent();
-    echo 'Aucune partie séléctionnée<br><br>';
+    echo 'Aucune partie sélectionnée<br><br>';
     finContent();
 }
 
